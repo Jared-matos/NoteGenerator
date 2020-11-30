@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <style>
+    .tableRow {
+      display: table-row;
+      font-family: calibri;
+      size: 12pt;
+    }
+    .text {
+      display: table-cell;
+      font-family: calibri;
+      size: 12pt;
+      width: 200px;
+    }
+    .iptext {
+      display: table-cell;
+      font-family: calibri;
+      size: 12pt;
+      width: 100%;
+    }
+    #oText { display: table-cell;}
+    #updateSpan { display: none;}
+    #updateText { display: none;}
+    #tDiv {
+      height: 330px;
+      width: 375px;
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .displayAsCell { display: table-cell;}
+    #oText {
+      resize: none;
+      display: none;
+    }
+    #pasteBox { resize: none;}
+  </style>
+
+  <div id="tDiv">
+    <!--<div class="tableRow">
+      <span class="text">Pastebox</span>
+      <textarea type="text" id="pasteBox" placeholder="Paste demographics here" onchange="parseData()" /></textarea>
+    </div>-->
+    <div class="tableRow">
+      <span class="text">Caller Name</span>
+      <input class="iptext" type="text" id="callerName" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">Callback Number</span>
+      <input class="iptext" type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+        <span class="text">Relationship to Member</span>
+        <input class="iptext" type="text" id="callerRel" autocomplete="off" list="autocompleteOff"/>
+      </div>
+    <div class="tableRow">
+      <div class="displayAsCell">
+        <input type="radio" id="NPI" name="NPI/TIN" value="NPI">
+        <label>NPI</label>
+        <input type="radio" id="TIN" name="NPI/TIN" value="TIN">
+        <label>TIN</label>
+      </div>
+      <input class="iptext" type="text" id="provIDText" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">Facility Name</span>
+      <input class="iptext" type="text" id="provNamesText" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">Site Address</span>
+      <input class="iptext" type="text" id="siteID" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <label class="text">Confirmed address on file?</label>
+      <input type="checkbox" id="updateBox" onclick="toggleUpdateField()"/>
+    </div>
+    <div class="tableRow">
+      <span id="updateSpan" class="text">What was updated and when?</span>
+      <input class="iptext" type="text" id="updateText" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">DOS</span>
+      <input class="iptext" type="text" id="dos" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">Procedure Code</span>
+      <input class="iptext" type="text" id="pCode" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">Decision Code</span>
+      <input class="iptext" type="text" id="dCode" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">Description</span>
+      <input class="iptext" type="text" id="desc" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow">
+      <span class="text">Reason for Ticket</span>
+      <input class="iptext" type="text" id="reason" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="displayAsCell">
+      <textarea readonly type="text" id="oText"></textarea>
+      <button type="button" onclick="copyClipboard()">Copy to Clipboard</button>
+      <button type="button" onclick="clearAll()">Clear All</button>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    //sets up the datepicker for DOB field
+    var mbrDOB = flatpickr("#mbrDOB", { dateFormat: "m/d/Y", defaultDate: "" });
+
+    // takes input from the pastebox field and places it in the proper field
+    function parseData(){
+      // get data from pastebox and split it by row 
+      var pasteData = document.getElementById("pasteBox").value;
+      var pasteDataARR = pasteData.split(/\r?\n/);
+      var i = 0;
+      // go through each row and see if it starts with a known text, if so add that to the table in correct field
+      for(f=0;f<pasteDataARR.length;f++){
+        if(pasteDataARR[f].search("Member ID")==0){
+          document.getElementById("mbrIDText").value = pasteDataARR[f].slice(10);
+        } else if(pasteDataARR[f].search("Name")==0){
+          while (pasteDataARR[f].charAt(i) !== "("){i++;}
+            document.getElementById("mbrNameText").value = pasteDataARR[f].slice(5,i);
+            document.getElementById("mbrDOB").value = pasteDataARR[f].slice(i+6,i+16);
+        } else if(pasteDataARR[f].search("Provider")==0){
+          i=9;
+          while(pasteDataARR[f].charAt(i) !== " "){i++}
+          document.getElementById("provIDText").value = pasteDataARR[f].slice(9,i);
+          document.getElementById("provNamesText").value = pasteDataARR[f].slice(i+2);
+        } else if(pasteDataARR[f].search("Site")==0){
+          i=5;
+          while(pasteDataARR[f].charAt(i) !== " "){i++}
+          document.getElementById("siteID").value = pasteDataARR[f].slice(5,i);
+        } else if(pasteDataARR[f].search("Dates Of Service")==0){
+          document.getElementById("dos").value = pasteDataARR[f].slice(17);
+        } else if(pasteDataARR[f].search("Procedure")==0){
+          document.getElementById("pCode").value = pasteDataARR[f].slice(11);
+        } else if(pasteDataARR[f].search("DecisionCodes")==0){
+          document.getElementById("dCode").value = pasteDataARR[f].slice(14);
+        } else if(pasteDataARR[f].search("Member")==0){
+          i=0;
+          while(pasteDataARR[f].charAt(i) !== "("){i++}
+          document.getElementById("mbrNameText").value = pasteDataARR[f].slice(7,i);
+          while(pasteDataARR[f].charAt(i) !== ":"){i++}
+          var startID = i+2;
+          while(pasteDataARR[f].charAt(i) !== ")"){i++}
+          document.getElementById("mbrIDText").value = pasteDataARR[f].slice(startID,i);
+        }
+      }
+      document.getElementById("pasteBox").value = "";
+    }
+
+    //Adds or removes textbox for "was there an update?" checkbox
+    function toggleUpdateField() {
+      if (document.getElementById("updateBox").checked == false) {
+        document.getElementById("updateSpan").style.display = "none";
+        document.getElementById("updateText").style.display = "none";
+        document.getElementById("tDiv").style.height = "320px";
+      } else {
+        document.getElementById("updateSpan").style.display = "table-cell";
+        document.getElementById("updateText").style.display = "table-cell";
+        document.getElementById("tDiv").style.height = "350px";
+      }
+    }
+
+    //Sets vaules of all fields to empty or false
+    function clearAll() {
+      document.getElementById("mbrIDText").value = "";
+      document.getElementById("mbrNameText").value = "";
+      document.getElementById("mbrDOB").value = "";
+      document.getElementById("provIDText").value = "";
+      document.getElementById("provNamesText").value = "";
+      document.getElementById("siteID").value = "";
+      document.getElementById("updateBox").checked = false;
+      document.getElementById("updateText").value = "";
+      document.getElementById("dos").value = "";
+      document.getElementById("pCode").value = "";
+      document.getElementById("dCode").value = "";
+      document.getElementById("desc").value = "";
+      document.getElementById("reason").value = "";
+    }
+
+    // Collects the information from the fields, combines them into an output string, and sends to the clipboard
+    function copyClipboard() {
+      // collecting information from all the fields & generating output and error texts
+      var MBRID = document.getElementById("mbrIDText").value;
+      var MBRNAME = document.getElementById("mbrNameText").value;
+      var MBRDOB = document.getElementById("mbrDOB").value;
+      var PROVID = document.getElementById("provIDText").value;
+      var PROVNAME = document.getElementById("provNamesText").value;
+      var SITEID = document.getElementById("siteID").value;
+      var URadio = document.getElementById("updateBox").checked;
+      var UTEXT = document.getElementById("updateText").value;
+      var DOS = document.getElementById("dos").value;
+      var PROC = document.getElementById("pCode").value;
+      var DCODE = document.getElementById("dCode").value;
+      var DESC = document.getElementById("desc").value;
+      var REAS = document.getElementById("reason").value;
+      var outputText = "";
+      var errors = "";
+      // combining all the data into a single string, any empty required fields are added to error text
+      outputText = outputText.concat("Member Demos:", "\r\n");
+      if (MBRID !== "") { outputText = outputText.concat("ID: ", MBRID, "\r\n");} else {errors=errors.concat("Member ID, ");}
+      if (MBRNAME !== "") { outputText = outputText.concat("Name: ", MBRNAME, "\r\n");} else {errors=errors.concat("Member Name, ");}
+      if (MBRDOB !== "") { outputText = outputText.concat("DOB: ", MBRDOB, "\r\n");}
+      outputText = outputText.concat("\r\n", "Provider Demos: ", "\r\n");
+      if (PROVID !== "") { outputText = outputText.concat("Provider ID: ", PROVID, "\r\n");} else {errors=errors.concat("Provider ID, ");}
+      if (PROVNAME !== "") { outputText = outputText.concat(PROVNAME);} else {errors=errors.concat("Provider/Facility Name, ");}
+      if (PROVNAME !== "" && SITEID !== "") { outputText = outputText.concat(" - ");}
+      if (SITEID !== "") { outputText = outputText.concat(SITEID);}
+      outputText = outputText.concat("\r\n", "\r\n");
+      if (URadio == true) { outputText = outputText.concat("Update Occurred: ", UTEXT, "\r\n");
+      } else { outputText = outputText.concat("No Update Occurred", "\r\n");}
+      if (DOS !== "") { outputText = outputText.concat("DOS: ", DOS, "\r\n");} else {errors=errors.concat("Date of Service, ");}
+      if (PROC !== "") { outputText = outputText.concat("Procedure Code: ", PROC, "\r\n");} else {errors=errors.concat("Procedure Code, ");}
+      if (DCODE !== "") { outputText = outputText.concat("Decision Code: ", DCODE, "\r\n");}
+      if (DESC !== "") { outputText = outputText.concat("Description: ", DESC, "\r\n");}
+      if (REAS !== "") { outputText = outputText.concat("Reason for Ticket: ", REAS, "\r\n");} else {errors=errors.concat("Reason for Ticket");}
+      // checking error text string to verify all needed information filled out 
+      if (errors == ""){
+        // displays the output text box momentarily and fills it with the output text
+        document.getElementById("oText").style.display = "block";
+        document.getElementById("oText").value = outputText;
+        // select and copy the information in the output text box, then hides the information again
+        var copyTextarea = document.getElementById("oText");
+        copyTextarea.focus();
+        copyTextarea.select();
+        try { document.execCommand("copy");
+        } catch (err) { alert("Oops, unable to copy");}
+        document.getElementById("oText").style.display = "none";
+      } else {
+        var errorText = "Please fill out: ";
+        errorText = errorText.concat(errors);
+        alert(errorText);
+      }
+    }
+  </script>
+  <!--Code hosted on Github @ -->
+</html>
