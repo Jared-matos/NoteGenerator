@@ -35,13 +35,10 @@
       background-color: #f2f2f2;
       padding: 10px;
     }
-    #oText {
-      resize: none;
-      display: none;
-    }
   </style>
 
   <div id="tDiv">
+    <!--Every call information-->
     <div class="tableRow">
       <span class="text">Caller Type</span>
       <div class="displayAsCell">
@@ -59,6 +56,7 @@
       <span class="text">Callback Number</span>
       <input class="iptext" type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff"/>
     </div>
+    <!--Member info Section-->
     <div class="displayNone" id="callerRelRow">
       <span class="text">Relationship to Member</span>
       <input class="iptext" type="text" id="callerRel" autocomplete="off" list="autocompleteOff"/>
@@ -81,13 +79,13 @@
       <span class="text">Site Address</span>
       <input class="iptext" type="text" id="siteAddress" autocomplete="off" list="autocompleteOff"/>
     </div>
-
+    <!--Standard footer-->
     <div class="tableRow">
       <label class="text">Confirmed address on file?</label>
       <input type="checkbox" id="confirmedAddress"/>
     </div>
     <div class="displayAsCell">
-      <textarea readonly type="text" class="displayAsCell" id="oText"></textarea>
+      <textarea readonly type="text" class="displayNone" id="oText"></textarea>
       <button type="button" onclick="copyClipboard()">Copy to Clipboard</button>
       <button type="button" onclick="clearAll()">Clear All</button>
     </div>
@@ -96,6 +94,7 @@
   <script type="text/javascript">
     console.clear();
 
+    // toggles between member and provider fields
     function mpRadio(){
       if (document.getElementById("Member").checked == false){
         document.getElementById("callerRelRow").className = "displayNone";
@@ -149,8 +148,8 @@
       var outputText = "";
       
       // combining all the data into a single string, any empty required fields are added to error text
-      if (CALLERNAME !== "") {outputText = outputText.concat(CALLERNAME, " / ");}
-      if (CALLERREL !== "" && MBRCHK == true) {outputText = outputText.concat(CALLERREL, " / ");}
+      if (CALLERNAME !== "") {outputText = outputText.concat(CALLERNAME," / ");}
+      if (CALLERREL !== "" && MBRCHK == true) {outputText = outputText.concat(CALLERREL," / ");}
       if (CBNUM !== "") {outputText = outputText.concat("CB# ",CBNUM," / ");}
       if (NPICHK == true && PROVCHK == true) {outputText = outputText.concat("NPI: ",PROVID);}
       if (TINCHK == true && PROVCHK == true) {outputText = outputText.concat("TIN: ",PROVID);}
