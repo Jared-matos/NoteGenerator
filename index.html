@@ -12,6 +12,10 @@
       display: table-row;
       font-family: calibri;
       size: 12pt;
+      height: 25px;
+    }
+    .displayNone{
+      display: none;
     }
     .text {
       display: table-cell;
@@ -26,11 +30,11 @@
       width: 100%;
     }
     #tDiv {
-      height: 180px;
+      height: 125px;
       width: 375px;
       border-radius: 10px;
       background-color: #f2f2f2;
-      padding: 20px;
+      padding: 10px;
     }
     .displayAsCell { display: table-cell;}
     #oText {
@@ -41,6 +45,15 @@
 
   <div id="tDiv">
     <div class="tableRow">
+      <span class="text">Caller Type</span>
+      <div class="displayAsCell">
+        <input type="radio" id="Member" name="MP" onclick="mpRadio()" value="Member">
+        <label>Member</label>
+        <input type="radio" id="Provider" name="MP" onclick="mpRadio()" value="Provider">
+        <label>Provider</label>
+      </div>
+    </div>    
+    <div class="tableRow">
       <span class="text">Caller Name</span>
       <input class="iptext" type="text" id="callerName" autocomplete="off" list="autocompleteOff"/>
     </div>
@@ -48,11 +61,12 @@
       <span class="text">Callback Number</span>
       <input class="iptext" type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff"/>
     </div>
-    <div class="tableRow">
+    <div class="displayNone" id="callerRelRow">
       <span class="text">Relationship to Member</span>
       <input class="iptext" type="text" id="callerRel" autocomplete="off" list="autocompleteOff"/>
     </div>
-    <div class="tableRow">
+    <!--Provider info section-->
+    <div id="provLine0" class="displayNone">
       <div class="displayAsCell">
         <input type="radio" id="NPI" name="NPI/TIN" value="NPI">
         <label>NPI</label>
@@ -61,14 +75,15 @@
       </div>
       <input class="iptext" type="text" id="provIDText" autocomplete="off" list="autocompleteOff"/>
     </div>
-    <div class="tableRow">
+    <div id="provLine1" class="displayNone">
       <span class="text">Facility Name</span>
       <input class="iptext" type="text" id="provNamesText" autocomplete="off" list="autocompleteOff"/>
     </div>
-    <div class="tableRow">
+    <div id="provLine2" class="displayNone">
       <span class="text">Site Address</span>
       <input class="iptext" type="text" id="siteAddress" autocomplete="off" list="autocompleteOff"/>
     </div>
+
     <div class="tableRow">
       <label class="text">Confirmed address on file?</label>
       <input type="checkbox" id="confirmedAddress"/>
@@ -81,7 +96,24 @@
   </div>
 
   <script type="text/javascript">
-   
+    console.clear();
+
+    function mpRadio(){
+      if (document.getElementById("Member").checked == false){
+        document.getElementById("callerRelRow").className = "displayNone";
+        document.getElementById("provLine0").className = "tableRow";
+        document.getElementById("provLine1").className = "tableRow";
+        document.getElementById("provLine2").className = "tableRow";
+        document.getElementById("tDiv").style.height = "200px";
+      } else {
+        document.getElementById("callerRelRow").className = "tableRow";
+        document.getElementById("provLine0").className = "displayNone";
+        document.getElementById("provLine1").className = "displayNone";
+        document.getElementById("provLine2").className = "displayNone";
+        document.getElementById("tDiv").style.height = "150px";
+      }
+    }
+    
     //Sets vaules of all fields to empty or false
     function clearAll() {
       document.getElementById("callerName").value = "";
