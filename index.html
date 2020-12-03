@@ -14,9 +14,8 @@
       size: 12pt;
       height: 25px;
     }
-    .displayNone{
-      display: none;
-    }
+    .displayNone{ display: none;}
+    .displayAsCell { display: table-cell;}
     .text {
       display: table-cell;
       font-family: calibri;
@@ -36,7 +35,6 @@
       background-color: #f2f2f2;
       padding: 10px;
     }
-    .displayAsCell { display: table-cell;}
     #oText {
       resize: none;
       display: none;
@@ -125,6 +123,13 @@
       document.getElementById("confirmedAddress").checked = false;
       document.getElementById("NPI").checked = false;
       document.getElementById("TIN").checked = false;
+      document.getElementById("Member").checked = false;
+      document.getElementById("Provider").checked = false;
+      document.getElementById("provLine0").className = "displayNone";
+      document.getElementById("provLine1").className = "displayNone";
+      document.getElementById("provLine2").className = "displayNone";
+      document.getElementById("callerRelRow").className = "displayNone";
+      document.getElementById("tDiv").style.height = "125px";
     }
 
     // Collects the information from the fields, combines them into an output string, and sends to the clipboard
@@ -139,15 +144,17 @@
       var CNFADD = document.getElementById("confirmedAddress").checked;
       var NPICHK = document.getElementById("NPI").checked;
       var TINCHK = document.getElementById("TIN").checked;
+      var MBRCHK = document.getElementById("Member").checked;
+      var PROVCHK = document.getElementById("Provider").checked;
       var outputText = "";
       
       // combining all the data into a single string, any empty required fields are added to error text
       if (CALLERNAME !== "") {outputText = outputText.concat(CALLERNAME, " / ");}
+      if (CALLERREL !== "" && MBRCHK == true) {outputText = outputText.concat(CALLERREL, " / ");}
       if (CBNUM !== "") {outputText = outputText.concat("CB# ",CBNUM," / ");}
-      if (CALLERREL !== "") {outputText = outputText.concat(CALLERREL, " / ");}
-      if (NPICHK == true) {outputText = outputText.concat("NPI: ",PROVID);}
-      if (TINCHK == true) {outputText = outputText.concat("TIN: ",PROVID);}
-      if (SITEADD !== "") {outputText = outputText.concat(" - ",SITEADD," / ");}
+      if (NPICHK == true && PROVCHK == true) {outputText = outputText.concat("NPI: ",PROVID);}
+      if (TINCHK == true && PROVCHK == true) {outputText = outputText.concat("TIN: ",PROVID);}
+      if (SITEADD !== "" && PROVCHK == true) {outputText = outputText.concat(" - ",SITEADD," / ");}
       if (CNFADD == true) {outputText = outputText.concat("Confirmed Address on file / ");} 
       else {outputText = outputText.concat("Unable to confirm address on file / ");}
       // displays the output text box momentarily and fills it with the output text
