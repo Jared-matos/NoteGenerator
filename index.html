@@ -90,12 +90,24 @@
         <label class="text">Call Type</label>
         <select name="mbrCallType" id="mbrCallType">
           <option value="" />
-          <option value="auth status">Authorization Status</option>
-          <option value="benefits">Benefits</option>
-          <option value="claim information">Claim Information</option>
-          <option value="eligibility">Eligibility Status</option>
-          <option value="referrals">Referrals</option>
+          <option value="Authorization Status">Authorization Status</option>
+          <option value="Benefit Information">Benefits</option>
+          <option value="Claim Information">Claim Information</option>
+          <option value="Eligibility">Eligibility Status</option>
+          <option value="Referal Request">Referrals</option>
         </select>
+    </div>
+    <div class="tableRow" id="authorizationInfoBlock">
+      <span class="text">Auth information given</span>
+      <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow" id="BenefitInfoBlock">
+      <span class="text">Benefit information given</span>
+      <input class="iptext" type="text" id="benefitInfoGiven" autocomplete="off" list="autocompleteOff"/>
+    </div>
+    <div class="tableRow" id="claimInfoBlock">
+      <span class="text">Auth information given</span>
+      <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
     </div>
     <div class="displayNone" id="mbrEnd">
       <div class="tableRow">
