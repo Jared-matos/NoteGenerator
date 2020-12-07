@@ -8,6 +8,7 @@
   </head>
 
   <style>
+    .displayBlock {display: block;}
     .tableRow {
       display: table-row;
       font-family: calibri;
@@ -57,7 +58,7 @@
       <input class="iptext" type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff"/>
     </div>
     <!--Member info Section-->
-    <div class="displayNone" id="callerRelRow">
+    <div class="displayNone" id="mbrLine0">
       <span class="text">Relationship to Member</span>
       <input class="iptext" type="text" id="callerRel" autocomplete="off" list="autocompleteOff"/>
     </div>
@@ -79,11 +80,40 @@
       <span class="text">Site Address</span>
       <input class="iptext" type="text" id="siteAddress" autocomplete="off" list="autocompleteOff"/>
     </div>
-    <!--Standard footer-->
+    <!--all call around address confirmation-->
     <div class="tableRow">
       <label class="text">Confirmed address on file?</label>
       <input type="checkbox" id="confirmedAddress"/>
     </div>
+    <!--Member Specific situations-->
+    <div class="displayNone" id="mbrLine1">
+        <label class="text">Call Type</label>
+        <select name="mbrCallType" id="mbrCallType">
+          <option value="" />
+          <option value="auth status">Authorization Status</option>
+          <option value="benefits">Benefits</option>
+          <option value="claim information">Claim Information</option>
+          <option value="eligibility">Eligibility Status</option>
+          <option value="referrals">Referrals</option>
+        </select>
+    </div>
+    <div class="displayNone" id="mbrEnd">
+      <div class="tableRow">
+        <label class="text">Member Satasfied?</label>
+        <input type="checkbox" id="mbrSatasfied" onclick="msCheck()" />
+      </div>
+      <div class="displayBlock" id="mbrNSatasfied">
+        <div class="tableRow">
+          <label class="text">Grievance offered?</label>
+          <input type="checkbox" id="grievanceOffered"/>
+        </div>
+        <div class="tableRow">
+          <label class="text">Grievance Filed?</label>
+          <input type="checkbox" id="grievanceFiled"/>
+        </div>
+      </div>
+    </div>
+    <!--Button at bottom of form -->
     <div class="displayAsCell">
       <textarea readonly type="text" class="displayNone" id="oText"></textarea>
       <button type="button" onclick="copyClipboard()">Copy to Clipboard</button>
@@ -94,23 +124,44 @@
   <script type="text/javascript">
     console.clear();
 
+    // toggles Member satasfied fields open or closed 
+    function msCheck(){
+      if (document.getElementById("mbrSatasfied").checked == true){
+        document.getElementById("mbrNSatasfied").className = "displayNone";
+        changeHeight(3);
+      } else {
+        document.getElementById("mbrNSatasfied").className = "displayBlock";
+        changeHeight(5);
+      }
+    }
     // toggles between member and provider fields
     function mpRadio(){
       if (document.getElementById("Member").checked == false){
-        document.getElementById("callerRelRow").className = "displayNone";
+        document.getElementById("mbrLine0").className = "displayNone";
+        document.getElementById("mbrLine1").className = "displayNone";
+        document.getElementById("mbrEnd").className = "displayNone";
         document.getElementById("provLine0").className = "tableRow";
         document.getElementById("provLine1").className = "tableRow";
         document.getElementById("provLine2").className = "tableRow";
-        document.getElementById("tDiv").style.height = "200px";
+        changeHeight(3);
       } else {
-        document.getElementById("callerRelRow").className = "tableRow";
+        document.getElementById("mbrLine0").className = "tableRow";
+        document.getElementById("mbrLine1").className = "tableRow";
+        document.getElementById("mbrEnd").className = "displayBlock";
         document.getElementById("provLine0").className = "displayNone";
         document.getElementById("provLine1").className = "displayNone";
         document.getElementById("provLine2").className = "displayNone";
-        document.getElementById("tDiv").style.height = "150px";
+        changeHeight(5);
       }
     }
     
+    //sets height of tDiv to standard height plus changeInt Rows 
+    function changeHeight(changeInt){
+      var currentHeightInt = 125 + (25 * changeInt);
+      var currentHeightStr = currentHeightInt.toString();
+      currentHeightStr = currentHeightStr.concat("px");
+      document.getElementById("tDiv").style.height = currentHeightStr;
+    }
     //Sets vaules of all fields to empty or false
     function clearAll() {
       document.getElementById("callerName").value = "";
@@ -119,16 +170,24 @@
       document.getElementById("provIDText").value = "";
       document.getElementById("provNamesText").value = "";
       document.getElementById("siteAddress").value = "";
+      document.getElementById("mbrSatasfied").checked = false;
+      document.getElementById("mbrNSatasfied").checked = false;
+      document.getElementById("grievanceOffered").checked = false;
+      document.getElementById("grievanceFiled").checked = false;
       document.getElementById("confirmedAddress").checked = false;
       document.getElementById("NPI").checked = false;
       document.getElementById("TIN").checked = false;
       document.getElementById("Member").checked = false;
       document.getElementById("Provider").checked = false;
+      document.getElementById("mbrCallType").value = "";
       document.getElementById("provLine0").className = "displayNone";
       document.getElementById("provLine1").className = "displayNone";
       document.getElementById("provLine2").className = "displayNone";
-      document.getElementById("callerRelRow").className = "displayNone";
-      document.getElementById("tDiv").style.height = "125px";
+      document.getElementById("mbrLine0").className = "displayNone";
+      document.getElementById("mbrLine1").className = "displayNone";
+      document.getElementById("mbrEnd").className = "displayNone";
+      document.getElementById("mbrNSatasfied").className = "displayBlock";
+      changeHeight(0);
     }
 
     // Collects the information from the fields, combines them into an output string, and sends to the clipboard
@@ -145,6 +204,10 @@
       var TINCHK = document.getElementById("TIN").checked;
       var MBRCHK = document.getElementById("Member").checked;
       var PROVCHK = document.getElementById("Provider").checked;
+      var MBRCLTP = document.getElementById("mbrCallType").value;
+      var MBRSAT = document.getElementById("mbrSatasfied").checked;
+      var GOFF = document.getElementById("grievanceOffered").checked;
+      var GFILED = document.getElementById("grievanceFiled").checked;
       var outputText = "";
       
       // combining all the data into a single string, any empty required fields are added to error text
@@ -155,7 +218,14 @@
       if (TINCHK == true && PROVCHK == true) {outputText = outputText.concat("TIN: ",PROVID);}
       if (SITEADD !== "" && PROVCHK == true) {outputText = outputText.concat(" - ",SITEADD," / ");}
       if (CNFADD == true) {outputText = outputText.concat("Confirmed Address on file / ");} 
-      else {outputText = outputText.concat("Unable to confirm address on file / ");}
+      else if (outputText !== "") {outputText = outputText.concat("Unable to confirm address on file / ");}
+      if (MBRCLTP !== "") {outputText = outputText.concat(MBRCLTP," / ");}
+      if (MBRSAT == true) {outputText = outputText.concat("Member satasfied");} 
+      else if (outputText !== "") {outputText = outputText.concat("Member unsatasfied / ");
+      if (GOFF == true) {outputText = outputText.concat("Grievance was offered / ");}
+      else if (outputText !== "") {outputText = outputText.concat("Grievance was not offered / ");}
+      if (GFILED == true) {outputText = outputText.concat("Grievance was filed");}
+      else if (outputText !== "") {outputText = outputText.concat("Grievance was not filed");}}
       // displays the output text box momentarily and fills it with the output text
       document.getElementById("oText").style.display = "block";
       document.getElementById("oText").value = outputText;
