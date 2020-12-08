@@ -88,46 +88,49 @@
       <label class="text">Confirmed address on file?</label>
       <input type="checkbox" id="confirmedAddress"/>
     </div>
-    <div class="tableRow" id="callTypeDiv">
-        <label class="text">Call Type</label>
-        <select id="callType" onchange="callTypeSel()" value="">
-          <option value=""/>
-          <option value="Authorization Status">Authorization Status</option>
-          <option value="Benefit Information">Benefits</option>
-          <option value="Claim Information">Claim Information</option>
-          <option value="Eligibility">Eligibility Status</option>
-          <option value="Referral Request">Referrals</option>
-        </select>
-        <button type="button" onclick="cloneCallType()">+</button>
-    </div>
-    <div class="displayNone" id="authorizationInfoBlock">
-      <div class="tableRow">
-        <span class="text">Auth information given</span>
-        <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
+    <div class="displayBlock" id="callTypeDiv0" onchange="callTypeSel()">
+      <div class="tableRow" id="callTypeRow">
+          <label class="text">Call Type</label>
+          <select id="callType" value="">
+            <option value=""/>
+            <option value="Authorization Status">Authorization Status</option>
+            <option value="Benefit Information">Benefits</option>
+            <option value="Claim Information">Claim Information</option>
+            <option value="Eligibility">Eligibility Status</option>
+            <option value="Referral Request">Referrals</option>
+          </select>
+          <button type="button" onclick="cloneCallType()">+</button>
       </div>
-    </div>
-    <div class="displayNone" id="benefitInfoBlock">
-      <div class="tableRow">
-        <span class="text">Benefit information given</span>
-        <input class="iptext" type="text" id="benefitInfoGiven" autocomplete="off" list="autocompleteOff"/>
+    
+      <div class="displayNone" id="authorizationInfoBlock">
+        <div class="tableRow">
+          <span class="text">Auth information given</span>
+          <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
+        </div>
       </div>
-    </div>
-    <div class="displayNone" id="claimInfoBlock">
-      <div class="tableRow">
-        <span class="text">Claim information given</span>
-        <input class="iptext" type="text" id="claimInfoGiven" autocomplete="off" list="autocompleteOff"/>
+      <div class="displayNone" id="benefitInfoBlock">
+        <div class="tableRow">
+          <span class="text">Benefit information given</span>
+          <input class="iptext" type="text" id="benefitInfoGiven" autocomplete="off" list="autocompleteOff"/>
+        </div>
       </div>
-    </div>
-    <div class="displayNone" id="eligibilityInfoBlock">
-      <div class="tableRow">
-        <span class="text">Claim information given</span>
-        <input class="iptext" type="text" id="eligInfoGiven" autocomplete="off" list="autocompleteOff"/>
+      <div class="displayNone" id="claimInfoBlock">
+        <div class="tableRow">
+          <span class="text">Claim information given</span>
+          <input class="iptext" type="text" id="claimInfoGiven" autocomplete="off" list="autocompleteOff"/>
+        </div>
       </div>
-    </div>
-    <div class="displayNone" id="referralInfoBlock">
-      <div class="tableRow">
-        <span class="text">Referral information given</span>
-        <input class="iptext" type="text" id="refInfoGiven" autocomplete="off" list="autocompleteOff"/>
+      <div class="displayNone" id="eligibilityInfoBlock">
+        <div class="tableRow">
+          <span class="text">Claim information given</span>
+          <input class="iptext" type="text" id="eligInfoGiven" autocomplete="off" list="autocompleteOff"/>
+        </div>
+      </div>
+      <div class="displayNone" id="referralInfoBlock">
+        <div class="tableRow">
+          <span class="text">Referral information given</span>
+          <input class="iptext" type="text" id="refInfoGiven" autocomplete="off" list="autocompleteOff"/>
+        </div>
       </div>
     </div>
     <!--<div class="displayNone" id="additionalInfoRow">
@@ -177,12 +180,16 @@
     // toggles Member satasfied fields open or closed 
 
     var numCallTypes = 0;
+    
     function cloneCallType(){
-      parent = document.querySelector('#callTypeDiv');
+      var parent = document.getElementById('callTypeDiv'+numCallTypes);
       var clone = parent.cloneNode(true);
-      clone.id = parent.id + numCallTypes;
-      parent.after(clone);
+      
       numCallTypes += 1;
+      clone.id = "callTypeDiv" + numCallTypes;
+      clone.getElementsByTagName('select')[0].id = "callType" + numCallTypes;
+      parent.after(clone);
+      //todo increment searchign for all created elements + add increments for all other children of clone 
     }
 
     function msCheck(){
@@ -211,33 +218,35 @@
     }
     
     function callTypeSel(){
-      document.getElementById("authorizationInfoBlock").className = "displayNone";
-      document.getElementById("benefitInfoBlock").className = "displayNone";
-      document.getElementById("claimInfoBlock").className = "displayNone";
-      document.getElementById("eligibilityInfoBlock").className = "displayNone";
-      document.getElementById("referralInfoBlock").className = "displayNone";
-      //document.getElementById("additionalInfoRow").className = "displayBlock";
-      switch(document.getElementById("callType").value){
-        case "Authorization Status":
-          document.getElementById("authorizationInfoBlock").className = "displayBlock";
-          break;
-        case "Benefit Information":
-          document.getElementById("benefitInfoBlock").className = "displayBlock";
-          break;
-        case "Claim Information":
-          document.getElementById("claimInfoBlock").className = "displayBlock";
-          break;
-        case "Eligibility":
-          document.getElementById("eligibilityInfoBlock").className = "displayBlock";
-          break;
-        case "Referral Request":
-          document.getElementById("referralInfoBlock").className = "displayBlock";
-          break;
-        default:
-        //document.getElementById("additionalInfoRow").className = "displayNone";
-          break;
+      for(i = 0; i < numCallTypes; i++){
+        document.getElementById("authorizationInfoBlock").className = "displayNone";
+        document.getElementById("benefitInfoBlock").className = "displayNone";
+        document.getElementById("claimInfoBlock").className = "displayNone";
+        document.getElementById("eligibilityInfoBlock").className = "displayNone";
+        document.getElementById("referralInfoBlock").className = "displayNone";
+        //document.getElementById("additionalInfoRow").className = "displayBlock";
+        switch(document.getElementById("callType").value){
+          case "Authorization Status":
+            document.getElementById("authorizationInfoBlock").className = "displayBlock";
+            break;
+          case "Benefit Information":
+            document.getElementById("benefitInfoBlock").className = "displayBlock";
+            break;
+          case "Claim Information":
+            document.getElementById("claimInfoBlock").className = "displayBlock";
+            break;
+          case "Eligibility":
+            document.getElementById("eligibilityInfoBlock").className = "displayBlock";
+            break;
+          case "Referral Request":
+            document.getElementById("referralInfoBlock").className = "displayBlock";
+            break;
+          default:
+          //document.getElementById("additionalInfoRow").className = "displayNone";
+            break;
+        }
+        changeHeight();
       }
-      changeHeight();
     }
 
     //sets height of tDiv to standard height for the number of visible rows 
