@@ -1,0 +1,190 @@
+AUTH PASTE 
+12/8/2020 3:11:05 PM
+Authorizations
+ProviderID	Site Name	AProc	AUnits	AFrom	ATo	Decision	UUnits	OUnits	OToDate	RProc	RUnits	RFrom	RTo	PA	Created 	User 	Updated	Review ID	Prv Letters	Memb Letters	To Be Printed	Send To	AuthRecID	PrvLetVltDocID	MembLetVltDocID	
+1094320	Catholic Charities Archdiocese Of Trenton	INMHN (114, 124, 134, 144, 154)	3	10/08/2018 12:00:00 AM	10/11/2018 12:00:00 AM	Pended				INMHC	3	10/08/2018 12:00:00 AM	10/11/2018 12:00:00 AM	12630033	10/08/2018 06:02:48 PM	Train2	10/08/2018 06:02:48 PM	20743814	0	0	Provider	Catholic Charities Archdiocese Of Trenton, Clinical Contact, 3535 Quakerbridge Road, HAMILTON, NJ (Fax: (609) 584-0591)	8013634		
+
+
+BENEFITS DEMOS PAGE PASTE
+12/8/2020 3:11:48 PM
+Demographics
+Field	Value	
+Benefit Name	Medicaid1 DO NOT ALTER - Medicaid
+MHIP Benefits	Prior authorization required, number of days is based on medical necessity.
+MHOP Benefits	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
+ 	and is subject to change).
+SAIP Benefits	Detox is a post-admit review, number of days is based on medical necessity.
+SAOP Benefits	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
+ 	and is subject to change).
+Other Benefits	Methadone maintenance is a covered benefit; no authorization required. No authorization required for the following services: medication management (90862), group therapy (90853), crisis intervention services (S9494 - on-site; H2011 P15 - mobile), case consult
+ 	 (90882) or family consult (90887).   (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit and is subject to change).
+
+
+COPAY PAGE PASTE
+12/8/2020 3:14:47 PM
+Co-Pays
+CopayType	Copay Range	Copay Value	Network	ExcludeFromOOP	PostDeductible	DateFrom	DateTo	UserName	Date Updated	Description	
+SA OP Default	Per Visit/Stay	0 (Dollars)				10/22/1999 12:00:00 AM	12/31/2029 12:00:00 AM	dneal	12/09/1999 03:52:55 PM	
+
+
+ELIG PASTE
+12/8/2020 3:15:06 PM
+Eligibility Segment
+Field	Value	
+SegNo	1
+AltID	
+Member Type	
+DateBegin	09/01/1993 12:00:00 AM
+DateEnd	12/31/1999 12:00:00 AM
+Subcontract	RC1 (BEST)
+BenefitLevel	Medicaid
+GroupNo	3413
+GroupName	Medicaid 1
+SubGroup	8101346
+SubGroupName	RC1 (BEST)
+Other1	
+Other2	
+BenefitRenewal	01/01/1999 12:00:00 AM
+DualEligibility	False
+ExcludeCode	0
+PCPSiteID	
+PCPSiteName	
+PCPName	
+ContractName	Medicaid 1
+FeeCategory	BEST
+BenefitName	Medicaid1 DO NOT ALTER
+Rating Category	Medicaid - RC1
+COB	
+Deleted	0
+GroupRenewal	
+GroupSubGroupRenewal	
+PremiumPaidToDateEnd	
+
+CLAIMS PASTE 
+12/8/2020 3:19:41 PM
+Claim Line Details
+Field	Value	
+TCN	50622001-001
+DCN	
+Resubmission	None
+Status 	Processed - Original
+Member	MURRAY, ANITA (BEST ID: MA1849952839) - Valid
+SubmissionSource	
+Provider	212810  Demo Site
+Network	Beacon Network
+Site	1777  eServices Demo Site
+Billing NPI	
+Payee	145  Demo Site
+ICD Indicator	
+Diagnosis 1	296. (Mental Health Services)
+Diagnosis 2	
+Line Dx Codes	
+All Claim Dx Codes	296., , 
+Date Received	03/03/2005 08:39:21 AM
+Date Entered	03/03/2005 08:39:41 AM
+Date Paid	03/30/2005 12:00:00 AM
+Claim Notes	
+Dates Of Service	11/11/2004 - 11/11/2004
+Procedure 	90806-00-00
+Units Claimed	1
+Amount Charged	$100.00
+Allowed Units	0
+Allowed Amount	$0.00
+Paid Amount	$0.00
+DecisionCodes	DServNotCov, DTimely
+External Outreach	No
+Clean Claim	Unclean
+Other Insurance	None
+Good Cause Available	No
+OI EOB Date	
+OI Allowed	
+OI Copay	
+OI Deductible	
+OI CoInsurance	
+OI Paid	
+PR Other	
+COB Allowed Amount	
+Priced Amount	
+Copay	$0.00
+Coinsurance	
+Deductible	
+Interest Payment	
+Late Payment Indicator	
+Reopening Disposition	
+Reason For Reopening	
+Discount	
+Initial Encounter	No
+OP Select	No
+Allow Timely	No
+Allow Duplicate	No
+Allow as IE	No
+Miscellaneous Override	No
+Override NewPlan	No
+Missing Eligibility Override	No
+Exclude Interest	No
+CAP PAY Provider Override	No
+Contracted Rate Override	No
+Procedure Override	No
+Eligibility (Grp/Subgrp) Override	No
+Override Units	
+ClLine Notes	
+Clinician	
+Rendering NPI	
+BatchID	51309
+Company 	Woburn
+ClaimID	2773179
+EncounterID	4226057
+ClLineID	4226057
+RelatedID	4226057
+EDI RefNo	
+WebClaim RefNo	24596
+Username Entered	
+UserName Edited	WebUser
+Updated	03/30/2005 12:00:00 AM
+UserName Verified	
+Verification Status	
+Verification Date	
+TOB	031
+DRGValue	
+VendorDRG	
+DRG Apllied	N/A
+Revenue Code	000 - None (None)
+LOC	1
+AdmissionType	
+AdmissionSource	
+DischargeStatus	
+Place Of Service	11 Office
+Prv Category	Other
+Service Benefit Type	Default
+Copay Benefit Type	
+Group SubGroup	820/ 8101354
+Benefit Level	Commercial Product A
+Subcontract	Commercial Sub A
+Benefit Count	1
+Proc Restrictions	
+Other Properties	
+ValueCode1a	
+ValueAmount1a	
+ValueCode2a	
+ValueAmount2a	
+ValueCode3a	
+ValueAmount3a	
+ValueCode1b	
+ValueAmount1b	
+ValueCode2b	
+ValueAmount2b	
+ValueCode3b	
+ValueAmount3b	
+ValueCode1c	
+ValueAmount1c	
+ValueCode2c	
+ValueAmount2c	
+ValueCode3c	
+ValueAmount3c	
+ValueCode1d	
+ValueAmount1d	
+ValueCode2d	
+ValueAmount2d	
+ValueCode3d	
+ValueAmount3d	
+AllowFix	False
