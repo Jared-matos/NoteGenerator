@@ -1,3 +1,5 @@
-[]redo callTypeSel() 
-[]fix classname conflicts in entire code
-[]
+[x]redo callTypeSel() 
+[x]fix classname conflicts in entire code
+[]set clearall for clones
+[]get values from all clones
+[]eligibility and claim information both point to claim information in dropdowns

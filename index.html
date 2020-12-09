@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
-
+  </head>
   <style>
     .displayBlock {display: block;}
     .tableRow {
@@ -36,7 +36,6 @@
       padding: 10px;
     }
   </style>
-  </head>
 
 <body>
   <div id="tDiv">
@@ -92,7 +91,7 @@
       <div class="tableRow" id="callTypeRow">
           <label class="text">Call Type</label>
           <select id="callTypeSelect0" value="">
-            <option value=""/>
+            <option value=""></option>
             <option value="Authorization Status">Authorization Status</option>
             <option value="Benefit Information">Benefits</option>
             <option value="Claim Information">Claim Information</option>
@@ -180,42 +179,28 @@
       doc.write(divText);
       doc.close();
     }*/
-    // toggles Member satasfied fields open or closed 
     
+
+    // creates clones of the callType div and changes the names of the clones children
     function cloneCallType(){
-      console.log(numCallTypes);
       var parent = document.getElementById('callTypeDiv0');
       var clone = parent.cloneNode(true);
-      
       numCallTypes += 1;
       clone.id = "callTypeDiv" + numCallTypes;
-      console.log("Created Div: "+clone.id);
       clone.getElementsByTagName('select')[0].id = "callType" + numCallTypes;
-      console.log("Created SelectBox: "+clone.getElementsByTagName('select')[0].id);
       for(i = 0; i < 5; i++){
         clone.getElementsByTagName('input')[i].id += numCallTypes;
-        //console.log("Input Id: "+clone.getElementsByTagName('input')[i].id);
-
-        
         var elements = clone.getElementsByClassName('callTypeHidden');
         if(elements.item(i) === null){
-            console.log("Elements Item "+i+" Does not exist!");
-        }else { 
-          //console.log('Does Exist: '+ elements.item(i).id);
-          elements.item(i).id += numCallTypes;
-          console.log('Created div section: '+ elements.item(i).id);
-          }
-
-       // clone.getElementsByClassName('callTypeHidden').id += numCallTypes;
-        //console.log("Div id: "+clone.getElementsByTagName('callTypeHidden').id);
-        
+          alert("Error Occured, Reloading page. Please save information");
+          location.reload();
+        }else { elements.item(i).id += numCallTypes;}
       }
-      //clone.getElementById("CallTypeInput0")[0].id = "callTypeInput0" + numCallTypes;
       parent.after(clone);
       changeHeight();
-      //todo increment searchign for all created elements + add increments for all other children of clone 
     }
 
+    // toggles member satasfied field open and closed 
     function msCheck(){
       if (document.getElementById("mbrSatasfied").checked == true){
         document.getElementById("mbrNSatasfied").className = "displayNone";
@@ -241,65 +226,75 @@
       }
     }
     
+    // goes through each selectBox and if it has a value changes the classname of the correct div to displayBlock setting all other children of selectbox classes as displayNone and callTypeHidden
     function callTypeSel(){
-      console.log(numCallTypes);
+
+      /*
+      Mapping out funcion
+
+      loop through each visible selectbox 
+        for each selectbox
+        set all child divs to displaynone calltypehidden
+        get the value of the box 
+        look for the div with the matching value associated with it 
+        set div to displayblockcalltypehidden
+      format tDiv to fit the new size        
+      */
+
       for(i = 0; i <= numCallTypes; i++){
-        console.log("Checking I="+i)
         if(i!==0){
-          console.log("i!==0");
-          document.getElementById("callTypeBlock0"+i).className += "displayNone";
-          document.getElementById("callTypeBlock1"+i).className += "displayNone";
-          document.getElementById("callTypeBlock2"+i).className += "displayNone";
-          document.getElementById("callTypeBlock3"+i).className += "displayNone";
-          document.getElementById("callTypeBlock4"+i).className += "displayNone";
+          document.getElementById("callTypeBlock0"+i).className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock1"+i).className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock2"+i).className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock3"+i).className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock4"+i).className = "displayNone callTypeHidden";
           //document.getElementById("additionalInfoRow").className = "displayBlock";
           console.log(document.getElementById("callType"+i).value);
           switch(document.getElementById("callType"+i).value){
             
             case "Authorization Status":
-              document.getElementById("callTypeBlock0"+i).className += "displayBlock";
+              document.getElementById("callTypeBlock0"+i).className = "displayBlock callTypeHidden";
               break;
             case "Benefit Information":
-              document.getElementById("callTypeBlock1"+i).className += " displayBlock";
+              document.getElementById("callTypeBlock1"+i).className = "displayBlock callTypeHidden";
               break;
             case "Claim Information":
-              document.getElementById("callTypeBlock2"+i).className += " displayBlock";
+              document.getElementById("callTypeBlock2"+i).className = "displayBlock callTypeHidden";
               break;
             case "Eligibility":
-              document.getElementById("callTypeBlock3"+i).className += " displayBlock";
+              document.getElementById("callTypeBlock3"+i).className = "displayBlock callTypeHidden";
               break;
             case "Referral Request":
-              document.getElementById("callTypeBlock4"+i).className += " displayBlock";
+              document.getElementById("callTypeBlock4"+i).className = "displayBlock callTypeHidden";
               break;
             default:
             //document.getElementById("additionalInfoRow").className = "displayNone";
               break;
           }
         } else if(i==0) {
-          console.log("i==0");
-          document.getElementById("callTypeBlock0").className += " displayNone";
-          document.getElementById("callTypeBlock1").className += " displayNone";
-          document.getElementById("callTypeBlock2").className += " displayNone";
-          document.getElementById("callTypeBlock3").className += " displayNone";
-          document.getElementById("callTypeBlock4").className += " displayNone";
+          document.getElementById("callTypeBlock0").className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock1").className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock2").className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock3").className = "displayNone callTypeHidden";
+          document.getElementById("callTypeBlock4").className = "displayNone callTypeHidden";
           //document.getElementById("additionalInfoRow").className = "displayBlock";
+          console.log(document.getElementById("callTypeSelect0").value);
           switch(document.getElementById("callTypeSelect0").value){
             
             case "Authorization Status":
-              document.getElementById("callTypeBlock0").className += " displayBlock";
-              console.log("Modified: callTypeBlock0");
+              document.getElementById("callTypeBlock0").className = "displayBlock callTypeHidden";
               break;
             case "Benefit Information":
-              document.getElementById("callTypeBlock1").className += " displayBlock";
+              document.getElementById("callTypeBlock1").className = "displayBlock callTypeHidden";
               break;
             case "Claim Information":
-              document.getElementById("callTypeBlock2").className += " displayBlock";
+              document.getElementById("callTypeBlock2").className = "displayBlock callTypeHidden";
               break;
             case "Eligibility":
-              document.getElementById("callTypeBlock3").className += " displayBlock";
+              document.getElementById("callTypeBlock3").className = "displayBlock callTypeHidden";
               break;
             case "Referral Request":
-              document.getElementById("callTypeBlock4").className += " displayBlock";
+              document.getElementById("callTypeBlock4").className = "displayBlock callTypeHidden";
               break;
             default:
             //document.getElementById("additionalInfoRow").className = "displayNone";
