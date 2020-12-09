@@ -88,51 +88,57 @@
       <label class="text">Confirmed address on file?</label>
       <input type="checkbox" id="confirmedAddress"/>
     </div>
-    <div class="tableRow">
-        <label class="text">Call Type</label>
-        <select id="callType" onchange="callTypeSel()">
-          <option value="" />
-          <option value="Authorization Status">Authorization Status</option>
-          <option value="Benefit Information">Benefits</option>
-          <option value="Claim Information">Claim Information</option>
-          <option value="Eligibility">Eligibility Status</option>
-          <option value="Referral Request">Referrals</option>
-        </select>
-    </div>
-    <div class="displayNone" id="authorizationInfoBlock">
-      <div class=tableRow>
-        <span class="text">Auth information given</span>
-        <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
+    <div class="displayBlock" id="callTypeDiv0" onchange="callTypeSel()">
+      <div class="tableRow" id="callTypeRow">
+          <label class="text">Call Type</label>
+          <select id="callTypeSelect0" value="">
+            <option value=""/>
+            <option value="Authorization Status">Authorization Status</option>
+            <option value="Benefit Information">Benefits</option>
+            <option value="Claim Information">Claim Information</option>
+            <option value="Eligibility">Eligibility Status</option>
+            <option value="Referral Request">Referrals</option>
+          </select>
+          <button type="button" onclick="cloneCallType()">+</button>
+      </div>
+    
+      <div class="displayNone callTypeHidden" id="callTypeBlock0">
+        <div class="tableRow">
+          <span class="text">Auth information given</span>
+          <input class="iptext" type="text" id="callTypeInput0" autocomplete="off" list="autocompleteOff"/>
+        </div>
+      </div>
+      <div class="displayNone callTypeHidden" id="callTypeBlock1">
+        <div class="tableRow">
+          <span class="text">Benefit information given</span>
+          <input class="iptext" type="text" id="callTypeInput1" autocomplete="off" list="autocompleteOff"/>
+        </div>
+      </div>
+      <div class="displayNone callTypeHidden" id="callTypeBlock2">
+        <div class="tableRow">
+          <span class="text">Claim information given</span>
+          <input class="iptext" type="text" id="callTypeInput2" autocomplete="off" list="autocompleteOff"/>
+        </div>
+      </div>
+      <div class="displayNone callTypeHidden" id="callTypeBlock3">
+        <div class="tableRow">
+          <span class="text">Claim information given</span>
+          <input class="iptext" type="text" id="callTypeInput3" autocomplete="off" list="autocompleteOff"/>
+        </div>
+      </div>
+      <div class="displayNone callTypeHidden" id="callTypeBlock4">
+        <div class="tableRow">
+          <span class="text">Referral information given</span>
+          <input class="iptext" type="text" id="callTypeInput4" autocomplete="off" list="autocompleteOff"/>
+        </div>
       </div>
     </div>
-    <div class="displayNone" id="benefitInfoBlock">
-      <div class=tableRow>
-        <span class="text">Benefit information given</span>
-        <input class="iptext" type="text" id="benefitInfoGiven" autocomplete="off" list="autocompleteOff"/>
+    <!--<div class="displayNone" id="additionalInfoRow">
+      <div class="tableRow">
+        <span class="text">Additional Information</span>
+        <input class="iptext" type="text" id="addInfo" autocomplete="off" list="autocompleteOff"/>
       </div>
-    </div>
-    <div class="displayNone" id="claimInfoBlock">
-      <div class=tableRow>
-        <span class="text">Claim information given</span>
-        <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
-      </div>
-    </div>
-    <div class="displayNone" id="eligibilityInfoBlock">
-      <div class=tableRow>
-        <span class="text">Claim information given</span>
-        <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
-      </div>
-    </div>
-    <div class="displayNone" id="referralInfoBlock">
-      <div class=tableRow>
-        <span class="text">Referral information given</span>
-        <input class="iptext" type="text" id="authInfoGiven" autocomplete="off" list="autocompleteOff"/>
-      </div>
-    </div>
-    <div class="tableRow">
-      <span class="text">Additional Information</span>
-      <input class="iptext" type="text" id="addInfo" autocomplete="off" list="autocompleteOff"/>
-    </div>
+    </div>-->
     <!--Member Specific situations-->
     <div class="displayNone" id="mbrEnd">
       <div class="tableRow">
@@ -155,6 +161,7 @@
       <textarea readonly type="text" class="displayNone" id="oText"></textarea>
       <button type="button" onclick="copyClipboard()">Copy to Clipboard</button>
       <button type="button" onclick="clearAll()">Clear All</button>
+      <!--<button type="button" onclick="openNewWindow()">New Window</button>-->
     </div>
   </div>
 
@@ -162,7 +169,51 @@
     console.clear();
     changeHeight();
 
+    /*function openNewWindow(){
+      var divText = document.getElementById("tDiv").outerHTML;
+      var myWindow = window.open('', '', 'width=200,height=100');
+      var doc = myWindow.document;
+      doc.open();
+      doc.write(divText);
+      doc.close();
+    }*/
     // toggles Member satasfied fields open or closed 
+
+    var numCallTypes = 0;
+    
+    function cloneCallType(){
+      var parent = document.getElementById('callTypeDiv0');
+      var clone = parent.cloneNode(true);
+      
+      numCallTypes += 1;
+      clone.id = "callTypeDiv" + numCallTypes;
+      console.log("Created Div: "+clone.id);
+      clone.getElementsByTagName('select')[0].id = "callType" + numCallTypes;
+      console.log("Created SelectBox: "+clone.getElementsByTagName('select')[0].id);
+      for(i = 0; i < 5; i++){
+        clone.getElementsByTagName('input')[i].id += numCallTypes;
+        //console.log("Input Id: "+clone.getElementsByTagName('input')[i].id);
+
+        
+        var elements = clone.getElementsByClassName('callTypeHidden');
+        if(elements.item(i) === null){
+            console.log("Elements Item "+i+" Does not exist!");
+        }else { 
+          //console.log('Does Exist: '+ elements.item(i).id);
+          elements.item(i).id += numCallTypes;
+          console.log('Created div section: '+ elements.item(i).id);
+          }
+
+       // clone.getElementsByClassName('callTypeHidden').id += numCallTypes;
+        //console.log("Div id: "+clone.getElementsByTagName('callTypeHidden').id);
+        
+      }
+      //clone.getElementById("CallTypeInput0")[0].id = "callTypeInput0" + numCallTypes;
+      parent.after(clone);
+      changeHeight();
+      //todo increment searchign for all created elements + add increments for all other children of clone 
+    }
+
     function msCheck(){
       if (document.getElementById("mbrSatasfied").checked == true){
         document.getElementById("mbrNSatasfied").className = "displayNone";
@@ -189,56 +240,74 @@
     }
     
     function callTypeSel(){
-      switch(document.getElementById("callType").value){
-        case "Authorization Status":
-          document.getElementById("authorizationInfoBlock").className = "displayBlock";
-          document.getElementById("benefitInfoBlock").className = "displayNone";
-          document.getElementById("claimInfoBlock").className = "displayNone";
-          document.getElementById("eligibilityInfoBlock").className = "displayNone";
-          document.getElementById("referralInfoBlock").className = "displayNone";
-          changeHeight();
-          break;
-        case "Benefit Information":
-          document.getElementById("authorizationInfoBlock").className = "displayNone";
-          document.getElementById("benefitInfoBlock").className = "displayBlock";
-          document.getElementById("claimInfoBlock").className = "displayNone";
-          document.getElementById("eligibilityInfoBlock").className = "displayNone";
-          document.getElementById("referralInfoBlock").className = "displayNone";
-          changeHeight();
-          break;
-        case "Claim Information":
-          document.getElementById("authorizationInfoBlock").className = "displayNone";
-          document.getElementById("benefitInfoBlock").className = "displayNone";
-          document.getElementById("claimInfoBlock").className = "displayBlock";
-          document.getElementById("eligibilityInfoBlock").className = "displayNone";
-          document.getElementById("referralInfoBlock").className = "displayNone";
-          changeHeight();
-          break;
-        case "Eligibility":
-          document.getElementById("authorizationInfoBlock").className = "displayNone";
-          document.getElementById("benefitInfoBlock").className = "displayNone";
-          document.getElementById("claimInfoBlock").className = "displayNone";
-          document.getElementById("eligibilityInfoBlock").className = "displayBlock";
-          document.getElementById("referralInfoBlock").className = "displayNone";
-          changeHeight();
-          break;
-        case "Referral Request":
-          document.getElementById("authorizationInfoBlock").className = "displayNone";
-          document.getElementById("benefitInfoBlock").className = "displayNone";
-          document.getElementById("claimInfoBlock").className = "displayNone";
-          document.getElementById("eligibilityInfoBlock").className = "displayNone";
-          document.getElementById("referralInfoBlock").className = "displayBlock";
-          changeHeight();
-          break;
-        default:
-          document.getElementById("authorizationInfoBlock").className = "displayNone";
-          document.getElementById("benefitInfoBlock").className = "displayNone";
-          document.getElementById("claimInfoBlock").className = "displayNone";
-          document.getElementById("eligibilityInfoBlock").className = "displayNone";
-          document.getElementById("referralInfoBlock").className = "displayNone";
-          changeHeight();
-          break;
+
+      //this whole section nees a compelte rethink. It is messing up the classes of the other elemets as is right now 
+      console.log(numCallTypes);
+      for(i = 0; i <= numCallTypes; i++){
+        console.log("Checking I="+i)
+        if(i!==0){
+          console.log("i!==0");
+          document.getElementById("callTypeBlock0"+i).className += "displayNone";
+          document.getElementById("callTypeBlock1"+i).className += "displayNone";
+          document.getElementById("callTypeBlock2"+i).className += "displayNone";
+          document.getElementById("callTypeBlock3"+i).className += "displayNone";
+          document.getElementById("callTypeBlock4"+i).className += "displayNone";
+          //document.getElementById("additionalInfoRow").className = "displayBlock";
+          console.log(document.getElementById("callType"+i).value);
+          switch(document.getElementById("callType"+i).value){
+            
+            case "Authorization Status":
+              document.getElementById("callTypeBlock0"+i).className += "displayBlock";
+              break;
+            case "Benefit Information":
+              document.getElementById("callTypeBlock1"+i).className += "displayBlock";
+              break;
+            case "Claim Information":
+              document.getElementById("callTypeBlock2"+i).className += "displayBlock";
+              break;
+            case "Eligibility":
+              document.getElementById("callTypeBlock3"+i).className += "displayBlock";
+              break;
+            case "Referral Request":
+              document.getElementById("callTypeBlock4"+i).className += "displayBlock";
+              break;
+            default:
+            //document.getElementById("additionalInfoRow").className = "displayNone";
+              break;
+          }
+        } else if(i==0) {
+          console.log("i==0");
+          document.getElementById("callTypeBlock0").className += " displayNone";
+          document.getElementById("callTypeBlock1").className += " displayNone";
+          document.getElementById("callTypeBlock2").className += " displayNone";
+          document.getElementById("callTypeBlock3").className += " displayNone";
+          document.getElementById("callTypeBlock4").className += " displayNone";
+          //document.getElementById("additionalInfoRow").className = "displayBlock";
+          switch(document.getElementById("callTypeSelect0").value){
+            
+            case "Authorization Status":
+              document.getElementById("callTypeBlock0").className += " displayBlock";
+              console.log("Modified: callTypeBlock0");
+              break;
+            case "Benefit Information":
+              document.getElementById("callTypeBlock1").className = "displayBlock";
+              break;
+            case "Claim Information":
+              document.getElementById("callTypeBlock2").className = "displayBlock";
+              break;
+            case "Eligibility":
+              document.getElementById("callTypeBlock3").className = "displayBlock";
+              break;
+            case "Referral Request":
+              document.getElementById("callTypeBlock4").className = "displayBlock";
+              break;
+            default:
+            //document.getElementById("additionalInfoRow").className = "displayNone";
+              break;
+          }
+        }
       }
+      changeHeight();
     }
 
     //sets height of tDiv to standard height for the number of visible rows 
@@ -266,13 +335,12 @@
       document.getElementById("TIN").checked = false;
       document.getElementById("Member").checked = false;
       document.getElementById("Provider").checked = false;
-      document.getElementById("callType").value = "";
+      document.getElementById("callTypeSelect0").value = "";
       document.getElementById("provInfoBlock").className = "displayNone";
       document.getElementById("mbrLine0").className = "displayNone";
       document.getElementById("mbrEnd").className = "displayNone";
       document.getElementById("mbrNSatasfied").className = "displayBlock";
       callTypeSel();
-      changeHeight();
     }
 
     // Collects the information from the fields, combines them into an output string, and sends to the clipboard
@@ -289,7 +357,7 @@
       var TINCHK = document.getElementById("TIN").checked;
       var MBRCHK = document.getElementById("Member").checked;
       var PROVCHK = document.getElementById("Provider").checked;
-      var CALLTYPE = document.getElementById("callType").value;
+      var CALLTYPE = document.getElementById("callTypeSelect0").value;
       var MBRSAT = document.getElementById("mbrSatasfied").checked;
       var GOFF = document.getElementById("grievanceOffered").checked;
       var GFILED = document.getElementById("grievanceFiled").checked;
@@ -305,7 +373,7 @@
       if (CNFADD == true) {outputText = outputText.concat("Confirmed Address on file / ");} 
       else if (outputText !== "") {outputText = outputText.concat("Unable to confirm address on file / ");}
       if (CALLTYPE !== "") {outputText = outputText.concat(CALLTYPE," / ");}
-      if (MBRCHK == true){
+      if (MBRCHK == true) {
         if (MBRSAT == true) {outputText = outputText.concat("Member satasfied");} 
         else if (outputText !== "") {outputText = outputText.concat("Member unsatasfied / ");
           if (GOFF == true) {outputText = outputText.concat("Grievance was offered / ");}
@@ -321,8 +389,8 @@
       var copyTextarea = document.getElementById("oText");
       copyTextarea.focus();
       copyTextarea.select();
-      try { document.execCommand("copy");
-      } catch (err) { alert("Oops, unable to copy");}
+      try {document.execCommand("copy");} 
+      catch (err) {alert("Oops, unable to copy");}
       document.getElementById("oText").style.display = "none";
       console.log(outputText)
     }
