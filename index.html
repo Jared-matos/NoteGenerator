@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
-  </head>
 
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
   <style>
     .displayBlock {display: block;}
     .tableRow {
@@ -38,7 +36,9 @@
       padding: 10px;
     }
   </style>
+  </head>
 
+<body>
   <div id="tDiv">
     <!--Every call information-->
     <div class="tableRow">
@@ -165,8 +165,11 @@
     </div>
   </div>
 
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">
     console.clear();
+    var numCallTypes = 0;
     changeHeight();
 
     /*function openNewWindow(){
@@ -178,10 +181,9 @@
       doc.close();
     }*/
     // toggles Member satasfied fields open or closed 
-
-    var numCallTypes = 0;
     
     function cloneCallType(){
+      console.log(numCallTypes);
       var parent = document.getElementById('callTypeDiv0');
       var clone = parent.cloneNode(true);
       
@@ -240,8 +242,6 @@
     }
     
     function callTypeSel(){
-
-      //this whole section nees a compelte rethink. It is messing up the classes of the other elemets as is right now 
       console.log(numCallTypes);
       for(i = 0; i <= numCallTypes; i++){
         console.log("Checking I="+i)
@@ -290,16 +290,16 @@
               console.log("Modified: callTypeBlock0");
               break;
             case "Benefit Information":
-              document.getElementById("callTypeBlock1").className = "displayBlock";
+              document.getElementById("callTypeBlock1").className += " displayBlock";
               break;
             case "Claim Information":
-              document.getElementById("callTypeBlock2").className = "displayBlock";
+              document.getElementById("callTypeBlock2").className += " displayBlock";
               break;
             case "Eligibility":
-              document.getElementById("callTypeBlock3").className = "displayBlock";
+              document.getElementById("callTypeBlock3").className += " displayBlock";
               break;
             case "Referral Request":
-              document.getElementById("callTypeBlock4").className = "displayBlock";
+              document.getElementById("callTypeBlock4").className += " displayBlock";
               break;
             default:
             //document.getElementById("additionalInfoRow").className = "displayNone";
@@ -396,4 +396,5 @@
     }
   </script>
   <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
+  </body>
 </html>
