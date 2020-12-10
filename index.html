@@ -1,3 +1,4 @@
+<!--Remove heading information when importing to Sharepoint-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,13 +18,14 @@
     }
     .displayNone{ display: none;}
     .displayAsCell { display: table-cell;}
-    .text {
+    #tDiv span {
       display: table-cell;
       font-family: calibri;
       size: 12pt;
       width: 200px;
+      vertical-align: middle;
     }
-    .iptext {
+    #tDiv input[type="text"] {
       display: table-cell;
       font-family: calibri;
       size: 12pt;
@@ -36,13 +38,11 @@
       background-color: #f2f2f2;
       padding: 10px;
     }
-    #cloneCallTypeDivButton{
-      min-width: 0;
-      padding: 1 1;
-      margin-left: 0;
-    }
     #tDiv button{
       max-height: 25px;
+      min-width: 0px;
+      padding: 2px 2px 2px 2px;
+      margin-left: 1px;
     }
   </style>
 
@@ -50,7 +50,7 @@
   <div id="tDiv">
     <!--Every call information-->
     <div class="tableRow">
-      <span class="text">Caller Type</span>
+      <span>Caller Type</span>
       <div class="displayAsCell">
         <input type="radio" id="Member" name="MP" onclick="mpRadio()" value="Member">
         <label>Member</label>
@@ -59,17 +59,17 @@
       </div>
     </div>    
     <div class="tableRow">
-      <span class="text">Caller Name</span>
-      <input class="iptext" type="text" id="callerName" autocomplete="off" list="autocompleteOff"/>
+      <span>Caller Name</span>
+      <input type="text" id="callerName" autocomplete="off" list="autocompleteOff"/>
     </div>
     <div class="tableRow">
-      <span class="text">Callback Number</span>
-      <input class="iptext" type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff"/>
+      <span>Callback Number</span>
+      <input type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff"/>
     </div>
     <!--Member info Section-->
     <div class="displayNone" id="mbrLine0">
-      <span class="text">Relationship to Member</span>
-      <input class="iptext" type="text" id="callerRel" autocomplete="off" list="autocompleteOff"/>
+      <span>Relationship to Member</span>
+      <input type="text" id="callerRel" autocomplete="off" list="autocompleteOff"/>
     </div>
     <!--Provider info section-->
     <div class="displayNone" id="provInfoBlock">
@@ -80,25 +80,25 @@
           <input type="radio" id="TIN" name="NPI/TIN" value="TIN"/>
           <label>TIN</label>
         </div>
-        <input class="iptext" type="text" id="provIDText" autocomplete="off" list="autocompleteOff"/>
+        <input type="text" id="provIDText" autocomplete="off" list="autocompleteOff"/>
       </div>
       <div class="tableRow">
-        <span class="text">Facility Name</span>
-        <input class="iptext" type="text" id="provNamesText" autocomplete="off" list="autocompleteOff"/>
+        <span>Facility Name</span>
+        <input type="text" id="provNamesText" autocomplete="off" list="autocompleteOff"/>
       </div>
       <div class="tableRow">
-        <span class="text">Site Address</span>
-        <input class="iptext" type="text" id="siteAddress" autocomplete="off" list="autocompleteOff"/>
+        <span>Site Address</span>
+        <input type="text" id="siteAddress" autocomplete="off" list="autocompleteOff"/>
       </div>
     </div>
     <!--all call around address confirmation-->
     <div class="tableRow">
-      <label class="text">Confirmed address on file?</label>
+      <span>Confirmed address on file?</span>
       <input type="checkbox" id="confirmedAddress"/>
     </div>
     <div class="displayBlock" id="callTypeDiv0" onchange="callTypeSel()">
       <div class="tableRow" id="callTypeRow">
-          <label class="text">Call Type</label>
+          <span>Call Type</span>
           <select id="callTypeSelect0" value="">
             <option value=""></option>
             <option value="Authorization Status">Authorization Status</option>
@@ -111,54 +111,58 @@
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock0">
         <div class="tableRow">
-          <span class="text">Auth information given</span>
-          <input class="iptext" type="text" id="callTypeInput0" autocomplete="off" list="autocompleteOff"/>
+          <span>Auth information given</span>
+          <input type="text" id="callTypeInput0" autocomplete="off" list="autocompleteOff"/>
         </div>
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock1">
         <div class="tableRow">
-          <span class="text">Benefit information given</span>
-          <input class="iptext" type="text" id="callTypeInput1" autocomplete="off" list="autocompleteOff"/>
+          <span>PasteBox</span>
+          <textarea class="pasteBox" id="pasteBox1" rows=1></textarea>
+        </div>
+        <div class="tableRow">
+          <span>Benefit information given</span>
+          <input type="text" id="callTypeInput1" autocomplete="off" list="autocompleteOff"/>
         </div>
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock2">
         <div class="tableRow">
-          <span class="text">Claim information given</span>
-          <input class="iptext" type="text" id="callTypeInput2" autocomplete="off" list="autocompleteOff"/>
+          <span>Claim information given</span>
+          <input type="text" id="callTypeInput2" autocomplete="off" list="autocompleteOff"/>
         </div>
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock3">
         <div class="tableRow">
-          <span class="text">Eligibility information given</span>
-          <input class="iptext" type="text" id="callTypeInput3" autocomplete="off" list="autocompleteOff"/>
+          <span>Eligibility information given</span>
+          <input type="text" id="callTypeInput3" autocomplete="off" list="autocompleteOff"/>
         </div>
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock4">
         <div class="tableRow">
-          <span class="text">Referral information given</span>
-          <input class="iptext" type="text" id="callTypeInput4" autocomplete="off" list="autocompleteOff"/>
+          <span>Referral information given</span>
+          <input type="text" id="callTypeInput4" autocomplete="off" list="autocompleteOff"/>
         </div>
       </div>
     </div>
     <!--<div class="displayNone" id="additionalInfoRow">
       <div class="tableRow">
-        <span class="text">Additional Information</span>
-        <input class="iptext" type="text" id="addInfo" autocomplete="off" list="autocompleteOff"/>
+        <span>Additional Information</span>
+        <input type="text" id="addInfo" autocomplete="off" list="autocompleteOff"/>
       </div>
     </div>-->
     <!--Member Specific situations-->
     <div class="displayNone" id="mbrEnd">
       <div class="tableRow">
-        <label class="text">Member Satasfied?</label>
+        <span>Member Satasfied?</span>
         <input type="checkbox" id="mbrSatasfied" onclick="msCheck()" />
       </div>
       <div class="displayBlock" id="mbrNSatasfied">
         <div class="tableRow">
-          <label class="text">Grievance offered?</label>
+          <span>Grievance offered?</span>
           <input type="checkbox" id="grievanceOffered"/>
         </div>
         <div class="tableRow">
-          <label class="text">Grievance Filed?</label>
+          <span>Grievance Filed?</span>
           <input type="checkbox" id="grievanceFiled"/>
         </div>
       </div>
@@ -196,8 +200,10 @@
       numCallTypes += 1;
       clone.id = "callTypeDiv" + numCallTypes;
       clone.getElementsByTagName('select')[0].id = "callTypeSelect" + numCallTypes;
+      clone.getElementsByTagName('select')[0].value = "";
       for(i = 0; i < 5; i++){
         clone.getElementsByTagName('input')[i].id = "callTypeInput" + i + numCallTypes;
+        clone.getElementsByTagName('input')[i].value = "";
         var elements = clone.getElementsByClassName('callTypeHidden');
         if(elements.item(i) === null){
           alert("Error Occured, Reloading page. Please save information");
@@ -361,7 +367,18 @@
       if (SITEADD !== "" && PROVCHK == true) {outputText = outputText.concat(" - ",SITEADD," / ");}
       if (CNFADD == true) {outputText = outputText.concat("Confirmed Address on file / ");} 
       else if (outputText !== "") {outputText = outputText.concat("Unable to confirm address on file / ");}
-      if (CALLTYPE !== "") {outputText = outputText.concat(CALLTYPE," / ");}
+
+      if(CALLTYPE !== "") {
+        for(i = 0; i <= numCallTypes; i++) {
+          outputText = outputText.concat(document.getElementById("callTypeSelect"+i).value + " / ");
+          for(y = 0; y < 5; y++) {
+            if(i==0) {outputText = outputText.concat(document.getElementById("callTypeInput"+y).value);
+            } else { outputText = outputText.concat(document.getElementById("callTypeInput"+y+i).value);}
+          }
+          outputText = outputText.concat(" / ");
+        } 
+      }
+
       if (MBRCHK == true) {
         if (MBRSAT == true) {outputText = outputText.concat("Member satasfied");} 
         else if (outputText !== "") {outputText = outputText.concat("Member unsatasfied / ");
@@ -385,5 +402,7 @@
     }
   </script>
   <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
+
+  <!--Remove closing tags when importing to SharePoint-->
   </body>
 </html>

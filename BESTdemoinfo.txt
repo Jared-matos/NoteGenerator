@@ -1,4 +1,5 @@
 AUTH PASTE 
+
 12/8/2020 3:11:05 PM
 Authorizations
 ProviderID	Site Name	AProc	AUnits	AFrom	ATo	Decision	UUnits	OUnits	OToDate	RProc	RUnits	RFrom	RTo	PA	Created 	User 	Updated	Review ID	Prv Letters	Memb Letters	To Be Printed	Send To	AuthRecID	PrvLetVltDocID	MembLetVltDocID	
@@ -6,6 +7,7 @@ ProviderID	Site Name	AProc	AUnits	AFrom	ATo	Decision	UUnits	OUnits	OToDate	RProc
 
 
 BENEFITS DEMOS PAGE PASTE
+
 12/8/2020 3:11:48 PM
 Demographics
 Field	Value	
