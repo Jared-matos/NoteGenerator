@@ -1,5 +1,10 @@
-[x]redo callTypeSel() 
-[x]fix classname conflicts in entire code
-[]set clearall for clones
-[]get values from all clones
-[]eligibility and claim information both point to claim information in dropdowns
+[x] redo callTypeSel() 
+[x] fix classname conflicts in entire code
+[x]  new clones spawn as open to the parent, change to be clean on spawn
+[x]  new clones do not spawn at bottom of list, just under the parent 
+[x]  clone naming for input and block are borked
+[x]  set clearall for clones
+[]  get values from all clones
+[x]  eligibility and claim information both point to claim information in dropdowns
+[]  update information fields to accept pastedata from flexcare
+[]  format information fields properly

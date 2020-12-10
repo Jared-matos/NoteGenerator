@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
   </head>
+
   <style>
     .displayBlock {display: block;}
     .tableRow {
@@ -100,7 +101,6 @@
           </select>
           <button type="button" onclick="cloneCallType()">+</button>
       </div>
-    
       <div class="displayNone callTypeHidden" id="callTypeBlock0">
         <div class="tableRow">
           <span class="text">Auth information given</span>
@@ -121,7 +121,7 @@
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock3">
         <div class="tableRow">
-          <span class="text">Claim information given</span>
+          <span class="text">Eligibility information given</span>
           <input class="iptext" type="text" id="callTypeInput3" autocomplete="off" list="autocompleteOff"/>
         </div>
       </div>
@@ -164,7 +164,6 @@
     </div>
   </div>
 
-
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">
     console.clear();
@@ -180,24 +179,25 @@
       doc.close();
     }*/
     
-
     // creates clones of the callType div and changes the names of the clones children
     function cloneCallType(){
-      var parent = document.getElementById('callTypeDiv0');
+      var parent = document.getElementById('callTypeDiv' + numCallTypes);
       var clone = parent.cloneNode(true);
       numCallTypes += 1;
       clone.id = "callTypeDiv" + numCallTypes;
-      clone.getElementsByTagName('select')[0].id = "callType" + numCallTypes;
+      clone.getElementsByTagName('select')[0].id = "callTypeSelect" + numCallTypes;
       for(i = 0; i < 5; i++){
-        clone.getElementsByTagName('input')[i].id += numCallTypes;
+        clone.getElementsByTagName('input')[i].id = "callTypeInput" + i + numCallTypes;
         var elements = clone.getElementsByClassName('callTypeHidden');
         if(elements.item(i) === null){
           alert("Error Occured, Reloading page. Please save information");
           location.reload();
-        }else { elements.item(i).id += numCallTypes;}
+        }else { 
+          elements.item(i).id = "callTypeBlock" + i + numCallTypes;
+        }
       }
       parent.after(clone);
-      changeHeight();
+      callTypeSel();
     }
 
     // toggles member satasfied field open and closed 
@@ -228,19 +228,6 @@
     
     // goes through each selectBox and if it has a value changes the classname of the correct div to displayBlock setting all other children of selectbox classes as displayNone and callTypeHidden
     function callTypeSel(){
-
-      /*
-      Mapping out funcion
-
-      loop through each visible selectbox 
-        for each selectbox
-        set all child divs to displaynone calltypehidden
-        get the value of the box 
-        look for the div with the matching value associated with it 
-        set div to displayblockcalltypehidden
-      format tDiv to fit the new size        
-      */
-
       for(i = 0; i <= numCallTypes; i++){
         if(i!==0){
           document.getElementById("callTypeBlock0"+i).className = "displayNone callTypeHidden";
@@ -249,8 +236,7 @@
           document.getElementById("callTypeBlock3"+i).className = "displayNone callTypeHidden";
           document.getElementById("callTypeBlock4"+i).className = "displayNone callTypeHidden";
           //document.getElementById("additionalInfoRow").className = "displayBlock";
-          console.log(document.getElementById("callType"+i).value);
-          switch(document.getElementById("callType"+i).value){
+          switch(document.getElementById("callTypeSelect"+i).value){
             
             case "Authorization Status":
               document.getElementById("callTypeBlock0"+i).className = "displayBlock callTypeHidden";
@@ -268,7 +254,6 @@
               document.getElementById("callTypeBlock4"+i).className = "displayBlock callTypeHidden";
               break;
             default:
-            //document.getElementById("additionalInfoRow").className = "displayNone";
               break;
           }
         } else if(i==0) {
@@ -277,8 +262,6 @@
           document.getElementById("callTypeBlock2").className = "displayNone callTypeHidden";
           document.getElementById("callTypeBlock3").className = "displayNone callTypeHidden";
           document.getElementById("callTypeBlock4").className = "displayNone callTypeHidden";
-          //document.getElementById("additionalInfoRow").className = "displayBlock";
-          console.log(document.getElementById("callTypeSelect0").value);
           switch(document.getElementById("callTypeSelect0").value){
             
             case "Authorization Status":
@@ -297,7 +280,6 @@
               document.getElementById("callTypeBlock4").className = "displayBlock callTypeHidden";
               break;
             default:
-            //document.getElementById("additionalInfoRow").className = "displayNone";
               break;
           }
         }
@@ -335,6 +317,8 @@
       document.getElementById("mbrLine0").className = "displayNone";
       document.getElementById("mbrEnd").className = "displayNone";
       document.getElementById("mbrNSatasfied").className = "displayBlock";
+      for(i=1;i<=numCallTypes;i++) {document.getElementById("callTypeDiv"+i).remove();}
+      numCallTypes = 0;
       callTypeSel();
     }
 
