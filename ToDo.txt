@@ -1,3 +1,5 @@
+Initial test 
+
 [x] redo callTypeSel() 
 [x] fix classname conflicts in entire code
 [x] new clones spawn as open to the parent, change to be clean on spawn
@@ -14,4 +16,21 @@
     [x]  claim information
     [x]  eligibility
     [x]  referrals
-[] go through again and fix cloning naming, clearall and value selection
+
+-------------------------------------------------------------------------------------------
+Redone Information Fields 
+
+[x] fix naming scheme for all div, block and input 
+[] clone spawning implementation
+  [] set clone spawning naming to new parameter
+  [] set clone searching in callTypeSel
+  [] set clone removal in clearall
+  [] set clone data pull in copytoclipboard
+[] create paste data parse for all calltype
+  [] authorization
+  [] benefits/eligibility
+  [] claim information
+  [] referrals
+[] ceUpdate()
+    for toggleing open and closed related fields 
+[] implement try catch for all functions to avoid crashing 
