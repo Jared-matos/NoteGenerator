@@ -21,9 +21,11 @@ Initial test
 Redone Information Fields 
 
 [x] fix naming scheme for all div, block and input 
-    naming scheme numcalltypes-blocknum-index
+  [x] naming scheme numcalltypes-blocknum-index
 [W] clone spawning implementation
   [x] set clone spawning naming to new parameter
+    [x] set naming for index and div tags
+    [x]  set naming for select tags 
   [x] set clone searching in callTypeSel
   [x] set clone removal in clearall
   [] set clone data pull in copytoclipboard
@@ -32,6 +34,6 @@ Redone Information Fields
   [] benefits/eligibility
   [] claim information
   [] referrals
-[] ceUpdate()
+[x] ceUpdate()
     for toggleing open and closed related fields 
 [] implement try catch for all functions to avoid crashing 
