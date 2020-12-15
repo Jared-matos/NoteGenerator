@@ -409,13 +409,13 @@
   function ceUpdate() {
     var divs = document.getElementsByClassName('callTypeDivs');
     console.log("num divs: "+divs.length);
-    for(i = 0; i <= divs.length; i++) {
+    for(i = 0; i < divs.length; i++) {
       console.log('first for loop ran');
       var block = divs.item(i).getElementsByClassName('ceCalledBlock');
-      for(y = 0; y <= block.length; y++) {
-        var num = block.item(i).id;//.id.slice(block.item(y).id.length-1,block.item(y).id.length);
+      for(y = 0; y < block.length; y++) {
+        var num = block.item(y).id.slice(block.item(y).id.length-1,block.item(y).id.length);
         console.log(num);
-        if (document.getElementById('callTypeInput'+ num + '-2-13').checked == true) {
+       if (document.getElementById('callTypeInput'+ num + '-2-13').checked == true) {
           document.getElementById(block.item(y).id).className = 'displayBlock ceCalledBlock';
         } else {
           document.getElementById(block.item(y).id).className = 'displayNone ceCalledBlock';
