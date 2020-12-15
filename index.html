@@ -290,16 +290,16 @@
         <input type='text' id='callTypeInput0-3-1' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Referrals Given</span>
+        <span>Email/physical Address</span>
         <input type='text' id='callTypeInput0-3-2' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Email Address</span>
+        <span>Referrals Given</span>
         <input type='text' id='callTypeInput0-3-3' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
         <span>Sent to Member Service</span>
-        <input type='text' id='callTypeInput0-3-4' autocomplete='off' list='autocompleteOff' />
+        <input type='checkbox' id='callTypeInput0-3-4' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
   </div>
@@ -386,19 +386,20 @@
       } else {
         blocks.item(i).id = 'callTypeBlock' + numCallTypes + '-' + i;
 
-        //console.log('created:' + blocks.item(i).id);
+        //console.log('renamed:' + blocks.item(i).id);
 
         var inputs = blocks.item(i).getElementsByTagName('input');
         for(y = 0; y < inputs.length; y++) {
           inputs.item(y).id = 'callTypeInput' + numCallTypes + '-' + i + '-' + y;
+          inputs.item(y).value = "";
 
-          //console.log(inputs.item(y).id);
+          //console.log('renamed: '+inputs.item(y).id);
         }
         var selects = blocks.item(i).getElementsByTagName('select');
         for (y = 0; y < selects.length; y++) {
           selects.item(y).id = 'callTypeSelect' + numCallTypes + '-' + i + '-' + y;
-
-          //console.log(selects.item(y).id);
+          selects.item(y).value = "";
+          //console.log('renamed: '+selects.item(y).id);
         }
       }
     }
@@ -408,21 +409,21 @@
 // Looks at all created call types, in each identifies the ceCalled checkbox and toggles opening and closing the div
   function ceUpdate() {
     var divs = document.getElementsByClassName('callTypeDivs');
-    console.log("num divs: "+divs.length);
-    for(i = 0; i < divs.length; i++) {
+    console.log("num divs: " + divs.length);
+    for (i = 0; i < divs.length; i++) {
       console.log('first for loop ran');
       var block = divs.item(i).getElementsByClassName('ceCalledBlock');
-      for(y = 0; y < block.length; y++) {
-        var num = block.item(y).id.slice(block.item(y).id.length-1,block.item(y).id.length);
+      for (y = 0; y < block.length; y++) {
+        var num = block.item(y).id.slice(block.item(y).id.length - 1, block.item(y).id.length);
         console.log(num);
-       if (document.getElementById('callTypeInput'+ num + '-2-13').checked == true) {
+        if (document.getElementById('callTypeInput' + num + '-2-13').checked == true) {
           document.getElementById(block.item(y).id).className = 'displayBlock ceCalledBlock';
         } else {
           document.getElementById(block.item(y).id).className = 'displayNone ceCalledBlock';
         }
-        changeHeight();
       }
     }
+    changeHeight();
   }
 
   function parseDataBenefits() {
@@ -522,7 +523,10 @@
     document.getElementById('mbrLine0').className = 'displayNone';
     document.getElementById('mbrEnd').className = 'displayNone';
     document.getElementById('mbrNSatisfied').className = 'displayBlock';
-    for (i = 1; i <= numCallTypes; i++) { document.getElementById('callTypeDiv' + i).remove(); }
+    
+    for (i = 1; i <= numCallTypes; i++) { 
+      document.getElementById('callTypeDiv' + i).remove(); 
+    }
     numCallTypes = 0;
     callTypeSel();
   }
@@ -595,4 +599,3 @@
 <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
 
   <!--Remove closing tags when importing to SharePoint-->
-</html>

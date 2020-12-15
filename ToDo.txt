@@ -27,7 +27,8 @@ Redone Information Fields
     [x] set naming for index and div tags
     [x]  set naming for select tags 
   [x] set clone searching in callTypeSel
-  [x] set clone removal in clearall
+  [w] set clone removal in clearall
+    [] clearall to clear all fields in table 
   [] set clone data pull in copytoclipboard
 [] create paste data parse for all calltype
   [] authorization
