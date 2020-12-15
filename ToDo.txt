@@ -21,10 +21,11 @@ Initial test
 Redone Information Fields 
 
 [x] fix naming scheme for all div, block and input 
-[] clone spawning implementation
-  [] set clone spawning naming to new parameter
-  [] set clone searching in callTypeSel
-  [] set clone removal in clearall
+    naming scheme numcalltypes-blocknum-index
+[W] clone spawning implementation
+  [x] set clone spawning naming to new parameter
+  [x] set clone searching in callTypeSel
+  [x] set clone removal in clearall
   [] set clone data pull in copytoclipboard
 [] create paste data parse for all calltype
   [] authorization

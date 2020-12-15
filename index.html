@@ -13,22 +13,18 @@
   .displayBlock {
     display: block;
   }
-
   .tableRow {
     display: table-row;
     font-family: calibri;
     size: 12pt;
     height: 25px;
   }
-
   .displayNone {
     display: none;
   }
-
   .displayAsCell {
     display: table-cell;
   }
-
   #tDiv span {
     display: table-cell;
     font-family: calibri;
@@ -36,14 +32,12 @@
     width: 200px;
     vertical-align: middle;
   }
-
   #tDiv input[type="text"] {
     display: table-cell;
     font-family: calibri;
     size: 12pt;
     width: 100%;
   }
-
   #tDiv {
     height: 150px;
     width: 375px;
@@ -51,7 +45,6 @@
     background-color: #f2f2f2;
     padding: 10px;
   }
-
   #tDiv button {
     max-height: 25px;
     min-width: 0px;
@@ -60,555 +53,531 @@
   }
 </style>
 
-<body>
-  <div id="tDiv">
-    <!--Every call information-->
+<div id="tDiv">
+  <!--Every call information-->
+  <div class="tableRow">
+    <span>Caller Type</span>
+    <div class="displayAsCell">
+      <input type="radio" id="Member" name="MP" onclick="mpRadio()" value="Member">
+      <label>Member</label>
+      <input type="radio" id="Provider" name="MP" onclick="mpRadio()" value="Provider">
+      <label>Provider</label>
+    </div>
+  </div>
+  <div class="tableRow">
+    <span>Caller Name</span>
+    <input type="text" id="callerName" autocomplete="off" list="autocompleteOff" />
+  </div>
+  <div class="tableRow">
+    <span>Callback Number</span>
+    <input type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff" />
+  </div>
+
+  <!--Member info Section-->
+  <div class="displayNone" id="mbrLine0">
+    <span>Relationship to Member</span>
+    <input type="text" id="callerRel" autocomplete="off" list="autocompleteOff" />
+  </div>
+
+  <!--Provider info section-->
+  <div class="displayNone" id="provInfoBlock">
     <div class="tableRow">
-      <span>Caller Type</span>
       <div class="displayAsCell">
-        <input type="radio" id="Member" name="MP" onclick="mpRadio()" value="Member">
-        <label>Member</label>
-        <input type="radio" id="Provider" name="MP" onclick="mpRadio()" value="Provider">
-        <label>Provider</label>
+        <input type="radio" id="NPI" name="NPI/TIN" value="NPI" />
+        <label>NPI</label>
+        <input type="radio" id="TIN" name="NPI/TIN" value="TIN" />
+        <label>TIN</label>
       </div>
+      <input type="text" id="provIDText" autocomplete="off" list="autocompleteOff" />
     </div>
     <div class="tableRow">
-      <span>Caller Name</span>
-      <input type="text" id="callerName" autocomplete="off" list="autocompleteOff" />
+      <span>Facility Name</span>
+      <input type="text" id="provNamesText" autocomplete="off" list="autocompleteOff" />
     </div>
     <div class="tableRow">
-      <span>Callback Number</span>
-      <input type="text" id="callbackNumber" autocomplete="off" list="autocompleteOff" />
-    </div>
-
-    <!--Member info Section-->
-    <div class="displayNone" id="mbrLine0">
-      <span>Relationship to Member</span>
-      <input type="text" id="callerRel" autocomplete="off" list="autocompleteOff" />
-    </div>
-
-    <!--Provider info section-->
-    <div class="displayNone" id="provInfoBlock">
-      <div class="tableRow">
-        <div class="displayAsCell">
-          <input type="radio" id="NPI" name="NPI/TIN" value="NPI" />
-          <label>NPI</label>
-          <input type="radio" id="TIN" name="NPI/TIN" value="TIN" />
-          <label>TIN</label>
-        </div>
-        <input type="text" id="provIDText" autocomplete="off" list="autocompleteOff" />
-      </div>
-      <div class="tableRow">
-        <span>Facility Name</span>
-        <input type="text" id="provNamesText" autocomplete="off" list="autocompleteOff" />
-      </div>
-      <div class="tableRow">
-        <span>Site Address</span>
-        <input type="text" id="siteAddress" autocomplete="off" list="autocompleteOff" />
-      </div>
-    </div>
-
-    <!--all call around address confirmation-->
-    <div class="tableRow">
-      <span>Confirmed address on file?</span>
-      <input type="checkbox" id="confirmedAddress" />
-    </div>
-    <div class="displayBlock" id="callTypeDiv0" onchange="callTypeSel()">
-      <div class="tableRow" id="callTypeRow">
-        <span>Call Type</span>
-        <select id="callTypeSelect0" value="">
-          <option value=""></option>
-          <option value="Authorization Status">Authorization Status</option>
-          <option value="Benefit/Eligibility Information">Benefits/Eligibility</option>
-          <option value="Claim Information">Claim Information</option>
-          <option value="Referral Request">Referrals</option>
-        </select>
-        <button type="button" id="cloneCallTypeDivButton" onclick="cloneCallType()">+</button>
-      </div>
-
-      <!--Auth Status-->
-      <div class="displayNone callTypeHidden" id="callTypeBlock0-0">
-        <div class="tableRow">
-          <span>PasteBox</span>
-          <textarea class="pasteBox" id="pasteBox0" rows=1 onchange="parseDataBenefits(this)"></textarea>
-        </div>
-        <div class="tableRow">
-          <span>Auth status</span>
-          <select id="callTypeInput00" value=""/>
-            <option value=""></option>
-            <option value="Approved">Approved</option>
-            <option value="Pended">Pended</option>
-            <option value="Denied">Denied</option>
-          </select>
-        </div>
-        <div class="tableRow">
-          <span>Approved Code</span>
-          <input type="text" id="callTypeInput0-0-1" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Dates Approved</span>
-          <input type="text" id="callTypeInput0-0-2" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Dates Requested</span>
-          <input type="text" id="callTypeInput0-0-3" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Units Approved</span>
-          <input type="text" id="callTypeInput0-0-4" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Units Requested</span>
-          <input type="text" id="callTypeInput0-0-5" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>PA Number</span>
-          <input type="text" id="callTypeInput0-0-6" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Date Approved/Modified</span>
-          <input type="text" id="callTypeInput0-0-7" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Other Information Given</span>
-          <input type="text" id="callTypeInput0-0-8" autocomplete="off" list="autocompleteOff" />
-        </div>
-      </div>
-
-      <!--Benefits/Eligibility-->
-      <div class="displayNone callTypeHidden" id="callTypeBlock0-1">
-        <div class="tableRow">
-          <span>PasteBox</span>
-          <textarea class="pasteBox" id="pasteBox1" rows=1 onchange="parseDataBenefits(this)"></textarea>
-        </div>
-        <div class="tableRow">
-          <span>Member Eligible Dates</span>
-          <input type="text" id="callTypeInput0-1-0" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Benefit information Quoted</span>
-          <input type="text" id="callTypeInput0-1-1" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Co-Pay Information Quoted</span>
-          <input type="text" id="callTypeInput0-1-2" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Utilization Quoted</span>
-          <input type="text" id="callTypeInput0-1-3" autocomplete="off" list="autocompleteOff" />
-        </div>
-      </div>
-
-      <!--Claim Status-->
-      <div class="displayNone callTypeHidden" id="callTypeBlock0-2">
-        <div class="tableRow">
-          <span>PasteBox</span>
-          <textarea class="pasteBox" id="pasteBox2" rows=1 onchange="parseDataBenefits(this)"></textarea>
-        </div>
-        <div class="tableRow">
-          <span>DOS</span>
-          <input type="text" id="callTypeInput0-2-0" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Procedure Code</span>
-          <input type="text" id="callTypeInput0-2-1" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Recieved Date</span>
-          <input type="text" id="callTypeInput0-2-2" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Processed Date</span>
-          <input type="text" id="callTypeInput0-2-3" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Charged Units</span>
-          <input type="text" id="callTypeInput0-2-4" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Allowed Units</span>
-          <input type="text" id="callTypeInput0-2-5" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Charged Amount</span>
-          <input type="text" id="callTypeInput0-2-6" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Allowed Amount</span>
-          <input type="text" id="callTypeInput0-2-7" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Claim Number</span>
-          <input type="text" id="callTypeInput0-2-8" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Paid Via</span>
-          <select id="callTypeInput0-2-9" value="" />
-            <option value=""></option>
-            <option value="ACH/EFT">ACH/EFT</option>
-            <option value="CHK">CHK</option>
-          </select>
-        </div>
-        <div class="tableRow">
-          <span>Check/Transaction Number</span>
-          <input type="text" id="callTypeInput0-2-10" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Bulk Amount</span>
-          <input type="text" id="callTypeInput0-2-11" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Payment Cleared Date</span>
-          <input type="text" id="callTypeInput0-2-12" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Processed Correctly</span>
-          <input type="checkbox" id="callTypeInput0-2-13" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="displayBlock" onchange="ceUpdate()">
-          <div class="tableRow">
-            <span>CE Called</span>
-            <input type="checkbox" id="callTypeInput0-2-14" autocomplete="off" list="autocompleteOff" />
-          </div>
-          <div class="displayNone" id="CECalledDiv0">
-            <div class="tableRow">
-              <span>Initials of CE </span>
-              <input type="text" id="callTypeInput0-2-15" autocomplete="off" list="autocompleteOff" />
-            </div>
-            <div class="tableRow">
-              <span>CE Advised</span>
-              <input type="text" id="callTypeInput0-2-16" autocomplete="off" list="autocompleteOff" />
-            </div>
-          </div>
-        </div>
-        <div class="tableRow">
-          <span>Other Information Advised</span>
-          <input type="text" id="callTypeInput0-2-17" autocomplete="off" list="autocompleteOff" />
-        </div>
-      </div>
-
-      <!--Referral-->
-      <div class="displayNone callTypeHidden" id="callTypeBlock0-3">
-        <div class="tableRow">
-          <span>Type of Referrals Requested</span>
-          <input type="text" id="callTypeInput0-3-0" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Method Referrals Delivered</span>
-          <input type="text" id="callTypeInput0-3-1" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Referrals Given</span>
-          <input type="text" id="callTypeInput0-3-2" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Email Address</span>
-          <input type="text" id="callTypeInput0-3-3" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Sent to Member Service</span>
-          <input type="text" id="callTypeInput0-3-3" autocomplete="off" list="autocompleteOff" />
-        </div>
-      </div>
-    </div>
-
-    <!--Member Specific situations-->
-    <div class="displayNone" id="mbrEnd">
-      <div class="tableRow">
-        <span>Member Satisfied?</span>
-        <input type="checkbox" id="mbrSatisfied" onclick="msCheck()" />
-      </div>
-      <div class="displayBlock" id="mbrNSatisfied">
-        <div class="tableRow">
-          <span>Grievance offered?</span>
-          <input type="checkbox" id="grievanceOffered" />
-        </div>
-        <div class="tableRow">
-          <span>Grievance Filed?</span>
-          <input type="checkbox" id="grievanceFiled" />
-        </div>
-      </div>
-    </div>
-
-    <!--Button at bottom of form -->
-    <div class="tableRow">
-      <textarea readonly type="text" class="displayNone" id="oText"></textarea>
-      <button type="button" onclick="copyClipboard()">Copy to Clipboard</button>
-      <button type="button" onclick="clearAll()">Clear All</button>
-      <!--<button type="button" onclick="openNewWindow()">New Window</button>-->
+      <span>Site Address</span>
+      <input type="text" id="siteAddress" autocomplete="off" list="autocompleteOff" />
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript">
-    console.clear();
-    var numCallTypes = 0;
-    changeHeight();
+  <!--all call around address confirmation-->
+  <div class="tableRow">
+    <span>Confirmed address on file?</span>
+    <input type="checkbox" id="confirmedAddress" />
+  </div>
+  <div class="displayBlock callTypeDivs" id="callTypeDiv0" onchange="callTypeSel()">
+    <div class="tableRow" id="callTypeRow">
+      <span>Call Type</span>
+      <select id="callTypeSelect0" value="">
+        <option value=""></option>
+        <option value="Authorization Status">Authorization Status</option>
+        <option value="Benefit/Eligibility Information">Benefits/Eligibility</option>
+        <option value="Claim Information">Claim Information</option>
+        <option value="Referral Request">Referrals</option>
+      </select>
+      <button type="button" id="cloneCallTypeDivButton" onclick="cloneCallType()">+</button>
+    </div>
 
-    /*function openNewWindow(){
-      var divText = document.getElementById("tDiv").outerHTML;
-      var myWindow = window.open('', '', 'width=200,height=100');
-      var doc = myWindow.document;
-      doc.open();
-      doc.write(divText);
-      doc.close();
-    }*/
+    <!--Auth Status-->
+    <div class="displayNone callTypeHidden" id="callTypeBlock0-0">
+      <div class="tableRow">
+        <span>PasteBox</span>
+        <textarea class="pasteBox" id="pasteBox0" rows=1 onchange="parseDataBenefits(this)"></textarea>
+      </div>
+      <div class="tableRow">
+        <span>Auth status</span>
+        <select id="callTypeInput00" value=""/>
+          <option value=""></option>
+          <option value="Approved">Approved</option>
+          <option value="Pended">Pended</option>
+          <option value="Denied">Denied</option>
+        </select>
+      </div>
+      <div class="tableRow">
+        <span>Approved Code</span>
+        <input type="text" id="callTypeInput0-0-1" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Dates Approved</span>
+        <input type="text" id="callTypeInput0-0-2" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Dates Requested</span>
+        <input type="text" id="callTypeInput0-0-3" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Units Approved</span>
+        <input type="text" id="callTypeInput0-0-4" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Units Requested</span>
+        <input type="text" id="callTypeInput0-0-5" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>PA Number</span>
+        <input type="text" id="callTypeInput0-0-6" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Date Approved/Modified</span>
+        <input type="text" id="callTypeInput0-0-7" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Other Information Given</span>
+        <input type="text" id="callTypeInput0-0-8" autocomplete="off" list="autocompleteOff" />
+      </div>
+    </div>
 
-    // creates clones of the callType div and changes the names of the clones children
-    function cloneCallType() {
-      console.log("cloneCallType Called");
-      /*
-      Mapping out function 
+    <!--Benefits/Eligibility-->
+    <div class="displayNone callTypeHidden" id="callTypeBlock0-1">
+      <div class="tableRow">
+        <span>PasteBox</span>
+        <textarea class="pasteBox" id="pasteBox1" rows=1 onchange="parseDataBenefits(this)"></textarea>
+      </div>
+      <div class="tableRow">
+        <span>Member Eligible Dates</span>
+        <input type="text" id="callTypeInput0-1-0" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Benefit information Quoted</span>
+        <input type="text" id="callTypeInput0-1-1" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Co-Pay Information Quoted</span>
+        <input type="text" id="callTypeInput0-1-2" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Utilization Quoted</span>
+        <input type="text" id="callTypeInput0-1-3" autocomplete="off" list="autocompleteOff" />
+      </div>
+    </div>
 
-      get last parent div
-      create clone of parent div 
-      increment numcalltypes 
-      set clone div id to new increment
-      set clone select to new increment 
-      set clone select value to null
-      set all input to new increment 
-      set all input to null
-      set all block to new increment 
-      set all block to null 
-      insert the clone after the parent 
-      update call type fields 
-      */
+    <!--Claim Status-->
+    <div class="displayNone callTypeHidden" id="callTypeBlock0-2">
+      <div class="tableRow">
+        <span>PasteBox</span>
+        <textarea class="pasteBox" id="pasteBox2" rows=1 onchange="parseDataBenefits(this)"></textarea>
+      </div>
+      <div class="tableRow">
+        <span>DOS</span>
+        <input type="text" id="callTypeInput0-2-0" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Procedure Code</span>
+        <input type="text" id="callTypeInput0-2-1" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Recieved Date</span>
+        <input type="text" id="callTypeInput0-2-2" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Processed Date</span>
+        <input type="text" id="callTypeInput0-2-3" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Charged Units</span>
+        <input type="text" id="callTypeInput0-2-4" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Allowed Units</span>
+        <input type="text" id="callTypeInput0-2-5" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Charged Amount</span>
+        <input type="text" id="callTypeInput0-2-6" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Allowed Amount</span>
+        <input type="text" id="callTypeInput0-2-7" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Claim Number</span>
+        <input type="text" id="callTypeInput0-2-8" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Paid Via</span>
+        <select id="callTypeInput0-2-9" value="" />
+          <option value=""></option>
+          <option value="ACH/EFT">ACH/EFT</option>
+          <option value="CHK">CHK</option>
+        </select>
+      </div>
+      <div class="tableRow">
+        <span>Check/Transaction Number</span>
+        <input type="text" id="callTypeInput0-2-10" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Bulk Amount</span>
+        <input type="text" id="callTypeInput0-2-11" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Payment Cleared Date</span>
+        <input type="text" id="callTypeInput0-2-12" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Processed Correctly</span>
+        <input type="checkbox" id="callTypeInput0-2-13" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="displayBlock" onchange="ceUpdate()">
+        <div class="tableRow">
+          <span>CE Called</span>
+          <input type="checkbox" id="callTypeInput0-2-14" autocomplete="off" list="autocompleteOff" />
+        </div>
+        <div class="displayNone" id="CECalledDiv0">
+          <div class="tableRow">
+            <span>Initials of CE </span>
+            <input type="text" id="callTypeInput0-2-15" autocomplete="off" list="autocompleteOff" />
+          </div>
+          <div class="tableRow">
+            <span>CE Advised</span>
+            <input type="text" id="callTypeInput0-2-16" autocomplete="off" list="autocompleteOff" />
+          </div>
+        </div>
+      </div>
+      <div class="tableRow">
+        <span>Other Information Advised</span>
+        <input type="text" id="callTypeInput0-2-17" autocomplete="off" list="autocompleteOff" />
+      </div>
+    </div>
 
-      var parent = document.getElementById('callTypeDiv' + numCallTypes);
-      var clone = parent.cloneNode(true);
-      numCallTypes += 1;
-      clone.id = "callTypeDiv" + numCallTypes;
-      clone.getElementsByTagName('select')[0].id = "callTypeSelect" + numCallTypes;
-      clone.getElementsByTagName('select')[0].value = "";
-      for (i = 0; i < 4; i++) {
-        clone.getElementsByTagName('input')[i].id = "callTypeInput" + i + numCallTypes;
-        clone.getElementsByTagName('input')[i].value = "";
-        var elements = clone.getElementsByClassName('callTypeHidden');
-        if (elements.item(i) === null) {
-          alert("Error Occured, Reloading page. Please save information");
-          location.reload();
-        } else {
-          elements.item(i).id = "callTypeBlock" + i + numCallTypes;
+    <!--Referral-->
+    <div class="displayNone callTypeHidden" id="callTypeBlock0-3">
+      <div class="tableRow">
+        <span>Type of Referrals Requested</span>
+        <input type="text" id="callTypeInput0-3-0" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Method Referrals Delivered</span>
+        <input type="text" id="callTypeInput0-3-1" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Referrals Given</span>
+        <input type="text" id="callTypeInput0-3-2" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Email Address</span>
+        <input type="text" id="callTypeInput0-3-3" autocomplete="off" list="autocompleteOff" />
+      </div>
+      <div class="tableRow">
+        <span>Sent to Member Service</span>
+        <input type="text" id="callTypeInput0-3-3" autocomplete="off" list="autocompleteOff" />
+      </div>
+    </div>
+  </div>
+
+  <!--Member Specific situations-->
+  <div class="displayNone" id="mbrEnd">
+    <div class="tableRow">
+      <span>Member Satisfied?</span>
+      <input type="checkbox" id="mbrSatisfied" onclick="msCheck()" />
+    </div>
+    <div class="displayBlock" id="mbrNSatisfied">
+      <div class="tableRow">
+        <span>Grievance offered?</span>
+        <input type="checkbox" id="grievanceOffered" />
+      </div>
+      <div class="tableRow">
+        <span>Grievance Filed?</span>
+        <input type="checkbox" id="grievanceFiled" />
+      </div>
+    </div>
+  </div>
+
+  <!--Button at bottom of form -->
+  <div class="tableRow">
+    <textarea readonly type="text" class="displayNone" id="oText"></textarea>
+    <button type="button" onclick="copyClipboard()">Copy to Clipboard</button>
+    <button type="button" onclick="clearAll()">Clear All</button>
+    <!--<button type="button" onclick="openNewWindow()">New Window</button>-->
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  console.clear();
+  var numCallTypes = 0;
+  changeHeight();
+
+  /*function openNewWindow(){
+    var divText = document.getElementById("tDiv").outerHTML;
+    var myWindow = window.open('', '', 'width=200,height=100');
+    var doc = myWindow.document;
+    doc.open();
+    doc.write(divText);
+    doc.close();
+  }*/
+
+  // creates clones of the callType div and changes the names of the clones children
+  function cloneCallType() {
+    /*
+    Mapping out function 
+
+    get last parent div
+    create clone of parent div 
+    increment numcalltypes 
+    set clone div id to new increment
+    set clone select to new increment 
+    set clone select value to null
+    set all input to new increment 
+    set all input to null
+    set all block to new increment 
+    set all block to null 
+    insert the clone after the parent 
+    update call type fields 
+    */
+
+    var parent = document.getElementById('callTypeDiv' + numCallTypes);
+    var clone = parent.cloneNode(true);
+    numCallTypes += 1;
+    clone.id = "callTypeDiv" + numCallTypes;
+    clone.getElementsByTagName('select')[0].id = "callTypeSelect" + numCallTypes;
+    console.log("renamed:"+clone.id);
+    console.log("renamed:"+clone.getElementsByTagName('select')[0].id);
+    clone.getElementsByTagName('select')[0].value = "";
+    var blocks = clone.getElementsByClassName('callTypeHidden');
+    for(i = 0; i < blocks.length; i++) {
+      if (blocks.item(i) === null) {
+        alert("Error Occured, Reloading page. Please save information");
+        location.reload();
+      } else {
+        blocks.item(i).id = "callTypeBlock" + numCallTypes + "-" + i;
+        console.log("created:" + blocks.item(i).id);
+        var items = blocks.item(i).getElementsByTagName('input');
+        for(y = 0; y < items.length; y++) {
+          items.item(y).id = "callTypeItem" + numCallTypes + "-" + i + "-" + y;
+          console.log(items.item(y).id);
         }
       }
-      parent.after(clone);
-      callTypeSel();
     }
+    parent.after(clone);
+    callTypeSel();
+  }
 
-    function ceUpdate(div) {
-      console.log("ceUpdate Called");
-      /*
-      mapping out function
+  function ceUpdate(div) {
+    console.log("ceUpdate Called");
+    /*
+    mapping out function
 
-      get value of each CE called checkbox that is visible 
-      for each checkbox checked 
-      set div to be visible 
-      else set div to invisible 
-      
-      */
-    }
+    get value of each CE called checkbox that is visible 
+    for each checkbox checked 
+    set div to be visible 
+    else set div to invisible 
+    
+    */
+  }
 
-    function parseDataBenefits(PasteBox) {
-      /*
-      Mapping out function
-      
-      Get data from pastebox in each benefit clone
-      parse data for eligible fields from flexcare
-      insert information back into respective clone 
-      ??
-      Profit
-      */
+  function parseDataBenefits(PasteBox) {
+    /*
+    Mapping out function
+    
+    Get data from pastebox in each benefit clone
+    parse data for eligible fields from flexcare
+    insert information back into respective clone 
+    ??
+    Profit
+    */
 
-      console.log(PasteBox.id);
+    console.log(PasteBox.id);
 
 
-    }
+  }
 
-    // toggles member satasfied field open and closed 
-    function msCheck() {
-      if (document.getElementById("mbrSatisfied").checked == true) {
-        document.getElementById("mbrNSatisfied").className = "displayNone";
-        changeHeight();
-      } else {
-        document.getElementById("mbrNSatisfied").className = "displayBlock";
-        changeHeight();
-      }
-    }
-
-    // toggles between member and provider fields
-    function mpRadio() {
-      if (document.getElementById("Member").checked == false) {
-        document.getElementById("mbrLine0").className = "displayNone";
-        document.getElementById("mbrEnd").className = "displayNone";
-        document.getElementById("provInfoBlock").className = "displayBlock";
-        changeHeight();
-      } else {
-        document.getElementById("mbrLine0").className = "tableRow";
-        document.getElementById("mbrEnd").className = "displayBlock";
-        document.getElementById("provInfoBlock").className = "displayNone";
-        changeHeight();
-      }
-    }
-
-    // goes through each selectBox and if it has a value changes the classname of the correct div to displayBlock setting all other children of selectbox classes as displayNone and callTypeHidden
-    function callTypeSel() {
-      for (i = 0; i <= numCallTypes; i++) {
-        if (i !== 0) {
-          document.getElementById("callTypeBlock0" + i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock1" + i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock2" + i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock3" + i).className = "displayNone callTypeHidden";
-          
-          switch (document.getElementById("callTypeSelect" + i).value) {
-
-            case "Authorization Status":
-              document.getElementById("callTypeBlock0" + i).className = "displayBlock callTypeHidden";
-              break;
-            case "Benefit/Eligibility Information":
-              document.getElementById("callTypeBlock1" + i).className = "displayBlock callTypeHidden";
-              break;
-            case "Claim Information":
-              document.getElementById("callTypeBlock2" + i).className = "displayBlock callTypeHidden";
-              break;
-            case "Referral Request":
-              document.getElementById("callTypeBlock3" + i).className = "displayBlock callTypeHidden";
-              break;
-            default:
-              break;
-          }
-        } else if (i == 0) {
-          document.getElementById("callTypeBlock0").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock1").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock2").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock3").className = "displayNone callTypeHidden";
-          
-          switch (document.getElementById("callTypeSelect0").value) {
-
-            case "Authorization Status":
-              document.getElementById("callTypeBlock0").className = "displayBlock callTypeHidden";
-              break;
-            case "Benefit/Eligibility Information":
-              document.getElementById("callTypeBlock1").className = "displayBlock callTypeHidden";
-              break;
-            case "Claim Information":
-              document.getElementById("callTypeBlock2").className = "displayBlock callTypeHidden";
-              break;
-            case "Referral Request":
-              document.getElementById("callTypeBlock3").className = "displayBlock callTypeHidden";
-              break;
-            default:
-              break;
-          }
-        }
-      }
+  // toggles member satasfied field open and closed 
+  function msCheck() {
+    if (document.getElementById("mbrSatisfied").checked == true) {
+      document.getElementById("mbrNSatisfied").className = "displayNone";
+      changeHeight();
+    } else {
+      document.getElementById("mbrNSatisfied").className = "displayBlock";
       changeHeight();
     }
+  }
 
-    //sets height of tDiv to standard height for the number of visible rows 
-    function changeHeight() {
-      var currentHeightInt = 25 * ($(".tableRow:visible").length);
-      var currentHeightStr = currentHeightInt.toString();
-      currentHeightStr = currentHeightStr.concat("px");
-      document.getElementById("tDiv").style.height = currentHeightStr;
-    }
-
-    //Sets vaules of all fields to empty or false
-    function clearAll() {
-      document.getElementById("callerName").value = "";
-      document.getElementById("callbackNumber").value = "";
-      document.getElementById("callerRel").value = "";
-      document.getElementById("provIDText").value = "";
-      document.getElementById("provNamesText").value = "";
-      document.getElementById("siteAddress").value = "";
-      document.getElementById("mbrSatisfied").checked = false;
-      document.getElementById("mbrNSatisfied").checked = false;
-      document.getElementById("grievanceOffered").checked = false;
-      document.getElementById("grievanceFiled").checked = false;
-      document.getElementById("confirmedAddress").checked = false;
-      document.getElementById("NPI").checked = false;
-      document.getElementById("TIN").checked = false;
-      document.getElementById("Member").checked = false;
-      document.getElementById("Provider").checked = false;
-      document.getElementById("callTypeSelect0").value = "";
-      document.getElementById("provInfoBlock").className = "displayNone";
+  // toggles between member and provider fields
+  function mpRadio() {
+    if (document.getElementById("Member").checked == false) {
       document.getElementById("mbrLine0").className = "displayNone";
       document.getElementById("mbrEnd").className = "displayNone";
-      document.getElementById("mbrNSatisfied").className = "displayBlock";
-      for (i = 1; i <= numCallTypes; i++) { document.getElementById("callTypeDiv" + i).remove(); }
-      numCallTypes = 0;
-      callTypeSel();
+      document.getElementById("provInfoBlock").className = "displayBlock";
+      changeHeight();
+    } else {
+      document.getElementById("mbrLine0").className = "tableRow";
+      document.getElementById("mbrEnd").className = "displayBlock";
+      document.getElementById("provInfoBlock").className = "displayNone";
+      changeHeight();
+    }
+  }
+
+  // goes through each selectBox and if it has a value changes the classname of the correct div to displayBlock setting all other children of selectbox classes as displayNone and callTypeHidden
+  function callTypeSel() {
+    var divs = document.getElementsByClassName('callTypeDivs');
+    for (i = 0; i < divs.length; i++) {
+      var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
+      for(y = 0; y < blocks.length; y++) {
+        blocks.item(y).className = "displayNone callTypeHidden";
+      }
+      switch (divs.item(i).getElementsByTagName('select')[0].value) {
+        case "Authorization Status":
+          divs.item(i).getElementsByClassName('callTypeHidden').item(0).className = "displayBlock callTypeHidden";
+          break;
+        case "Benefit/Eligibility Information":
+          divs.item(i).getElementsByClassName('callTypeHidden').item(1).className = "displayBlock callTypeHidden";
+          break;
+        case "Claim Information":
+          divs.item(i).getElementsByClassName('callTypeHidden').item(2).className = "displayBlock callTypeHidden";
+          break;
+        case "Referral Request":
+          divs.item(i).getElementsByClassName('callTypeHidden').item(3).className = "displayBlock callTypeHidden";
+          break;
+        default:
+          break;
+      }
+    }
+    changeHeight();
+  }
+
+  //sets height of tDiv to standard height for the number of visible rows 
+  function changeHeight() {
+    var currentHeightInt = 25 * ($(".tableRow:visible").length);
+    var currentHeightStr = currentHeightInt.toString();
+    currentHeightStr = currentHeightStr.concat("px");
+    document.getElementById("tDiv").style.height = currentHeightStr;
+  }
+
+  //Sets vaules of all fields to empty or false
+  function clearAll() {
+    document.getElementById("callerName").value = "";
+    document.getElementById("callbackNumber").value = "";
+    document.getElementById("callerRel").value = "";
+    document.getElementById("provIDText").value = "";
+    document.getElementById("provNamesText").value = "";
+    document.getElementById("siteAddress").value = "";
+    document.getElementById("mbrSatisfied").checked = false;
+    document.getElementById("mbrNSatisfied").checked = false;
+    document.getElementById("grievanceOffered").checked = false;
+    document.getElementById("grievanceFiled").checked = false;
+    document.getElementById("confirmedAddress").checked = false;
+    document.getElementById("NPI").checked = false;
+    document.getElementById("TIN").checked = false;
+    document.getElementById("Member").checked = false;
+    document.getElementById("Provider").checked = false;
+    document.getElementById("callTypeSelect0").value = "";
+    document.getElementById("provInfoBlock").className = "displayNone";
+    document.getElementById("mbrLine0").className = "displayNone";
+    document.getElementById("mbrEnd").className = "displayNone";
+    document.getElementById("mbrNSatisfied").className = "displayBlock";
+    for (i = 1; i <= numCallTypes; i++) { document.getElementById("callTypeDiv" + i).remove(); }
+    numCallTypes = 0;
+    callTypeSel();
+  }
+
+  // Collects the information from the fields, combines them into an output string, and sends to the clipboard
+  function copyClipboard() {
+    // collecting information from all the fields & generating output and error texts
+    var CALLERNAME = document.getElementById("callerName").value;
+    var CBNUM = document.getElementById("callbackNumber").value;
+    var CALLERREL = document.getElementById("callerRel").value;
+    var PROVID = document.getElementById("provIDText").value;
+    var PROVNAME = document.getElementById("provNamesText").value;
+    var SITEADD = document.getElementById("siteAddress").value;
+    var CNFADD = document.getElementById("confirmedAddress").checked;
+    var NPICHK = document.getElementById("NPI").checked;
+    var TINCHK = document.getElementById("TIN").checked;
+    var MBRCHK = document.getElementById("Member").checked;
+    var PROVCHK = document.getElementById("Provider").checked;
+    var CALLTYPE = document.getElementById("callTypeSelect0").value;
+    var MBRSAT = document.getElementById("mbrSatisfied").checked;
+    var GOFF = document.getElementById("grievanceOffered").checked;
+    var GFILED = document.getElementById("grievanceFiled").checked;
+    var outputText = "";
+
+    // combining all the data into a single string, any empty required fields are added to error text
+    if (CALLERNAME !== "") { outputText = outputText.concat(CALLERNAME, " / "); }
+    if (CALLERREL !== "" && MBRCHK == true) { outputText = outputText.concat(CALLERREL, " / "); }
+    if (CBNUM !== "") { outputText = outputText.concat("CB# ", CBNUM, " / "); }
+    if (NPICHK == true && PROVCHK == true) { outputText = outputText.concat("NPI: ", PROVID); }
+    if (TINCHK == true && PROVCHK == true) { outputText = outputText.concat("TIN: ", PROVID); }
+    if (SITEADD !== "" && PROVCHK == true) { outputText = outputText.concat(" - ", SITEADD, " / "); }
+    if (CNFADD == true) { outputText = outputText.concat("Confirmed Address on file / "); }
+    else if (outputText !== "") { outputText = outputText.concat("Unable to confirm address on file / "); }
+
+    if (CALLTYPE !== "") {
+      for (i = 0; i <= numCallTypes; i++) {
+        outputText = outputText.concat(document.getElementById("callTypeSelect" + i).value + " / ");
+        for (y = 0; y < 5; y++) {
+          if (i == 0) {
+            outputText = outputText.concat(document.getElementById("callTypeInput" + y).value);
+          } else { outputText = outputText.concat(document.getElementById("callTypeInput" + y + i).value); }
+        }
+        outputText = outputText.concat(" / ");
+      }
     }
 
-    // Collects the information from the fields, combines them into an output string, and sends to the clipboard
-    function copyClipboard() {
-      // collecting information from all the fields & generating output and error texts
-      var CALLERNAME = document.getElementById("callerName").value;
-      var CBNUM = document.getElementById("callbackNumber").value;
-      var CALLERREL = document.getElementById("callerRel").value;
-      var PROVID = document.getElementById("provIDText").value;
-      var PROVNAME = document.getElementById("provNamesText").value;
-      var SITEADD = document.getElementById("siteAddress").value;
-      var CNFADD = document.getElementById("confirmedAddress").checked;
-      var NPICHK = document.getElementById("NPI").checked;
-      var TINCHK = document.getElementById("TIN").checked;
-      var MBRCHK = document.getElementById("Member").checked;
-      var PROVCHK = document.getElementById("Provider").checked;
-      var CALLTYPE = document.getElementById("callTypeSelect0").value;
-      var MBRSAT = document.getElementById("mbrSatisfied").checked;
-      var GOFF = document.getElementById("grievanceOffered").checked;
-      var GFILED = document.getElementById("grievanceFiled").checked;
-      var outputText = "";
-
-      // combining all the data into a single string, any empty required fields are added to error text
-      if (CALLERNAME !== "") { outputText = outputText.concat(CALLERNAME, " / "); }
-      if (CALLERREL !== "" && MBRCHK == true) { outputText = outputText.concat(CALLERREL, " / "); }
-      if (CBNUM !== "") { outputText = outputText.concat("CB# ", CBNUM, " / "); }
-      if (NPICHK == true && PROVCHK == true) { outputText = outputText.concat("NPI: ", PROVID); }
-      if (TINCHK == true && PROVCHK == true) { outputText = outputText.concat("TIN: ", PROVID); }
-      if (SITEADD !== "" && PROVCHK == true) { outputText = outputText.concat(" - ", SITEADD, " / "); }
-      if (CNFADD == true) { outputText = outputText.concat("Confirmed Address on file / "); }
-      else if (outputText !== "") { outputText = outputText.concat("Unable to confirm address on file / "); }
-
-      if (CALLTYPE !== "") {
-        for (i = 0; i <= numCallTypes; i++) {
-          outputText = outputText.concat(document.getElementById("callTypeSelect" + i).value + " / ");
-          for (y = 0; y < 5; y++) {
-            if (i == 0) {
-              outputText = outputText.concat(document.getElementById("callTypeInput" + y).value);
-            } else { outputText = outputText.concat(document.getElementById("callTypeInput" + y + i).value); }
-          }
-          outputText = outputText.concat(" / ");
-        }
+    if (MBRCHK == true) {
+      if (MBRSAT == true) { outputText = outputText.concat("Member satisfied"); }
+      else if (outputText !== "") {
+        outputText = outputText.concat("Member unsatsfied / ");
+        if (GOFF == true) { outputText = outputText.concat("Grievance was offered / "); }
+        else if (outputText !== "") { outputText = outputText.concat("Grievance was not offered / "); }
+        if (GFILED == true) { outputText = outputText.concat("Grievance was filed"); }
+        else if (outputText !== "") { outputText = outputText.concat("Grievance was not filed"); }
       }
-
-      if (MBRCHK == true) {
-        if (MBRSAT == true) { outputText = outputText.concat("Member satisfied"); }
-        else if (outputText !== "") {
-          outputText = outputText.concat("Member unsatsfied / ");
-          if (GOFF == true) { outputText = outputText.concat("Grievance was offered / "); }
-          else if (outputText !== "") { outputText = outputText.concat("Grievance was not offered / "); }
-          if (GFILED == true) { outputText = outputText.concat("Grievance was filed"); }
-          else if (outputText !== "") { outputText = outputText.concat("Grievance was not filed"); }
-        }
-      }
-      // displays the output text box momentarily and fills it with the output text
-      document.getElementById("oText").style.display = "block";
-      document.getElementById("oText").value = outputText;
-      // select and copy the information in the output text box, then hides the information again
-      var copyTextarea = document.getElementById("oText");
-      copyTextarea.focus();
-      copyTextarea.select();
-      try { document.execCommand("copy"); }
-      catch (err) { alert("Oops, unable to copy"); }
-      document.getElementById("oText").style.display = "none";
-      console.log(outputText)
     }
-  </script>
-  <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
+    // displays the output text box momentarily and fills it with the output text
+    document.getElementById("oText").style.display = "block";
+    document.getElementById("oText").value = outputText;
+    // select and copy the information in the output text box, then hides the information again
+    var copyTextarea = document.getElementById("oText");
+    copyTextarea.focus();
+    copyTextarea.select();
+    try { document.execCommand("copy"); }
+    catch (err) { alert("Oops, unable to copy"); }
+    document.getElementById("oText").style.display = "none";
+    console.log(outputText)
+  }
+</script>
+<!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
 
   <!--Remove closing tags when importing to SharePoint-->
-</body>
-
 </html>
