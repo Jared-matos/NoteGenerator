@@ -55,22 +55,24 @@
 
 <div id='tDiv'>
   <!--Every call information-->
-  <div class='tableRow'>
-    <span>Caller Type</span>
-    <div class='displayAsCell'>
-      <input type='radio' id='Member' name='MP' onclick='mpRadio()' value='Member'>
-      <label>Member</label>
-      <input type='radio' id='Provider' name='MP' onclick='mpRadio()' value='Provider'>
-      <label>Provider</label>
+  <div>
+    <div class='tableRow'>
+      <span>Caller Type</span>
+      <div class='displayAsCell'>
+        <input type='radio' id='Member' name='MP' onclick='mpRadio()' value='Member'>
+        <label>Member</label>
+        <input type='radio' id='Provider' name='MP' onclick='mpRadio()' value='Provider'>
+        <label>Provider</label>
+      </div>
     </div>
-  </div>
-  <div class='tableRow'>
-    <span>Caller Name</span>
-    <input type='text' id='callerName' autocomplete='off' list='autocompleteOff' />
-  </div>
-  <div class='tableRow'>
-    <span>Callback Number</span>
-    <input type='text' id='callbackNumber' autocomplete='off' list='autocompleteOff' />
+    <div class='tableRow'>
+      <span>Caller Name</span>
+      <input type='text' id='callerName' autocomplete='off' list='autocompleteOff' />
+    </div>
+    <div class='tableRow'>
+      <span>Callback Number</span>
+      <input type='text' id='callbackNumber' autocomplete='off' list='autocompleteOff' />
+    </div>
   </div>
 
   <!--Member info Section-->
@@ -100,12 +102,12 @@
     </div>
   </div>
 
-  <!--all call around address confirmation-->
+  <!--all call information-->
   <div class='tableRow'>
     <span>Confirmed address on file?</span>
     <input type='checkbox' id='confirmedAddress' />
   </div>
-  <div class='displayBlock callTypeDivs' id='callTypeDiv0' onchange='callTypeSel()'>
+    <div class='displayBlock callTypeDivs' id='callTypeDiv0' onchange='callTypeSel()'>
     <div class='tableRow' id='callTypeRow'>
       <span>Call Type</span>
       <select id='callTypeSelect0' value=''>
@@ -154,16 +156,24 @@
         <input type='text' id='callTypeInput0-0-4' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>PA Number</span>
+        <span>Units Used</span>
         <input type='text' id='callTypeInput0-0-5' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Date Approved/Modified</span>
+        <span>PA Number</span>
         <input type='text' id='callTypeInput0-0-6' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Other Information Given</span>
+        <span>Date Approved</span>
         <input type='text' id='callTypeInput0-0-7' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Date Modified</span>
+        <input type='text' id='callTypeInput0-0-8' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Other Information Given</span>
+        <input type='text' id='callTypeInput0-0-9' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
 
@@ -230,8 +240,12 @@
         <input type='text' id='callTypeInput0-2-7' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Claim Number</span>
+        <span>Denial Code/Reason</span>
         <input type='text' id='callTypeInput0-2-8' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Claim Number</span>
+        <input type='text' id='callTypeInput0-2-9' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
         <span>Paid Via</span>
@@ -243,39 +257,39 @@
       </div>
       <div class='tableRow'>
         <span>Check/Transaction Number</span>
-        <input type='text' id='callTypeInput0-2-9' autocomplete='off' list='autocompleteOff' />
-      </div>
-      <div class='tableRow'>
-        <span>Bulk Amount</span>
         <input type='text' id='callTypeInput0-2-10' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Payment Cleared Date</span>
+        <span>Bulk Amount</span>
         <input type='text' id='callTypeInput0-2-11' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
+        <span>Payment Cleared Date</span>
+        <input type='text' id='callTypeInput0-2-12' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
         <span>Processed Correctly</span>
-        <input type='checkbox' id='callTypeInput0-2-12' autocomplete='off' list='autocompleteOff' />
+        <input type='checkbox' id='callTypeInput0-2-13' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='displayBlock'>
         <div class='tableRow'>
           <span>CE Called</span>
-          <input type='checkbox' id='callTypeInput0-2-13' onclick='ceUpdate()'/>
+          <input type='checkbox' id='callTypeInput0-2-14' onclick='ceUpdate()'/>
         </div>
         <div class='displayNone ceCalledBlock' id='ceCalledBlock0'>
           <div class='tableRow'>
             <span>Initials of CE</span>
-            <input type='text' id='callTypeInput0-2-14' autocomplete='off' list='autocompleteOff' />
+            <input type='text' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
           </div>
           <div class='tableRow'>
             <span>CE Advised</span>
-            <input type='text' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
+            <input type='text' id='callTypeInput0-2-16' autocomplete='off' list='autocompleteOff' />
           </div>
         </div>
       </div>
       <div class='tableRow'>
         <span>Other Information Advised</span>
-        <input type='text' id='callTypeInput0-2-16' autocomplete='off' list='autocompleteOff' />
+        <input type='text' id='callTypeInput0-2-17' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
 
@@ -409,14 +423,11 @@
 // Looks at all created call types, in each identifies the ceCalled checkbox and toggles opening and closing the div
   function ceUpdate() {
     var divs = document.getElementsByClassName('callTypeDivs');
-    console.log("num divs: " + divs.length);
     for (i = 0; i < divs.length; i++) {
-      console.log('first for loop ran');
       var block = divs.item(i).getElementsByClassName('ceCalledBlock');
       for (y = 0; y < block.length; y++) {
         var num = block.item(y).id.slice(block.item(y).id.length - 1, block.item(y).id.length);
-        console.log(num);
-        if (document.getElementById('callTypeInput' + num + '-2-13').checked == true) {
+        if (document.getElementById('callTypeInput' + num + '-2-14').checked == true) {
           document.getElementById(block.item(y).id).className = 'displayBlock ceCalledBlock';
         } else {
           document.getElementById(block.item(y).id).className = 'displayNone ceCalledBlock';
@@ -430,14 +441,216 @@
     /*
     Mapping out function
     
-    Get data from pastebox in each benefit clone
-    parse data for eligible fields from flexcare
-    insert information back into respective clone 
-    ??
-    Profit
-    */
+    for each div in the document get a list of each block
+    for each block in the document check if the pastebox has anything in it 
+    if it does 
+      then split the paste data into rows
+      check the rows for the appropriate paste data for the block 
+      input data into rows 
+      clear pastebox 
 
-    console.log('');
+    */
+    var divs = document.getElementsByClassName('callTypeDivs');
+    for (i = 0; i < divs.length; i++) {
+      var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
+      var divNum = divs.item(i).id.charAt(divs.item(i).id.length-1);
+      for (y = 0; y < blocks.length; y++) {
+        var currBlock = blocks.item(y);
+        var blockNum = currBlock.id.charAt(currBlock.id.length-1);
+        console.log('div number:', divNum,'block number:',blockNum);
+        if (currBlock.getElementsByClassName('pasteBox').value !== "") {
+          try { var pasteDataARR = currBlock.getElementsByClassName('pasteBox')[0].value.split(/\r?\n/);}
+          catch(err) { break;}
+
+          //auth check 
+          if (y == 0 && pasteDataARR[1] == 'Authorizations') {
+            console.log('auth paste confirmed');
+            var legend = pasteDataARR[2];
+            var authPaste = pasteDataARR[3];
+            authPaste = authPaste.split('\t');
+            legend = legend.split('\t');
+            for (x = 0; x < authPaste.length; x++) {
+              console.log('x = ' + x,legend[x] + ' = ' + authPaste[x]);
+              switch (x){
+                case 0:
+                  // provider id 
+                  break;
+                case 1:
+                  // facility name 
+                  break;
+                case 2:
+                  //approved proc 
+                  document.getElementById('callTypeInput'+ divNum+'-0-0').value = authPaste[x];
+                  break;
+                case 3:
+                  // # approved units 
+                  document.getElementById('callTypeInput' + divNum + '-0-3').value = authPaste[x];
+                  break;
+                case 4:
+                  // Approved start date  
+                  document.getElementById('callTypeInput' + divNum + '-0-1').value = authPaste[x].split(' ')[0];
+                  break;
+                case 5:
+                  // Approved end date
+                  document.getElementById('callTypeInput' + divNum + '-0-1').value += ' - ' + authPaste[x].split(' ')[0];
+                  break;
+                case 6:
+                  // decision 
+                  if (authPaste[x].search('Denial') == -1){
+                    document.getElementById('callTypeSelect' + divNum + '-0-0').value = authPaste[x];
+                  } else {
+                    document.getElementById('callTypeSelect' + divNum + '-0-0').value = 'Denied';
+                  }
+                  break;
+                case 7:
+                  // used units 
+                  document.getElementById('callTypeInput' + divNum + '-0-5').value = authPaste[x];
+                  break;
+                case 8:
+                  // o Units ?
+                  break;
+                case 9:
+                  // o to date 
+                  break;
+                case 10:
+                  // requested proc code 
+                  break;
+                case 11:
+                  // requested units 
+                  document.getElementById('callTypeInput' + divNum + '-0-4').value = authPaste[x];
+                  break;
+                case 12:
+                  // requested from date 
+                  document.getElementById('callTypeInput' + divNum + '-0-2').value = authPaste[x].split(' ')[0];
+                  break;
+                case 13:
+                  // requested to date  
+                  document.getElementById('callTypeInput' + divNum + '-0-2').value += ' - ' + authPaste[x].split(' ')[0];
+                  break;
+                case 14:
+                  // auth number 
+                  document.getElementById('callTypeInput' + divNum + '-0-6').value = authPaste[x];
+                  break;
+                case 15:
+                  // created date  
+                  document.getElementById('callTypeInput' + divNum + '-0-7').value = authPaste[x].split(' ')[0];
+                  break;
+                case 16:
+                  // User Created Auth 
+                  break;
+                case 17:
+                  // Latest Auth Update date 
+                  document.getElementById('callTypeInput' + divNum + '-0-8').value = authPaste[x].split(' ')[0];
+                  break;
+                case 18:
+                  // Review Id ?
+                  break;
+                case 19:
+                  // # provider letters printed 
+                  break;
+                case 20:
+                  // # member letters printed 
+                  break;
+                case 21:
+                  // To Be Printed ?
+                  break;
+                case 22:
+                  // Send to address for auth letter 
+                  break;
+                default: 
+                  break;
+              }
+            }    
+          }
+
+          //benefit elig check 
+
+          // claims check
+          if (y == 2 && pasteDataARR[1] == 'Specific Claim Line') {
+            console.log('Claim Paste Confirmed');
+            for (x = 0; x < pasteDataARR.length; x++) {
+              console.log(pasteDataARR[x].split('\t')[0]);
+              switch (pasteDataARR[x].split('\t')[0]) {
+                case 'Dates Of Service':
+                  document.getElementById('callTypeInput' + divNum + '-2-0').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'Procedure ':
+                  document.getElementById('callTypeInput' + divNum + '-2-1').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'Date Received':
+                  document.getElementById('callTypeInput' + divNum + '-2-2').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
+                  break;
+                case 'Date Paid':
+                  document.getElementById('callTypeInput' + divNum + '-2-3').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
+                  break;
+                case 'Units Claimed':
+                  document.getElementById('callTypeInput' + divNum + '-2-4').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'Allowed Units':
+                  document.getElementById('callTypeInput' + divNum + '-2-5').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'Amount Charged':
+                  document.getElementById('callTypeInput' + divNum + '-2-6').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'Allowed Amount':
+                  document.getElementById('callTypeInput' + divNum + '-2-7').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'DecisionCodes':
+                  document.getElementById('callTypeInput' + divNum + '-2-8').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'ClLineID':
+                  document.getElementById('callTypeInput' + divNum + '-2-9').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                default:
+                  break;
+              }
+            }
+          }
+          //cleanup 
+          currBlock.getElementsByClassName('pasteBox')[0].value = '';
+        }
+      }
+    }
+    /*  Parsedata from SC note generator
+      // get data from pastebox and split it by row
+      var pasteData = document.getElementById("pasteBox").value;
+      var pasteDataARR = pasteData.split(/\r?\n/);
+      var i = 0;
+      // go through each row and see if it starts with a known text, if so add that to the table in correct field
+      for(f=0;f<pasteDataARR.length;f++){
+        if(pasteDataARR[f].search("Member ID")==0){
+          document.getElementById("mbrIDText").value = pasteDataARR[f].slice(10);
+        } else if(pasteDataARR[f].search("Name")==0){
+          while (pasteDataARR[f].charAt(i) !== "("){i++;}
+            document.getElementById("mbrNameText").value = pasteDataARR[f].slice(5,i);
+            document.getElementById("mbrDOB").value = pasteDataARR[f].slice(i+6,i+16);
+        } else if(pasteDataARR[f].search("Provider")==0){
+          i=9;
+          while(pasteDataARR[f].charAt(i) !== " "){i++}
+          document.getElementById("provIDText").value = pasteDataARR[f].slice(9,i);
+          document.getElementById("provNamesText").value = pasteDataARR[f].slice(i+2);
+        } else if(pasteDataARR[f].search("Site")==0){
+          i=5;
+          while(pasteDataARR[f].charAt(i) !== " "){i++}
+          document.getElementById("siteID").value = pasteDataARR[f].slice(5,i);
+        } else if(pasteDataARR[f].search("Dates Of Service")==0){
+          document.getElementById("dos").value = pasteDataARR[f].slice(17);
+        } else if(pasteDataARR[f].search("Procedure")==0){
+          document.getElementById("pCode").value = pasteDataARR[f].slice(11);
+        } else if(pasteDataARR[f].search("DecisionCodes")==0){
+          document.getElementById("dCode").value = pasteDataARR[f].slice(14);
+        } else if(pasteDataARR[f].search("Member")==0){
+          i=0;
+          while(pasteDataARR[f].charAt(i) !== "("){i++}
+          document.getElementById("mbrNameText").value = pasteDataARR[f].slice(7,i);
+          while(pasteDataARR[f].charAt(i) !== ":"){i++}
+          var startID = i+2;
+          while(pasteDataARR[f].charAt(i) !== ")"){i++}
+          document.getElementById("mbrIDText").value = pasteDataARR[f].slice(startID,i);
+        }
+      }
+      document.getElementById("pasteBox").value = "";
+    */
   }
 
   // toggles member satasfied field open and closed 
@@ -527,6 +740,23 @@
     for (i = 1; i <= numCallTypes; i++) { 
       document.getElementById('callTypeDiv' + i).remove(); 
     }
+
+    var divs = document.getElementsByClassName('callTypeDivs');
+    for (i = 0; i < divs.length; i++) {
+      var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
+      for (y = 0; y < blocks.length; y++) {
+        var inputs = blocks.item(y).getElementsByTagName('input');
+        var selects = blocks.item(y).getElementsByTagName('select');
+        for (x = 0; x < inputs.length; x++) {
+          //console.log(inputs.item(x).value);
+          inputs.item(x).value = '';
+          inputs.item(x).checked = false;
+        }
+        for (x = 0; x < selects.length; x++) {
+          selects.item(x).value = '';
+        }
+      }
+    }
     numCallTypes = 0;
     callTypeSel();
   }
@@ -598,4 +828,4 @@
 </script>
 <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
 
-  <!--Remove closing tags when importing to SharePoint-->
+<!--Remove all text above style when importing to SharePoint-->

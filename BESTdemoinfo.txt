@@ -1,9 +1,10 @@
 AUTH PASTE 
 
-12/8/2020 3:11:05 PM
+12/16/2020 3:08:23 PM
 Authorizations
 ProviderID	Site Name	AProc	AUnits	AFrom	ATo	Decision	UUnits	OUnits	OToDate	RProc	RUnits	RFrom	RTo	PA	Created 	User 	Updated	Review ID	Prv Letters	Memb Letters	To Be Printed	Send To	AuthRecID	PrvLetVltDocID	MembLetVltDocID	
-1094320	Catholic Charities Archdiocese Of Trenton	INMHN (114, 124, 134, 144, 154)	3	10/08/2018 12:00:00 AM	10/11/2018 12:00:00 AM	Pended				INMHC	3	10/08/2018 12:00:00 AM	10/11/2018 12:00:00 AM	12630033	10/08/2018 06:02:48 PM	Train2	10/08/2018 06:02:48 PM	20743814	0	0	Provider	Catholic Charities Archdiocese Of Trenton, Clinical Contact, 3535 Quakerbridge Road, HAMILTON, NJ (Fax: (609) 584-0591)	8013634		
+1080170	Norwood Hospital (Best)	INMHN (114, 124, 134, 144, 154)	1	11/20/2015 12:00:00 AM	11/21/2015 12:00:00 AM	Approved				INMHN	1	11/20/2015 12:00:00 AM	11/21/2015 12:00:00 AM	8333197	11/17/2015 04:01:39 PM	esherwood	11/18/2015 03:05:58 PM	13634795	0	0	Provider	Norwood Hospital (Best), Letter, 800 washington Street, NORWOOD, MA	4484569		
+
 
 
 BENEFITS DEMOS PAGE PASTE
@@ -190,3 +191,141 @@ ValueAmount2d
 ValueCode3d	
 ValueAmount3d	
 AllowFix	False
+
+
+
+12/16/2020 4:41:13 PM
+Specific Claim Line
+Field	Value	
+TCN	J0982004-207
+DCN	
+Resubmission	None
+Status 	Ready To Pay - Original
+Member	MEMBER, DEMO (BEST ID: MA1849952839) - Valid
+SubmissionSource	
+Provider	212810  Demo Site
+Network	Beacon Network
+Site	1777  eServices Demo Site
+Billing NPI	1851452510
+Payee	145  Demo Site
+ICD Indicator	
+Diagnosis 1	299.00 (Mental Health Services)
+Diagnosis 2	
+Line Dx Codes	
+All Claim Dx Codes	299.00
+Date Received	04/08/2015 01:58:55 PM
+Date Entered	04/08/2015 02:03:13 PM
+Date Paid	
+Claim Notes	
+Dates Of Service	04/08/2015 - 04/08/2015
+Procedure 	90853-00
+Units Claimed	1
+Amount Charged	$40.00
+Allowed Units	1
+Allowed Amount	$25.00
+Paid Amount	$0.00
+DecisionCodes	
+External Outreach	No
+Clean Claim	Unclean
+Other Insurance	None
+Good Cause Available	No
+OI EOB Date	
+OI Allowed	
+OI Copay	
+OI Deductible	
+OI CoInsurance	
+OI Paid	
+PR Other	
+COB Allowed Amount	
+Priced Amount	
+Copay	
+Coinsurance	
+Deductible	
+Interest Payment	
+Late Payment Indicator	
+Reopening Disposition	
+Reason For Reopening	
+Discount	
+Initial Encounter	No
+OP Select	No
+Allow Timely	No
+Allow Duplicate	No
+Allow as IE	No
+Miscellaneous Override	No
+Override NewPlan	No
+Missing Eligibility Override	No
+Exclude Interest	No
+CAP PAY Provider Override	No
+Contracted Rate Override	No
+Procedure Override	No
+Eligibility (Grp/Subgrp) Override	No
+Override Units	
+ClLine Notes	
+Clinician	Clinician, Demo
+Rendering NPI	1073712121
+BatchID	233209
+Company 	Woburn
+ClaimID	32827940
+EncounterID	44791731
+ClLineID	44791731
+RelatedID	44791731
+EDI RefNo	
+WebClaim RefNo	3061856
+Username Entered	
+UserName Edited	WebUser
+Updated	04/21/2015 11:19:32 AM
+UserName Verified	
+Verification Status	
+Verification Date	
+TOB	031
+DRGValue	
+VendorDRG	
+DRG Apllied	N/A
+Revenue Code	000 - None (None)
+LOC	1
+AdmissionType	
+AdmissionSource	
+DischargeStatus	
+Place Of Service	11 Office
+Prv Category	Other
+Service Benefit Type	Default
+Copay Benefit Type	Default
+Group SubGroup	3318/ 8009008
+Benefit Level	Medicaid
+Subcontract	RC1 (BEST)
+Benefit Count	1
+Proc Restrictions	
+Other Properties	
+ValueCode1a	
+ValueAmount1a	
+ValueCode2a	
+ValueAmount2a	
+ValueCode3a	
+ValueAmount3a	
+ValueCode1b	
+ValueAmount1b	
+ValueCode2b	
+ValueAmount2b	
+ValueCode3b	
+ValueAmount3b	
+ValueCode1c	
+ValueAmount1c	
+ValueCode2c	
+ValueAmount2c	
+ValueCode3c	
+ValueAmount3c	
+ValueCode1d	
+ValueAmount1d	
+ValueCode2d	
+ValueAmount2d	
+ValueCode3d	
+ValueAmount3d	
+AllowFix	True
+
+12/16/2020 4:42:12 PM
+Payments
+TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidDate	VoidReason	Total Check Amt	RefundCheckNo	RefundCheckDate	RefundAmount	RefundRemaining	RefundVoidDate	PayeeName	PayeeID	Provider Name	ClTranID	
+Claim	$40.00	05/18/2007 12:00:00 AM	101						$345.00						Demo Site	145	Demo Site	6900819
+
+
+

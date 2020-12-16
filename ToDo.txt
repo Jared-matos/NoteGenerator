@@ -22,16 +22,17 @@ Redone Information Fields
 
 [x] fix naming scheme for all div, block and input 
   [x] naming scheme numcalltypes-blocknum-index
-[W] clone spawning implementation
+[WIP] clone spawning implementation
   [x] set clone spawning naming to new parameter
     [x] set naming for index and div tags
     [x]  set naming for select tags 
   [x] set clone searching in callTypeSel
-  [w] set clone removal in clearall
-    [] clearall to clear all fields in table 
+  [x] set clone removal in clearall
+    [x] clearall to clear all fields in table 
   [] set clone data pull in copytoclipboard
-[] create paste data parse for all calltype
-  [] authorization
+[WIP] create paste data parse for all calltype
+  [x] authorization
+    [x] get working for clones also
   [] benefits/eligibility
   [] claim information
   [] referrals
