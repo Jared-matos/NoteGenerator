@@ -438,18 +438,6 @@
   }
 
   function parseDataBenefits() {
-    /*
-    Mapping out function
-    
-    for each div in the document get a list of each block
-    for each block in the document check if the pastebox has anything in it 
-    if it does 
-      then split the paste data into rows
-      check the rows for the appropriate paste data for the block 
-      input data into rows 
-      clear pastebox 
-
-    */
     var divs = document.getElementsByClassName('callTypeDivs');
     for (i = 0; i < divs.length; i++) {
       var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
@@ -457,20 +445,17 @@
       for (y = 0; y < blocks.length; y++) {
         var currBlock = blocks.item(y);
         var blockNum = currBlock.id.charAt(currBlock.id.length-1);
-        console.log('div number:', divNum,'block number:',blockNum);
         if (currBlock.getElementsByClassName('pasteBox').value !== "") {
           try { var pasteDataARR = currBlock.getElementsByClassName('pasteBox')[0].value.split(/\r?\n/);}
           catch(err) { break;}
 
           //auth check 
           if (y == 0 && pasteDataARR[1] == 'Authorizations') {
-            console.log('auth paste confirmed');
             var legend = pasteDataARR[2];
             var authPaste = pasteDataARR[3];
             authPaste = authPaste.split('\t');
             legend = legend.split('\t');
             for (x = 0; x < authPaste.length; x++) {
-              console.log('x = ' + x,legend[x] + ' = ' + authPaste[x]);
               switch (x){
                 case 0:
                   // provider id 
@@ -563,13 +548,25 @@
             }    
           }
 
-          //benefit elig check 
+          //elig check 
+          if (y == 0 && pasteDataARR[1] == 'Eligibility Segment') {
+            for (x = 0; x < pasteDataARR.length; x++) {
+              switch(pasteDataARR[x].split('\t')[0]) {
+                case 'DateBegin':
+                  document.getElementById('callTypeInput' + divNum + '-1-0').value += pasteDataARR[x].split('\t')[1].split(' ')[0];
+                  break;
+                case 'DateEnd':
+                  document.getElementById('callTypeInput' + divNum + '-1-0').value += pasteDataARR[x].split('\t')[1].split(' ')[0];
+                  break;
+                default:
+                  break;
+              }
+            }
+          }
 
           // claims check
           if (y == 2 && pasteDataARR[1] == 'Specific Claim Line') {
-            console.log('Claim Paste Confirmed');
             for (x = 0; x < pasteDataARR.length; x++) {
-              console.log(pasteDataARR[x].split('\t')[0]);
               switch (pasteDataARR[x].split('\t')[0]) {
                 case 'Dates Of Service':
                   document.getElementById('callTypeInput' + divNum + '-2-0').value = pasteDataARR[x].split('\t')[1];
