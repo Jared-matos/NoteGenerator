@@ -28,9 +28,11 @@ COPAY PAGE PASTE
 Co-Pays
 CopayType	Copay Range	Copay Value	Network	ExcludeFromOOP	PostDeductible	DateFrom	DateTo	UserName	Date Updated	Description	
 SA OP Default	Per Visit/Stay	0 (Dollars)				10/22/1999 12:00:00 AM	12/31/2029 12:00:00 AM	dneal	12/09/1999 03:52:55 PM	
+SA OP Default	Per Visit/Stay	0 (Dollars)				10/22/1999 12:00:00 AM	12/31/2029 12:00:00 AM	dneal	12/09/1999 03:52:55 PM	
 
 
 ELIG PASTE
+
 12/8/2020 3:15:06 PM
 Eligibility Segment
 Field	Value	

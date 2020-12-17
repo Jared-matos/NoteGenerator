@@ -25,7 +25,7 @@ Redone Information Fields
 [WIP] clone spawning implementation
   [x] set clone spawning naming to new parameter
     [x] set naming for index and div tags
-    [x]  set naming for select tags 
+    [x] set naming for select tags 
   [x] set clone searching in callTypeSel
   [x] set clone removal in clearall
     [x] clearall to clear all fields in table 
@@ -33,9 +33,15 @@ Redone Information Fields
 [WIP] create paste data parse for all calltype
   [x] authorization
     [x] get working for clones also
-  [] benefits/eligibility
-  [] claim information
-  [] referrals
+  [WIP] benefits/eligibility
+    [x] Eligibility page paste
+    [] Demographic page paste
+    [WIP] CopPay Page Paste
+      [] Accept Multiple Copay Lines
+          get more data on deductibles and oop max 
+          reach out to current trainer for demo member
+  [x] claim information
+  [Decided Against] referrals
 [x] ceUpdate()
     for toggleing open and closed related fields 
 [] implement try catch for all functions to avoid crashing 

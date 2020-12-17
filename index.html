@@ -437,6 +437,7 @@
     changeHeight();
   }
 
+  // Parses data input from the pasteboxes, puts the relevant information in the correct input fields
   function parseDataBenefits() {
     var divs = document.getElementsByClassName('callTypeDivs');
     for (i = 0; i < divs.length; i++) {
@@ -449,7 +450,7 @@
           try { var pasteDataARR = currBlock.getElementsByClassName('pasteBox')[0].value.split(/\r?\n/);}
           catch(err) { break;}
 
-          //auth check 
+          // Authorization Check 
           if (y == 0 && pasteDataARR[1] == 'Authorizations') {
             var legend = pasteDataARR[2];
             var authPaste = pasteDataARR[3];
@@ -548,15 +549,15 @@
             }    
           }
 
-          //elig check 
-          if (y == 0 && pasteDataARR[1] == 'Eligibility Segment') {
+          // Eligibility Check 
+          if (y == 1 && pasteDataARR[1] == 'Eligibility Segment') {
             for (x = 0; x < pasteDataARR.length; x++) {
               switch(pasteDataARR[x].split('\t')[0]) {
                 case 'DateBegin':
                   document.getElementById('callTypeInput' + divNum + '-1-0').value += pasteDataARR[x].split('\t')[1].split(' ')[0];
                   break;
                 case 'DateEnd':
-                  document.getElementById('callTypeInput' + divNum + '-1-0').value += pasteDataARR[x].split('\t')[1].split(' ')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-0').value += ' - ' + pasteDataARR[x].split('\t')[1].split(' ')[0];
                   break;
                 default:
                   break;
@@ -564,7 +565,74 @@
             }
           }
 
-          // claims check
+          // Co-Pay Check
+          if (y == 1 && pasteDataARR[1] == 'Co-Pays') {
+            for (x = pasteDataARR.length; x >= 0 ; x--) {
+              if (pasteDataARR[x] == '') {
+                pasteDataARR.pop();
+              }
+            }
+            var legend = pasteDataARR[2];
+            var coPayPaste = pasteDataARR;
+            for (x = 0; x < 3; x++){
+              coPayPaste.shift();
+            }
+            var rows = coPayPaste.length;
+            var tempArr = [];
+            for (x = 0; x < coPayPaste.length; x++) {
+               var tempArr2 = coPayPaste[x].split('\t');
+              for (z = 0; z < tempArr2.length; z++) {
+                tempArr.push(tempArr2[z]);
+              }
+            }
+            coPayPaste = tempArr;
+            console.log(coPayPaste);
+            legend = legend.split('\t');
+            for (x = 0; x < rows; x ++){
+              for (z = 0; z < coPayPaste.length/2; z++){
+                console.log('z=',z,legend[z],coPayPaste[z]);
+                switch (z) {
+                  case '0':
+                    //copay type 
+                    break;
+                  case '1':
+                    // copay range
+                    break;
+                  case '2':
+                    //copay value
+                    break;
+                  case '3':
+                    //network
+                    break;
+                  case '4':
+                    //exclude from oop
+                    break;
+                  case '5':
+                    //post deductible
+                    break;
+                  case '6':
+                    //datefrom
+                    break;
+                  case '7':
+                    //dateto
+                    break;
+                  case '8':
+                    //username
+                    break;
+                  case '9':
+                    //dateupdated
+                    break;
+                  case '10':
+                    //description
+                    break;
+                  default: 
+                    break;
+                }
+              }
+            }
+          }
+
+          // Claims Check
           if (y == 2 && pasteDataARR[1] == 'Specific Claim Line') {
             for (x = 0; x < pasteDataARR.length; x++) {
               switch (pasteDataARR[x].split('\t')[0]) {
@@ -603,7 +671,8 @@
               }
             }
           }
-          //cleanup 
+
+          // Cleanup
           currBlock.getElementsByClassName('pasteBox')[0].value = '';
         }
       }
