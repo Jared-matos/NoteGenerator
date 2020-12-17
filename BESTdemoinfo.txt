@@ -9,9 +9,35 @@ ProviderID	Site Name	AProc	AUnits	AFrom	ATo	Decision	UUnits	OUnits	OToDate	RProc
 
 BENEFITS DEMOS PAGE PASTE
 
-12/8/2020 3:11:48 PM
+12/17/2020 3:25:55 PM
 Demographics
 Field	Value	
+Member ID	AA1097362763 (BEST)
+Name	AVELLINO, ARTHUR   (DOB: 04/23/1967)
+Preferred Name	
+Preferred Pronoun	
+Age	53
+Gender	M
+Gender Identity	
+Transgender	
+Additional Information	
+Alternative IDs	
+Latest Eligibility. Seg.	09/01/1993 - 12/31/1999
+RespParty	
+Self Pay	No
+Group 	Medicaid 1  (3413)
+SubGroup 	RC1 (BEST) (8101346)
+PCP Name	
+PCP Fax	
+PCP Phone	
+PCP Email	
+PCPAddress	
+PCPCity State Zip	
+PCP Location	
+Health Home	
+Residence Address	3660 No Street , No Town,   00000
+Private Mailing Address	
+Phones	Home: (555) 555-5555  
 Benefit Name	Medicaid1 DO NOT ALTER - Medicaid
 MHIP Benefits	Prior authorization required, number of days is based on medical necessity.
 MHOP Benefits	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
@@ -21,9 +47,46 @@ SAOP Benefits	12 initial encounters per member per calendar year before authoriz
  	and is subject to change).
 Other Benefits	Methadone maintenance is a covered benefit; no authorization required. No authorization required for the following services: medication management (90862), group therapy (90853), crisis intervention services (S9494 - on-site; H2011 P15 - mobile), case consult
  	 (90882) or family consult (90887).   (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit and is subject to change).
+BHCP Status	
+COB	
+Language	
+Race	
+Ethnicity	
+Plan Name	BEST
+ExcludeCode	0
+FeeCategory	BEST
+Fax	
+Email	
+Update Reason	Imported
+Updated By	Test Data
+Updated Date	02/18/2005 10:30:49 AM
+Source Date	02/18/2005 10:30:49 AM
+CaseContact1	
+CaseContact2	
+CaseContact3	
+MemRecID	10100
+
+
+BENEFITS PAGE PASTE
+12/17/2020 1:18:16 PM
+Benefits
+Field	Value	
+Benefit Level	Medicaid
+MH IP	Prior authorization required, number of days is based on medical necessity.
+MH OP	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
+ 	and is subject to change).
+SA IP	Detox is a post-admit review, number of days is based on medical necessity.
+SA OP	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
+ 	and is subject to change).
+Other	Methadone maintenance is a covered benefit; no authorization required. No authorization required for the following services: medication management (90862), group therapy (90853), crisis intervention services (S9494 - on-site; H2011 P15 - mobile), case consult
+ 	 (90882) or family consult (90887).   (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit and is subject to change).
+Funding	Medicaid
+UserName	ppeters
+Update Date	06/08/2009 06:52:42 AM
 
 
 COPAY PAGE PASTE
+
 12/8/2020 3:14:47 PM
 Co-Pays
 CopayType	Copay Range	Copay Value	Network	ExcludeFromOOP	PostDeductible	DateFrom	DateTo	UserName	Date Updated	Description	

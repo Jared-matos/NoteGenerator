@@ -449,6 +449,7 @@
         if (currBlock.getElementsByClassName('pasteBox').value !== "") {
           try { var pasteDataARR = currBlock.getElementsByClassName('pasteBox')[0].value.split(/\r?\n/);}
           catch(err) { break;}
+          console.log(pasteDataARR);
 
           // Authorization Check 
           if (y == 0 && pasteDataARR[1] == 'Authorizations') {
@@ -586,48 +587,194 @@
               }
             }
             coPayPaste = tempArr;
-            console.log(coPayPaste);
+            //console.log(coPayPaste);
             legend = legend.split('\t');
-            for (x = 0; x < rows; x ++){
-              for (z = 0; z < coPayPaste.length/2; z++){
-                console.log('z=',z,legend[z],coPayPaste[z]);
-                switch (z) {
-                  case '0':
-                    //copay type 
-                    break;
-                  case '1':
-                    // copay range
-                    break;
-                  case '2':
-                    //copay value
-                    break;
-                  case '3':
-                    //network
-                    break;
-                  case '4':
-                    //exclude from oop
-                    break;
-                  case '5':
-                    //post deductible
-                    break;
-                  case '6':
-                    //datefrom
-                    break;
-                  case '7':
-                    //dateto
-                    break;
-                  case '8':
-                    //username
-                    break;
-                  case '9':
-                    //dateupdated
-                    break;
-                  case '10':
-                    //description
-                    break;
-                  default: 
-                    break;
-                }
+            var currRow = 0;
+            for (z = 0; z < coPayPaste.length; z++){
+              //console.log('z=',z,legend[z],coPayPaste[z]);
+              if (z % (coPayPaste.length/rows) == 0) {
+                document.getElementById('callTypeInput' + divNum + '-1-2').value += 'adv ';
+                currRow += 1;
+              }
+              //console.log('z=',z,'currRow=',currRow,'formula =',z % (coPayPaste.length/rows),'value=',coPayPaste[z % (coPayPaste.length / rows)]);
+              switch (z % (coPayPaste.length/rows)) {
+                case 0:
+                  //copay type 
+                  document.getElementById('callTypeInput' + divNum + '-1-2').value += coPayPaste[z] + ' co-pays are ';
+                  break;
+                case 1:
+                  // copay range
+                  document.getElementById('callTypeInput' + divNum + '-1-2').value += 'a ' + coPayPaste[z] + ' copay/deductible of ';
+                  break;
+                case 2:
+                  //copay value
+                  document.getElementById('callTypeInput' + divNum + '-1-2').value += coPayPaste[z] + ' / ';
+                  break;
+                case 3:
+                  //network
+                  break;
+                case 4:
+                  //exclude from oop
+                  break;
+                case 5:
+                  //post deductible
+                  break;
+                case 6:
+                  //datefrom
+                  break;
+                case 7:
+                  //dateto
+                  break;
+                case 8:
+                  //username
+                  break;
+                case 9:
+                  //dateupdated
+                  break;
+                case 10:
+                  //description
+                  break;
+                default: 
+                  break;
+              }
+            }
+          }
+          
+          // Benefits page Check
+          if (y == 1 && pasteDataARR[1] == 'Benefits') {
+            console.log('initial');
+            console.log(pasteDataARR);
+
+            // this block of code is running first for some reason in most cases except when commented out, logs are same for all instances 
+            /*for (x = pasteDataARR.length-1; x >= 0; x--) {
+              console.log(x);
+              if (pasteDataARR[x] == '' || 
+              pasteDataARR[x].split('\t')[0] == 'Funding' || 
+              pasteDataARR[x].split('\t')[0] == 'UserName' || 
+              pasteDataARR[x].split('\t')[0] == 'Update Date') {
+                pasteDataARR.pop();
+              }
+            }
+            for (x = 0; x < 3; x++) {
+              pasteDataARR.shift();
+            }*/
+            console.log('after');
+            console.log(pasteDataARR);
+            var prev = '';
+            for (x = 0; x < pasteDataARR.length; x++) {
+              //if (x > 0) document.getElementById('callTypeInput' + divNum + '-1-1').value += ' / ';
+              switch (pasteDataARR[x].split('\t')[0]) {
+                case 'MH IP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'MH IP';
+                  break;
+                case 'MH OP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'MH OP';
+                  break;
+                case 'SA IP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'SA IP';
+                  break;
+                case 'SA OP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'SA OP';
+                  break;
+                case 'Other':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'Other';
+                  break;
+                case 'Benefit Level':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x] + ' / ';
+                  prev = 'Benefit Level';
+                  break;
+                default:
+                  if (prev !== ''){
+                    document.getElementById('callTypeInput' + divNum + '-1-1').value += pasteDataARR[x] + ' / ';
+                  }
+                  prev = '';
+                  break;
+              }
+            }
+          }
+
+          //Demographics page Check
+          if (y == 1 && pasteDataARR[1] == 'Demographics') {
+            // for all others than benefits 
+            for (x = 0; x < pasteDataARR.length; x++) {
+              switch (pasteDataARR[x].split('\t')[0]) {
+                case 'Latest Eligibility. Seg.':
+                  document.getElementById('callTypeInput' + divNum + '-2-0').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                default:
+                  break;
+              }
+            }
+
+            //for benefits
+            /* Mapping out the function
+
+            Isolate the lines that consist of the benefits 
+            do exactly the same thing as in demographics page to them 
+            */
+            for (x = pasteDataARR.length - 1; x >= 0; x--) {
+              if (pasteDataARR[x] !== '' ||
+              pasteDataARR[x] !== 'Other Benefits' ||
+              pasteDataARR[x] !== 'SAOP Benefits' ||
+              pasteDataARR[x] !== 'SAIP Benefits' ||
+              pasteDataARR[x] !== 'MHOP Benefits' ||
+              pasteDataARR[x] !== 'MHIP Benefits' ) {
+
+              }
+              pasteDataARR.pop();
+            }
+            for (x = 0; x < 3; x++) {
+              pasteDataARR.shift();
+            }
+            var prev = '';
+            for (x = 0; x < pasteDataARR.length; x++) {
+              //if (x > 0) document.getElementById('callTypeInput' + divNum + '-1-1').value += ' / ';
+              switch (pasteDataARR[x].split('\t')[0]) {
+                case 'MH IP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'MH IP';
+                  break;
+                case 'MH OP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'MH OP';
+                  break;
+                case 'SA IP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'SA IP';
+                  break;
+                case 'SA OP':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'SA OP';
+                  break;
+                case 'Other':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  prev = 'Other';
+                  break;
+                case 'Benefit Level':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x] + ' / ';
+                  prev = 'Benefit Level';
+                  break;
+                default:
+                  if (prev !== '') {
+                    document.getElementById('callTypeInput' + divNum + '-1-1').value += pasteDataARR[x] + ' / ';
+                  }
+                  prev = '';
+                  break;
               }
             }
           }
@@ -677,46 +824,6 @@
         }
       }
     }
-    /*  Parsedata from SC note generator
-      // get data from pastebox and split it by row
-      var pasteData = document.getElementById("pasteBox").value;
-      var pasteDataARR = pasteData.split(/\r?\n/);
-      var i = 0;
-      // go through each row and see if it starts with a known text, if so add that to the table in correct field
-      for(f=0;f<pasteDataARR.length;f++){
-        if(pasteDataARR[f].search("Member ID")==0){
-          document.getElementById("mbrIDText").value = pasteDataARR[f].slice(10);
-        } else if(pasteDataARR[f].search("Name")==0){
-          while (pasteDataARR[f].charAt(i) !== "("){i++;}
-            document.getElementById("mbrNameText").value = pasteDataARR[f].slice(5,i);
-            document.getElementById("mbrDOB").value = pasteDataARR[f].slice(i+6,i+16);
-        } else if(pasteDataARR[f].search("Provider")==0){
-          i=9;
-          while(pasteDataARR[f].charAt(i) !== " "){i++}
-          document.getElementById("provIDText").value = pasteDataARR[f].slice(9,i);
-          document.getElementById("provNamesText").value = pasteDataARR[f].slice(i+2);
-        } else if(pasteDataARR[f].search("Site")==0){
-          i=5;
-          while(pasteDataARR[f].charAt(i) !== " "){i++}
-          document.getElementById("siteID").value = pasteDataARR[f].slice(5,i);
-        } else if(pasteDataARR[f].search("Dates Of Service")==0){
-          document.getElementById("dos").value = pasteDataARR[f].slice(17);
-        } else if(pasteDataARR[f].search("Procedure")==0){
-          document.getElementById("pCode").value = pasteDataARR[f].slice(11);
-        } else if(pasteDataARR[f].search("DecisionCodes")==0){
-          document.getElementById("dCode").value = pasteDataARR[f].slice(14);
-        } else if(pasteDataARR[f].search("Member")==0){
-          i=0;
-          while(pasteDataARR[f].charAt(i) !== "("){i++}
-          document.getElementById("mbrNameText").value = pasteDataARR[f].slice(7,i);
-          while(pasteDataARR[f].charAt(i) !== ":"){i++}
-          var startID = i+2;
-          while(pasteDataARR[f].charAt(i) !== ")"){i++}
-          document.getElementById("mbrIDText").value = pasteDataARR[f].slice(startID,i);
-        }
-      }
-      document.getElementById("pasteBox").value = "";
-    */
   }
 
   // toggles member satasfied field open and closed 
