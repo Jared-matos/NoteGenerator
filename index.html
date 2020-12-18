@@ -447,9 +447,12 @@
         var currBlock = blocks.item(y);
         var blockNum = currBlock.id.charAt(currBlock.id.length-1);
         if (currBlock.getElementsByClassName('pasteBox').value !== "") {
-          try { var pasteDataARR = currBlock.getElementsByClassName('pasteBox')[0].value.split(/\r?\n/);}
-          catch(err) { break;}
-          console.log(pasteDataARR);
+          try { 
+            var pasteDataARR = currBlock.getElementsByClassName('pasteBox')[0].value.split(/\r?\n/);
+          }
+          catch(err) { 
+            break;
+          }
 
           // Authorization Check 
           if (y == 0 && pasteDataARR[1] == 'Authorizations') {
@@ -646,7 +649,8 @@
             console.log(pasteDataARR);
 
             // this block of code is running first for some reason in most cases except when commented out, logs are same for all instances 
-            /*for (x = pasteDataARR.length-1; x >= 0; x--) {
+            
+            for (x = pasteDataARR.length-1; x >= 0; x--) {
               console.log(x);
               if (pasteDataARR[x] == '' || 
               pasteDataARR[x].split('\t')[0] == 'Funding' || 
@@ -655,9 +659,10 @@
                 pasteDataARR.pop();
               }
             }
+            //*/
             for (x = 0; x < 3; x++) {
               pasteDataARR.shift();
-            }*/
+            }
             console.log('after');
             console.log(pasteDataARR);
             var prev = '';
@@ -721,21 +726,27 @@
 
             Isolate the lines that consist of the benefits 
             do exactly the same thing as in demographics page to them 
+
+
+
+            figure out why the while function is running before the console.log right above it 
             */
-            for (x = pasteDataARR.length - 1; x >= 0; x--) {
-              if (pasteDataARR[x] !== '' ||
+
+            console.log(pasteDataARR);
+            /*while (pasteDataARR.length > 0 && 
+              (pasteDataARR[x] !== '' ||
               pasteDataARR[x] !== 'Other Benefits' ||
               pasteDataARR[x] !== 'SAOP Benefits' ||
               pasteDataARR[x] !== 'SAIP Benefits' ||
               pasteDataARR[x] !== 'MHOP Benefits' ||
-              pasteDataARR[x] !== 'MHIP Benefits' ) {
+              pasteDataARR[x] !== 'MHIP Benefits' )) {
 
-              }
               pasteDataARR.pop();
-            }
-            for (x = 0; x < 3; x++) {
+            }*/
+            console.log(pasteDataARR);
+            /*for (x = 0; x < 3; x++) {
               pasteDataARR.shift();
-            }
+            }*/
             var prev = '';
             for (x = 0; x < pasteDataARR.length; x++) {
               //if (x > 0) document.getElementById('callTypeInput' + divNum + '-1-1').value += ' / ';
@@ -780,7 +791,7 @@
           }
 
           // Claims Check
-          if (y == 2 && pasteDataARR[1] == 'Specific Claim Line') {
+          if ((y == 2 && pasteDataARR[1] == 'Specific Claim Line') || (y == 2 && pasteDataARR[1] == 'Claim Line Details')) {
             for (x = 0; x < pasteDataARR.length; x++) {
               switch (pasteDataARR[x].split('\t')[0]) {
                 case 'Dates Of Service':
