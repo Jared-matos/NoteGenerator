@@ -33,21 +33,34 @@ Redone Information Fields
   [] set clone data pull in copytoclipboard
 
 [WIP] create paste data parse for all calltype
-  [WIP] authorization
+  [x] existing authorizations
     [x] get working for clones also
     [R] Accept multiple auth lines
         Enter in mulitple call types 
   [WIP] benefits/eligibility
     [x] Eligibility page paste
     [] Demographic page paste
-    [x] Benefit page paste
+    [WIP] Benefit page paste
+      [] Add Additional Info Row 
     [WIP] CopPay Page Paste
       [x] Accept Multiple Copay Lines
       [WIP] get more data on deductibles and oop max 
             reach out to current trainer for demo member
-  [x] claim information
+  [WIP] claim information
+    [] value codes
+      [] demo info
+    [] rendering prov 
+      [] demo info
+    [] ticket number 
+    [] COB amount 
+      [] demo info
+    [] waiver information 
+      [] demo info
   [R] referrals
       Must be typed manually as it is done in web 
+  [] Precert Calls
+  [] Crisis Calls 
   
 [x] ceUpdate() for toggleing open and closed related fields 
-[] implement try catch for all functions to avoid crashing 
+[] (OPT) implement try catch for all functions to avoid crashing 
+[] clear call types selection only and leave them alone 
