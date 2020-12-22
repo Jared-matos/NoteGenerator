@@ -201,6 +201,10 @@
         <span>Utilization Quoted</span>
         <input type='text' id='callTypeInput0-1-3' autocomplete='off' list='autocompleteOff' />
       </div>
+      <div class='tableRow'>
+        <span>Other Information Given</span>
+        <input type='text' id='callTypeInput0-1-4' autocomplete='off' list='autocompleteOff' />
+      </div>
     </div>
 
     <!--Claim Status-->
@@ -250,48 +254,66 @@
         <input type='text' id='callTypeInput0-2-9' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
+        <span>Rendering Provider</span>
+        <input type='text' id='callTypeInput0-2-10' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Value Codes</span>
+        <input type='text' id='callTypeInput0-2-11' autocomplete='off' list='autocompleteOff' />
+      </div>
+
+      <!-- Payment Info Block -->
+      <div class='tableRow'>
         <span>Paid Via</span>
-        <select id='callTypeselect0-2-0' value='' />
+        <select id='callTypeSelect0-2-0' value='' onchange='paidUpdate()'/>
           <option value=''></option>
           <option value='ACH/EFT'>ACH/EFT</option>
           <option value='CHK'>CHK</option>
         </select>
       </div>
-      <div class='tableRow'>
-        <span>Check/Transaction Number</span>
-        <input type='text' id='callTypeInput0-2-10' autocomplete='off' list='autocompleteOff' />
-      </div>
-      <div class='tableRow'>
-        <span>Bulk Amount</span>
-        <input type='text' id='callTypeInput0-2-11' autocomplete='off' list='autocompleteOff' />
-      </div>
-      <div class='tableRow'>
-        <span>Payment Cleared Date</span>
-        <input type='text' id='callTypeInput0-2-12' autocomplete='off' list='autocompleteOff' />
+      <div class='displayNone paidClaimInfo' id='paidClaimInfoBlock0'>
+        <div class='tableRow'>
+          <span>Check/Transaction Number</span>
+          <input type='text' id='callTypeInput0-2-12' autocomplete='off' list='autocompleteOff' />
+        </div>
+        <div class='tableRow'>
+          <span>Bulk Amount</span>
+          <input type='text' id='callTypeInput0-2-13' autocomplete='off' list='autocompleteOff' />
+        </div>
+        <div class='tableRow'>
+          <span>Payment Cleared Date</span>
+          <input type='text' id='callTypeInput0-2-14' autocomplete='off' list='autocompleteOff' />
+        </div>
       </div>
       <div class='tableRow'>
         <span>Processed Correctly</span>
-        <input type='checkbox' id='callTypeInput0-2-13' autocomplete='off' list='autocompleteOff' />
+        <input type='checkbox' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
       </div>
+
+      <!--CE Called Block-->
       <div class='displayBlock'>
         <div class='tableRow'>
           <span>CE Called</span>
-          <input type='checkbox' id='callTypeInput0-2-14' onclick='ceUpdate()'/>
+          <input type='checkbox' id='callTypeInput0-2-16' onclick='ceUpdate()'/>
         </div>
         <div class='displayNone ceCalledBlock' id='ceCalledBlock0'>
           <div class='tableRow'>
             <span>Initials of CE</span>
-            <input type='text' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
+            <input type='text' id='callTypeInput0-2-17' autocomplete='off' list='autocompleteOff' />
           </div>
           <div class='tableRow'>
             <span>CE Advised</span>
-            <input type='text' id='callTypeInput0-2-16' autocomplete='off' list='autocompleteOff' />
+            <input type='text' id='callTypeInput0-2-18' autocomplete='off' list='autocompleteOff' />
+          </div>
+          <div class='tableRow'>
+            <span>Ticket Number</span>
+            <input type='text' id='callTypeInput0-2-19' autocomplete='off' list='autocompleteOff' />
           </div>
         </div>
       </div>
       <div class='tableRow'>
         <span>Other Information Advised</span>
-        <input type='text' id='callTypeInput0-2-17' autocomplete='off' list='autocompleteOff' />
+        <input type='text' id='callTypeInput0-2-20' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
 
@@ -300,6 +322,10 @@
       <div class='tableRow'>
         <span>Warm Transferred to Clinician?</span>
         <input type='checkbox' id='callTypeInput0-3-0' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Other Information Given</span>
+        <input type='text' id='callTypeInput0-3-1' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
 
@@ -316,6 +342,10 @@
       <div class='tableRow'>
         <span>Referred to</span>
         <input type='text' id='callTypeInput0-4-2' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Other Information Given</span>
+        <input type='text' id='callTypeInput0-4-3' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
 
@@ -340,6 +370,10 @@
       <div class='tableRow'>
         <span>Sent to Member Service</span>
         <input type='checkbox' id='callTypeInput0-5-4' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Other Information Given</span>
+        <input type='text' id='callTypeInput0-5-5' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
   </div>
@@ -446,7 +480,8 @@
     parent.after(clone);
     callTypeSel();
   }
-// Looks at all created call types, in each identifies the ceCalled checkbox and toggles opening and closing the div
+
+  // Looks at all created call types, in each identifies the ceCalled checkbox and toggles opening and closing the div
   function ceUpdate() {
     var divs = document.getElementsByClassName('callTypeDivs');
     for (i = 0; i < divs.length; i++) {
@@ -457,6 +492,24 @@
           document.getElementById(block.item(y).id).className = 'displayBlock ceCalledBlock';
         } else {
           document.getElementById(block.item(y).id).className = 'displayNone ceCalledBlock';
+        }
+      }
+    }
+    changeHeight();
+  }
+
+  // Looks at all created call types, in each identifies the paidUpdate dropdown and toggles opening and closing the div 
+  function paidUpdate() {
+    var divs = document.getElementsByClassName('callTypeDivs');
+    for (i = 0; i < divs.length; i++) {
+      var block = divs.item(i).getElementsByClassName('paidClaimInfo');
+      for (y = 0; y < block.length; y++) {
+        var num = block.item(y).id.slice(block.item(y).id.length - 1, block.item(y).id.length);
+        console.log('num =',num);
+        if (document.getElementById('callTypeSelect' + num + '-2-0').value !== '') {
+          document.getElementById(block.item(y).id).className = 'displayBlock paidClaimInfo';
+        } else {
+          document.getElementById(block.item(y).id).className = 'displayNone paidClaimInfo';
         }
       }
     }
@@ -725,77 +778,131 @@
             }
           }
 
-          //Demographics page Check
+          // Demographics page Check
           if (y == 1 && pasteDataARR[1] == 'Demographics') {
-            // for all others than benefits 
+            
+            var prev = '';
             for (x = 0; x < pasteDataARR.length; x++) {
+              console.log(x, pasteDataARR[x].split('\t')[0]);
+              //if (x > 0) document.getElementById('callTypeInput' + divNum + '-1-1').value += ' / ';
               switch (pasteDataARR[x].split('\t')[0]) {
+                case 'Member ID':
+                  break;
+                case 'Name':
+                  break;
+                case 'Preferred Name':
+                  break;
+                case 'Preferred Pronoun':
+                  break;
+                case 'Age':
+                  break;
+                case 'Gender':
+                  break;
+                case 'Gender Identity':
+                  break;
+                case 'Transgender':
+                  break;
+                case 'Additional Information':
+                  break;
+                case 'Alternative IDs':
+                  break; 
                 case 'Latest Eligibility. Seg.':
                   document.getElementById('callTypeInput' + divNum + '-2-0').value = pasteDataARR[x].split('\t')[1];
                   break;
-                default:
+                case 'RespParty':
                   break;
-              }
-            }
-
-            //for benefits
-            /* Mapping out the function
-
-            Isolate the lines that consist of the benefits 
-            do exactly the same thing as in demographics page to them 
-
-
-
-            figure out why the while function is running before the console.log right above it 
-            */
-
-            console.log(pasteDataARR);
-            /*while (pasteDataARR.length > 0 && 
-              (pasteDataARR[x] !== '' ||
-              pasteDataARR[x] !== 'Other Benefits' ||
-              pasteDataARR[x] !== 'SAOP Benefits' ||
-              pasteDataARR[x] !== 'SAIP Benefits' ||
-              pasteDataARR[x] !== 'MHOP Benefits' ||
-              pasteDataARR[x] !== 'MHIP Benefits' )) {
-
-              pasteDataARR.pop();
-            }*/
-            console.log(pasteDataARR);
-            /*for (x = 0; x < 3; x++) {
-              pasteDataARR.shift();
-            }*/
-            var prev = '';
-            for (x = 0; x < pasteDataARR.length; x++) {
-              //if (x > 0) document.getElementById('callTypeInput' + divNum + '-1-1').value += ' / ';
-              switch (pasteDataARR[x].split('\t')[0]) {
-                case 'MH IP':
+                case 'Self Pay':
+                  break;
+                case 'Group':
+                  break;
+                case 'SubGroup':
+                  break;
+                case 'PCP Name':
+                  break;
+                case 'PCP Fax':
+                  break;
+                case 'PCP Phone':
+                  break;
+                case 'PCP Email':
+                  break;
+                case 'PCPAddress':
+                  break;
+                case 'PCPCity State Zip':
+                  break;
+                case 'PCP Location':
+                  break;
+                case 'Health Home':
+                  break;
+                case 'Residence Address':
+                  break;
+                case 'Private Mailing Address':
+                  break;
+                case 'Phones':
+                  break;
+                case 'Benefit Name':
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x] + ' / ';
+                  prev = 'Benefit Name';
+                  break;
+                case 'MHIP Benefits':
                   document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
-                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
                   prev = 'MH IP';
                   break;
-                case 'MH OP':
+                case 'MHOP Benefits':
                   document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
-                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
                   prev = 'MH OP';
                   break;
-                case 'SA IP':
+                case 'SAIP Benefits':
                   document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
-                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
                   prev = 'SA IP';
                   break;
-                case 'SA OP':
+                case 'SAOP Benefits':
                   document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
-                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
                   prev = 'SA OP';
                   break;
-                case 'Other':
+                case 'Other Benefits':
                   document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
-                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' benefits are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
+                  document.getElementById('callTypeInput' + divNum + '-1-1').value += ' are: ' + pasteDataARR[x].split('\t')[1] + ' / ';
                   prev = 'Other';
                   break;
-                case 'Benefit Level':
-                  document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x] + ' / ';
-                  prev = 'Benefit Level';
+                case 'BHCP Status':
+                  break;
+                case 'COB':
+                  break;
+                case 'Language':
+                  break;
+                case 'Race':
+                  break;
+                case 'Ethnicity':
+                  break;
+                case 'Plan Name':
+                  break;
+                case 'ExcludeCode':
+                  break;
+                case 'FeeCategory':
+                  break;
+                case 'Fax':
+                  break;
+                case 'Email':
+                  break;
+                case 'Update Reason':
+                  break;
+                case 'Updated By':
+                  break;
+                case 'Updated Date':
+                  break;
+                case 'Source Date':
+                  break;
+                case 'CaseContact1':
+                  break;
+                case 'CaseContact2':
+                  break;
+                case 'CaseContact3':
+                  break;
+                case 'MemRecID':
                   break;
                 default:
                   if (prev !== '') {
@@ -807,39 +914,374 @@
             }
           }
 
+          // Utilization Page Check
+          if (y == 1 && pasteDataARR[1] == 'Utilization of services') {
+            for (x = pasteDataARR.length; x >= 0; x--) {
+              if (pasteDataARR[x] == '') {
+                pasteDataARR.pop();
+              }
+            }
+            var legend = pasteDataARR[2];
+            var utilPaste = pasteDataARR;
+            for (x = 0; x < 3; x++) {
+              utilPaste.shift();
+            }
+            var rows = utilPaste.length;
+            var tempArr = [];
+            for (x = 0; x < utilPaste.length; x++) {
+              var tempArr2 = utilPaste[x].split('\t');
+              for (z = 0; z < tempArr2.length; z++) {
+                tempArr.push(tempArr2[z]);
+              }
+            }
+            utilPaste = tempArr;
+            //console.log(coPayPaste);
+            legend = legend.split('\t');
+            var currRow = 0;
+            for (z = 0; z < utilPaste.length; z++) {
+              console.log('z=',z,legend[z],utilPaste[z]);
+              if (z % (utilPaste.length / rows) == 0) {
+                document.getElementById('callTypeInput' + divNum + '-1-2').value += 'adv ';
+                currRow += 1;
+              }
+              //console.log('z=',z,'currRow=',currRow,'formula =',z % (utilPaste.length/rows),'value=',utilPaste[z % (utilPaste.length / rows)]);
+              switch (z % (utilPaste.length / rows)) {
+                case 0:
+                  // service period 
+                  break;
+                case 1:
+                  // op visits 
+                  document.getElementById('callTypeInput' + divNum + '-1-3').value += ' adv used ' + utilPaste[z] + ' OP Visits /';
+                  break;
+                case 2:
+                  // copayed visits 
+                  document.getElementById('callTypeInput' + divNum + '-1-3').value += 'adv ' + utilPaste[z] + ' visits had a copay / ';
+                  break;
+                case 3:
+                  // ie visits 
+                  document.getElementById('callTypeInput' + divNum + '-1-3').value += 'adv used ' + utilPaste[z] + ' initial encounters / ';
+                  break;
+                case 4:
+                  // op allowed 
+                  break;
+                case 5:
+                  // ie allowed 
+                  break;
+                case 6:
+                  // ip days
+                  break;
+                case 7:
+                  // ip allowed 
+                  break;
+                case 8:
+                  // other allowed 
+                  break;
+                case 9:
+                  // oop expenses 
+                  break;
+                case 10:
+                  // deductibles
+                  break;
+                case 11:
+                  // copays
+                  break;
+                case 12:
+                  // Coinsurance
+                  break;
+                default:
+                  break;
+              }
+            }
+          }
+
           // Claims Check
           if ((y == 2 && pasteDataARR[1] == 'Specific Claim Line') || (y == 2 && pasteDataARR[1] == 'Claim Line Details')) {
             for (x = 0; x < pasteDataARR.length; x++) {
               switch (pasteDataARR[x].split('\t')[0]) {
+                case 'TCN':
+                  break;
+                case 'DCN':
+                  break;
+                case 'Resubmission':
+                  break;
+                case 'Status ':
+                ///for claim type 
+                  break;
+                case 'Member':
+                  break;
+                case 'SubmissionSource':
+                  break;
+                case 'Provider':
+                  break;
+                case 'Network':
+                  break;
+                case 'Site':
+                  break;
+                case 'Billing NPI':
+                  break;
+                case 'Payee':
+                  break;
+                case 'ICD Indicator':
+                  break;
+                case 'Diagnosis 1':
+                  break;
+                case 'Diagnosis 2':
+                  break;
+                case 'Line Dx Codes':
+                  break;
+                case 'All Claim Dx Codes':
+                  break;
+                case 'Date Received':
+                  document.getElementById('callTypeInput' + divNum + '-2-2').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
+                  break;
+                case 'Date Entered':
+                  break;
+                case 'Date Paid':
+                  document.getElementById('callTypeInput' + divNum + '-2-3').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
+                  break;
+                case 'Claim Notes':
+                  break;
                 case 'Dates Of Service':
                   document.getElementById('callTypeInput' + divNum + '-2-0').value = pasteDataARR[x].split('\t')[1];
                   break;
                 case 'Procedure ':
                   document.getElementById('callTypeInput' + divNum + '-2-1').value = pasteDataARR[x].split('\t')[1];
                   break;
-                case 'Date Received':
-                  document.getElementById('callTypeInput' + divNum + '-2-2').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
-                  break;
-                case 'Date Paid':
-                  document.getElementById('callTypeInput' + divNum + '-2-3').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
-                  break;
                 case 'Units Claimed':
                   document.getElementById('callTypeInput' + divNum + '-2-4').value = pasteDataARR[x].split('\t')[1];
-                  break;
-                case 'Allowed Units':
-                  document.getElementById('callTypeInput' + divNum + '-2-5').value = pasteDataARR[x].split('\t')[1];
                   break;
                 case 'Amount Charged':
                   document.getElementById('callTypeInput' + divNum + '-2-6').value = pasteDataARR[x].split('\t')[1];
                   break;
+                case 'Allowed Units':
+                  document.getElementById('callTypeInput' + divNum + '-2-5').value = pasteDataARR[x].split('\t')[1];
+                  break;
                 case 'Allowed Amount':
                   document.getElementById('callTypeInput' + divNum + '-2-7').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'Paid Amount':
                   break;
                 case 'DecisionCodes':
                   document.getElementById('callTypeInput' + divNum + '-2-8').value = pasteDataARR[x].split('\t')[1];
                   break;
+                case 'External Outreach':
+                  break;
+                case 'Clean Claim':
+                  break;
+                case 'Other Insurance':
+                  break;
+                case 'Good Cause Available':
+                  break;
+                case 'OI EOB Date':
+                  break;
+                case 'OI Allowed':
+                  break;
+                case 'OI Copay':
+                  break;
+                case 'OI Deductible':
+                  break;
+                case 'OI CoInsurance':
+                  break;
+                case 'OI Paid':
+                  break;
+                case 'PR Other':
+                  break;
+                case 'COB Allowed Amount':
+                  break;
+                case 'Priced Amount':
+                  break;
+                case 'Copay':
+                  break;
+                case 'Coinsurance':
+                  break;
+                case 'Deductible':
+                  break;
+                case 'Interest Payment':
+                  break;
+                case 'Late Payment Indicator':
+                  break;
+                case 'Reopening Disposition':
+                  break;
+                case 'Reason For Reopening':
+                  break;
+                case 'Discount':
+                  break;
+                case 'Initial Encounter':
+                  break;
+                case 'OP Select':
+                  break;
+                case 'Allow Timely':
+                  break;
+                case 'Allow Duplicate':
+                  break;
+                case 'Allow as IE':
+                  break;
+                case 'Miscellaneous Override':
+                  break;
+                case 'Override NewPlan':
+                  break;
+                case 'Missing Eligibility Override':
+                  break;
+                case 'Exclude Interest':
+                  break;
+                case 'CAP PAY Provider Override':
+                  break;
+                case 'Contracted Rate Override':
+                  break;
+                case 'Procedure Override':
+                  break;
+                case 'Eligibility (Grp/Subgrp) Override':
+                  break;
+                case 'Override Units':
+                  break;
+                case 'ClLine Notes':
+                  break;
+                case 'Clinician':
+                  document.getElementById('callTypeInput' + divNum + '-2-10').value += pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'Rendering NPI':
+                  document.getElementById('callTypeInput' + divNum + '-2-10').value += ' - NPI:' + pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'BatchID':
+                  break;
+                case 'Company ':
+                  break;
+                case 'ClaimID':
+                  break;
+                case 'EncounterID':
+                  break;
                 case 'ClLineID':
                   document.getElementById('callTypeInput' + divNum + '-2-9').value = pasteDataARR[x].split('\t')[1];
+                  break;
+                case 'RelatedID':
+                  break;
+                case 'EDI RefNo':
+                  break;
+                case 'WebClaim RefNo':
+                  break;
+                case 'Username Entered':
+                  break;
+                case 'UserName Edited':
+                  break;
+                case 'Updated':
+                  break;
+                case 'UserName Verified':
+                  break;
+                case 'Verification Status':
+                  break;
+                case 'Verification Date':
+                  break;
+                case 'TOB':
+                  break;
+                case 'DRGValue':
+                  break;
+                case 'VendorDRG':
+                  break;
+                case 'DRG Apllied':
+                  break;
+                case 'Revenue Code':
+                  break;
+                case 'LOC':
+                  break;
+                case 'AdmissionType':
+                  break;
+                case 'AdmissionSource':
+                  break;
+                case 'DischargeStatus':
+                  break;
+                case 'Place Of Service':
+                  break;
+                case 'Prv Category':
+                  break;
+                case 'Service Benefit Type':
+                  break;
+                case 'Copay Benefit Type':
+                  break;
+                case 'Group SubGroup':
+                  break;
+                case 'Benefit Level':
+                  break;
+                case 'Subcontract':
+                  break;
+                case 'Benefit Count':
+                  break;
+                case 'Proc Restrictions':
+                  break;
+                case 'Other Properties':
+                  break;
+                case 'ValueCode1a':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount1a':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode2a':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount2a':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode3a':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount3a':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode1b':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount1b':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode2b':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount2b':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode3b':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount3b':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode1c':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount1c':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', '; 
+                  break;
+                case 'ValueCode2c':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount2c':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode3c':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount3c':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode1d':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount1d':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode2d':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount2d':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueCode3d':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'ValueAmount3d':
+                  document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                  break;
+                case 'AllowFix':
                   break;
                 default:
                   break;
@@ -863,7 +1305,6 @@
     }
     changeHeight();
   }
-
 
   // toggles between member and provider fields
   function mpRadio() {
@@ -1033,6 +1474,6 @@
     console.log(outputText)
   }
 </script>
-<!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
 
+<!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
 <!--Remove all text above style when importing to SharePoint-->

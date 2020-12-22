@@ -393,4 +393,9 @@ TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidD
 Claim	$40.00	05/18/2007 12:00:00 AM	101						$345.00						Demo Site	145	Demo Site	6900819
 
 
+UTILIZATION PASTE
 
+12/22/2020 12:13:52 PM
+Utilization of services
+Service Period	OP Visits	Copayed Visits	IE Visits	OP Allowed	IE Allowed	IP Days	IP Allowed	Other Allowed	OOP Expenses	Deductibles	Copays	Coinsurance	
+Total:	12	0	0	$1,234.56	$0.00	0	$0.00	$0.00	$0.00	$0.00	$0.00	$0.00

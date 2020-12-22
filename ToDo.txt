@@ -44,23 +44,37 @@ Redone Information Fields
       [] Add Additional Info Row 
     [WIP] CopPay Page Paste
       [x] Accept Multiple Copay Lines
-      [WIP] get more data on deductibles and oop max 
-            reach out to current trainer for demo member
+    [WIP] Accept Deductible Paste
+      [] Accept OOP Max Paste
+    [x] utilization page paste 
+        Need to only select the total line 
+    [] payment for claim paste 
   [WIP] claim information
-    [] value codes
+    [x] value codes
       [] demo info
-    [] rendering prov 
-      [] demo info
-    [] ticket number 
+    [x] rendering prov 
+      [x] demo info
+    [x] ticket number 
     [] COB amount 
       [] demo info
     [] waiver information 
       [] demo info
   [R] referrals
       Must be typed manually as it is done in web 
-  [] Precert Calls
-  [] Crisis Calls 
-  
+  [WIP] Precert Calls
+    [x] Create Call Type
+    [x] Add in Needed Rows for this calltype
+    [] (opt) add in logic for callflow 
+  [WIP] Crisis Calls 
+    [x] create call type
+    [x] add in needed rows
+ 
 [x] ceUpdate() for toggleing open and closed related fields 
 [] (OPT) implement try catch for all functions to avoid crashing 
 [] clear call types selection only and leave them alone 
+[] Automatic naming on load? 
+
+
+to follow up with eli
+  waiver information where do we want it 
+  where do we want value codes
