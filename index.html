@@ -186,7 +186,7 @@
     
     // removes the current call type of the button that has been selected 
     function removeCallType(button) {
-      var callerNum = button.id.slice(button.id.length - 1, button.id.length);
+      var callerNum = button.id.slice(23, button.id.length);
       if (callTypeArray.length > 1) {
         document.getElementById('callTypeDiv' + callerNum).remove();
         var index = callTypeArray.indexOf(parseInt(callerNum));
