@@ -33,7 +33,7 @@
     }
     #tDiv {
       height: 150px;
-      width: 375px;
+      width: 380px;
       border-radius: 10px;
       background-color: #f2f2f2;
       padding: 10px;
@@ -96,7 +96,7 @@
       <span>Confirmed address on file?</span>
       <input type="checkbox" id="confirmedAddress"/>
     </div>
-    <div class="displayBlock" id="callTypeDiv0" onchange="callTypeSel()">
+    <div class="displayBlock callTypeDivs" id="callTypeDiv0" onchange="callTypeSel()">
       <div class="tableRow" id="callTypeRow">
           <span>Call Type</span>
           <select id="callTypeSelect0" value="">
@@ -108,6 +108,7 @@
             <option value="Referral Request">Referrals</option>
           </select>
           <button type="button" id="cloneCallTypeDivButton" onclick="cloneCallType()">+</button>
+          <button type="button" id="removeCallTypeDivButton0" onclick="removeCallType(this)">x</button>
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock0">
         <div class="tableRow">
@@ -116,10 +117,6 @@
         </div>
       </div>
       <div class="displayNone callTypeHidden" id="callTypeBlock1">
-        <div class="tableRow">
-          <span>PasteBox</span>
-          <textarea class="pasteBox" id="pasteBox1" rows=1></textarea>
-        </div>
         <div class="tableRow">
           <span>Benefit information given</span>
           <input type="text" id="callTypeInput1" autocomplete="off" list="autocompleteOff"/>
@@ -181,7 +178,8 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">
     console.clear();
-    var numCallTypes = 0;
+    var callTypeArray = [0];
+
     changeHeight();
 
     /*function openNewWindow(){
@@ -193,26 +191,39 @@
       doc.close();
     }*/
     
+    // removes the current call type of the button that has been selected 
+    function removeCallType(button) {
+      var callerNum = button.id.slice(button.id.length - 1, button.id.length);
+      if (callTypeArray.length > 1) {
+        document.getElementById('callTypeDiv' + callerNum).remove();
+        var index = callTypeArray.indexOf(parseInt(callerNum));
+        callTypeArray.splice(index,1);
+      }
+      callTypeSel();
+    }
+
     // creates clones of the callType div and changes the names of the clones children
     function cloneCallType(){
-      var parent = document.getElementById('callTypeDiv' + numCallTypes);
+      var parent = document.getElementById('callTypeDiv'+callTypeArray[0]);
       var clone = parent.cloneNode(true);
-      numCallTypes += 1;
-      clone.id = "callTypeDiv" + numCallTypes;
-      clone.getElementsByTagName('select')[0].id = "callTypeSelect" + numCallTypes;
+      callTypeArray.push(callTypeArray[callTypeArray.length-1]+1);
+      clone.id = "callTypeDiv" + callTypeArray[callTypeArray.length-1];
+      clone.getElementsByTagName('select')[0].id = "callTypeSelect" + callTypeArray[callTypeArray.length-1];
       clone.getElementsByTagName('select')[0].value = "";
+      clone.getElementsByTagName('button')[1].id = "removeCallTypeDivButton" + callTypeArray[callTypeArray.length-1];
       for(i = 0; i < 5; i++){
-        clone.getElementsByTagName('input')[i].id = "callTypeInput" + i + numCallTypes;
+        clone.getElementsByTagName('input')[i].id = "callTypeInput" + i + callTypeArray[callTypeArray.length-1];
         clone.getElementsByTagName('input')[i].value = "";
         var elements = clone.getElementsByClassName('callTypeHidden');
         if(elements.item(i) === null){
           alert("Error Occured, Reloading page. Please save information");
           location.reload();
         }else { 
-          elements.item(i).id = "callTypeBlock" + i + numCallTypes;
+          elements.item(i).id = "callTypeBlock" + i + callTypeArray[callTypeArray.length-1];
+          //console.log('Created:', elements.item(i).id);
         }
       }
-      parent.after(clone);
+      document.getElementById('callTypeDiv'+(callTypeArray[callTypeArray.length-1]-1)).after(clone);
       callTypeSel();
     }
 
@@ -243,61 +254,31 @@
     }
     
     // goes through each selectBox and if it has a value changes the classname of the correct div to displayBlock setting all other children of selectbox classes as displayNone and callTypeHidden
-    function callTypeSel(){
-      for(i = 0; i <= numCallTypes; i++){
-        if(i!==0){
-          document.getElementById("callTypeBlock0"+i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock1"+i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock2"+i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock3"+i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock4"+i).className = "displayNone callTypeHidden";
-          //document.getElementById("additionalInfoRow").className = "displayBlock";
-          switch(document.getElementById("callTypeSelect"+i).value){
-            
-            case "Authorization Status":
-              document.getElementById("callTypeBlock0"+i).className = "displayBlock callTypeHidden";
-              break;
-            case "Benefit Information":
-              document.getElementById("callTypeBlock1"+i).className = "displayBlock callTypeHidden";
-              break;
-            case "Claim Information":
-              document.getElementById("callTypeBlock2"+i).className = "displayBlock callTypeHidden";
-              break;
-            case "Eligibility":
-              document.getElementById("callTypeBlock3"+i).className = "displayBlock callTypeHidden";
-              break;
-            case "Referral Request":
-              document.getElementById("callTypeBlock4"+i).className = "displayBlock callTypeHidden";
-              break;
-            default:
-              break;
-          }
-        } else if(i==0) {
-          document.getElementById("callTypeBlock0").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock1").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock2").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock3").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock4").className = "displayNone callTypeHidden";
-          switch(document.getElementById("callTypeSelect0").value){
-            
-            case "Authorization Status":
-              document.getElementById("callTypeBlock0").className = "displayBlock callTypeHidden";
-              break;
-            case "Benefit Information":
-              document.getElementById("callTypeBlock1").className = "displayBlock callTypeHidden";
-              break;
-            case "Claim Information":
-              document.getElementById("callTypeBlock2").className = "displayBlock callTypeHidden";
-              break;
-            case "Eligibility":
-              document.getElementById("callTypeBlock3").className = "displayBlock callTypeHidden";
-              break;
-            case "Referral Request":
-              document.getElementById("callTypeBlock4").className = "displayBlock callTypeHidden";
-              break;
-            default:
-              break;
-          }
+    function callTypeSel() {
+      var divs = document.getElementsByClassName('callTypeDivs');
+      for (i = 0; i < divs.length; i++) {
+        var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
+        for(y = 0; y < blocks.length; y++) {
+          blocks.item(y).className = 'displayNone callTypeHidden';
+        }
+        switch (divs.item(i).getElementsByTagName('select')[0].value) {
+          case 'Authorization Status':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(0).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Benefit Information':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(1).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Claim Information':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(2).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Eligibility':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(3).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Referral Request':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(4).className = 'displayBlock callTypeHidden';
+            break;
+          default:
+            break;
         }
       }
       changeHeight();
@@ -328,13 +309,19 @@
       document.getElementById("TIN").checked = false;
       document.getElementById("Member").checked = false;
       document.getElementById("Provider").checked = false;
-      document.getElementById("callTypeSelect0").value = "";
+      //document.getElementById("callTypeSelect0").value = "";
       document.getElementById("provInfoBlock").className = "displayNone";
       document.getElementById("mbrLine0").className = "displayNone";
       document.getElementById("mbrEnd").className = "displayNone";
       document.getElementById("mbrNSatasfied").className = "displayBlock";
-      for(i=1;i<=numCallTypes;i++) {document.getElementById("callTypeDiv"+i).remove();}
-      numCallTypes = 0;
+
+
+      console.log(callTypeArray);
+      while(callTypeArray.length !== 1) {
+        console.log(callTypeArray.length-1);
+        document.getElementById("callTypeDiv"+callTypeArray[callTypeArray.length-1]).remove();
+        callTypeArray.splice(callTypeArray.length-1,1);
+      }
       callTypeSel();
     }
 
@@ -352,7 +339,7 @@
       var TINCHK = document.getElementById("TIN").checked;
       var MBRCHK = document.getElementById("Member").checked;
       var PROVCHK = document.getElementById("Provider").checked;
-      var CALLTYPE = document.getElementById("callTypeSelect0").value;
+      //var CALLTYPE = document.getElementById("callTypeSelect0").value;
       var MBRSAT = document.getElementById("mbrSatasfied").checked;
       var GOFF = document.getElementById("grievanceOffered").checked;
       var GFILED = document.getElementById("grievanceFiled").checked;
