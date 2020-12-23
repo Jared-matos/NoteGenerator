@@ -392,6 +392,18 @@ Payments
 TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidDate	VoidReason	Total Check Amt	RefundCheckNo	RefundCheckDate	RefundAmount	RefundRemaining	RefundVoidDate	PayeeName	PayeeID	Provider Name	ClTranID	
 Claim	$40.00	05/18/2007 12:00:00 AM	101						$345.00						Demo Site	145	Demo Site	6900819
 
+12/23/2020 3:04:08 PM
+Payments
+TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidDate	VoidReason	Total Check Amt	RefundCheckNo	RefundCheckDate	RefundAmount	RefundRemaining	RefundVoidDate	PayeeName	PayeeID	Provider Name	ClTranID	
+Claim	$100.00	07/01/2020 12:00:00 AM			NON 				$0.00						John Smith	123456	John Smith	123456789
+Deductible	($100.00)	01/01/2020 12:00:00 AM			NON 				$0.00						John Smith	123456	John Smith	123456789
+
+12/23/2020 3:10:35 PM
+Payments
+TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidDate	VoidReason	Total Check Amt	RefundCheckNo	RefundCheckDate	RefundAmount	RefundRemaining	RefundVoidDate	PayeeName	PayeeID	Provider Name	ClTranID	
+Claim	$100.00	12/23/2020 12:00:00 AM		1234567	Pymt Pending				$200.00						John Smith	171393	John Smith	123456789
+Copay	($10.00)	12/23/2020 12:00:00 AM		1234567	Pymt Pending				$200.00						John Smith	171393	John Smith	123456789
+
 
 UTILIZATION PASTE
 

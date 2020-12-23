@@ -40,7 +40,7 @@
   }
   #tDiv {
     height: 150px;
-    width: 375px;
+    width: 380px;
     border-radius: 10px;
     background-color: #f2f2f2;
     padding: 10px;
@@ -120,6 +120,7 @@
         <option value='Referral Request'>Referrals</option>
       </select>
       <button type='button' id='cloneCallTypeDivButton' onclick='cloneCallType()'>+</button>
+      <button type="button" id="removeCallTypeDivButton0" onclick="removeCallType(this)">x</button>
     </div>
 
     <!--Auth Status-->
@@ -214,6 +215,10 @@
         <textarea class='pasteBox' id='pasteBox2' rows=1 onchange='parseDataBenefits(this)'></textarea>
       </div>
       <div class='tableRow'>
+        <span>Claim Type</span>
+        <input type='text' id='callTypeInput0-2-0' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
         <span>DOS</span>
         <input type='text' id='callTypeInput0-2-0' autocomplete='off' list='autocompleteOff' />
       </div>
@@ -284,7 +289,16 @@
           <span>Payment Cleared Date</span>
           <input type='text' id='callTypeInput0-2-14' autocomplete='off' list='autocompleteOff' />
         </div>
+        <div class='tableRow'>
+          <span>Member Responsibility</span>
+          <input type='checkbox' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
+        </div>
+        <div class='tableRow'>
+          <span>COB Payment</span>
+          <input type='checkbox' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
+        </div>
       </div>
+
       <div class='tableRow'>
         <span>Processed Correctly</span>
         <input type='checkbox' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
@@ -399,8 +413,9 @@
   <!--Button at bottom of form -->
   <div class='tableRow'>
     <textarea readonly type='text' class='displayNone' id='oText'></textarea>
-    <button type='button' onclick='copyClipboard()'>Copy to Clipboard</button>
+    <button class='tooltip' type='button' onclick='copyClipboard()'>Copy to Clipboard</button>
     <button type='button' onclick='clearAll()'>Clear All</button>
+    <button type='button' onclick='clearCallTypes()'>Clear CallTypes</button>
     <!--<button type='button' onclick='openNewWindow()'>New Window</button>-->
   </div>
 </div>
@@ -410,7 +425,7 @@
 <script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <script type='text/javascript'>
   console.clear();
-  var numCallTypes = 0;
+  var callTypeArray = [0];
   changeHeight();
 
   /*function openNewWindow(){
@@ -441,13 +456,14 @@
     update call type fields 
     */
 
-    var parent = document.getElementById('callTypeDiv' + numCallTypes);
+    var parent = document.getElementById('callTypeDiv' + callTypeArray[0]);
     var clone = parent.cloneNode(true);
-    numCallTypes += 1;
-    clone.id = 'callTypeDiv' + numCallTypes;
-    clone.getElementsByTagName('select')[0].id = 'callTypeSelect' + numCallTypes;
+    callTypeArray.push(callTypeArray[callTypeArray.length-1]+1);
+    clone.id = 'callTypeDiv' + callTypeArray[callTypeArray.length-1];
+    clone.getElementsByTagName('select')[0].id = 'callTypeSelect' + callTypeArray[callTypeArray.length-1];
     clone.getElementsByTagName('select')[0].value = '';
-    clone.getElementsByClassName('ceCalledBlock')[0].id = 'ceCalledBlock' + numCallTypes;
+    clone.getElementsByClassName('ceCalledBlock')[0].id = 'ceCalledBlock' + callTypeArray[callTypeArray.length - 1];
+    clone.getElementsByTagName('button')[1].id = "removeCallTypeDivButton" + callTypeArray[callTypeArray.length - 1];
 
     //console.log('renamed:' + clone.id);
     //console.log('renamed:' + clone.getElementsByTagName('select')[0].id);
@@ -458,26 +474,37 @@
         alert('Error Occured, Reloading page. Please save information');
         location.reload();
       } else {
-        blocks.item(i).id = 'callTypeBlock' + numCallTypes + '-' + i;
+        blocks.item(i).id = 'callTypeBlock' + callTypeArray[callTypeArray.length - 1] + '-' + i;
 
         //console.log('renamed:' + blocks.item(i).id);
 
         var inputs = blocks.item(i).getElementsByTagName('input');
         for(y = 0; y < inputs.length; y++) {
-          inputs.item(y).id = 'callTypeInput' + numCallTypes + '-' + i + '-' + y;
+          inputs.item(y).id = 'callTypeInput' + callTypeArray[callTypeArray.length - 1] + '-' + i + '-' + y;
           inputs.item(y).value = "";
 
           //console.log('renamed: '+inputs.item(y).id);
         }
         var selects = blocks.item(i).getElementsByTagName('select');
         for (y = 0; y < selects.length; y++) {
-          selects.item(y).id = 'callTypeSelect' + numCallTypes + '-' + i + '-' + y;
+          selects.item(y).id = 'callTypeSelect' + callTypeArray[callTypeArray.length - 1] + '-' + i + '-' + y;
           selects.item(y).value = "";
           //console.log('renamed: '+selects.item(y).id);
         }
       }
     }
-    parent.after(clone);
+    document.getElementById('callTypeDiv' + (callTypeArray[callTypeArray.length - 1] - 1)).after(clone);
+    callTypeSel();
+  }
+
+  // removes current call type div matching the number of the button that called function
+  function removeCallType(button) {
+    var callerNum = button.id.slice(23,button.id.length);
+    if (callTypeArray.length > 1) {
+      document.getElementById('callTypeDiv' + callerNum).remove();
+      var index = callTypeArray.indexOf(parseInt(callerNum));
+      callTypeArray.splice(index, 1);
+    }
     callTypeSel();
   }
 
@@ -669,16 +696,13 @@
               }
             }
             coPayPaste = tempArr;
-            //console.log(coPayPaste);
             legend = legend.split('\t');
             var currRow = 0;
             for (z = 0; z < coPayPaste.length; z++){
-              //console.log('z=',z,legend[z],coPayPaste[z]);
               if (z % (coPayPaste.length/rows) == 0) {
                 document.getElementById('callTypeInput' + divNum + '-1-2').value += 'adv ';
                 currRow += 1;
               }
-              //console.log('z=',z,'currRow=',currRow,'formula =',z % (coPayPaste.length/rows),'value=',coPayPaste[z % (coPayPaste.length / rows)]);
               switch (z % (coPayPaste.length/rows)) {
                 case 0:
                   //copay type 
@@ -737,7 +761,6 @@
             }
             var prev = '';
             for (x = 0; x < pasteDataARR.length; x++) {
-              //if (x > 0) document.getElementById('callTypeInput' + divNum + '-1-1').value += ' / ';
               switch (pasteDataARR[x].split('\t')[0]) {
                 case 'MH IP':
                   document.getElementById('callTypeInput' + divNum + '-1-1').value += 'adv ' + pasteDataARR[x].split('\t')[0];
@@ -783,8 +806,6 @@
             
             var prev = '';
             for (x = 0; x < pasteDataARR.length; x++) {
-              console.log(x, pasteDataARR[x].split('\t')[0]);
-              //if (x > 0) document.getElementById('callTypeInput' + divNum + '-1-1').value += ' / ';
               switch (pasteDataARR[x].split('\t')[0]) {
                 case 'Member ID':
                   break;
@@ -935,16 +956,13 @@
               }
             }
             utilPaste = tempArr;
-            //console.log(coPayPaste);
             legend = legend.split('\t');
             var currRow = 0;
             for (z = 0; z < utilPaste.length; z++) {
-              console.log('z=',z,legend[z],utilPaste[z]);
               if (z % (utilPaste.length / rows) == 0) {
                 document.getElementById('callTypeInput' + divNum + '-1-2').value += 'adv ';
                 currRow += 1;
               }
-              //console.log('z=',z,'currRow=',currRow,'formula =',z % (utilPaste.length/rows),'value=',utilPaste[z % (utilPaste.length / rows)]);
               switch (z % (utilPaste.length / rows)) {
                 case 0:
                   // service period 
@@ -1289,6 +1307,42 @@
             }
           }
 
+          // Payments Check - non working remove if releasing this version 
+          if (y == 2 && pasteDataARR[1] == 'Payments') {
+            for (x = pasteDataARR.length; x >= 0; x--) {
+              if (pasteDataARR[x] == '') {
+                pasteDataARR.pop();
+              }
+            }
+            var legend = pasteDataARR[2];
+            var paymentPaste = pasteDataARR;
+            for (x = 0; x < 3; x++) {
+              paymentPaste.shift();
+            }
+            var rows = paymentPaste.length;
+            var tempArr = [];
+            for (x = 0; x < paymentPaste.length; x++) {
+              var tempArr2 = paymentPaste[x].split('\t');
+              for (z = 0; z < tempArr2.length; z++) {
+                tempArr.push(tempArr2[z]);
+              }
+            }
+            paymentPaste = tempArr;
+            legend = legend.split('\t');
+            var currRow = 0;
+            
+            for (z = 0; z < paymentPaste.length; z++) {
+              console.log(legend[z], paymentPaste[z]);
+              /*if (z % (paymentPaste.length / rows) == 0) {
+                document.getElementById('callTypeInput' + divNum + '-1-2').value += 'adv ';
+                currRow += 1;
+              }
+              switch (z % (paymentPaste.length / rows)) {
+                
+              }*/
+            }
+          }
+
           // Cleanup
           currBlock.getElementsByClassName('pasteBox')[0].value = '';
         }
@@ -1362,6 +1416,30 @@
     document.getElementById('tDiv').style.height = currentHeightStr;
   }
 
+  function clearCallTypes() {
+    while (callTypeArray.length !== 1) {
+      document.getElementById("callTypeDiv" + callTypeArray[callTypeArray.length - 1]).remove();
+      callTypeArray.pop();
+    }
+    document.getElementById("callTypeSelect" + callTypeArray[0]).value = '';
+    var divs = document.getElementsByClassName('callTypeDivs');
+    for (i = 0; i < divs.length; i++) {
+      var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
+      for (y = 0; y < blocks.length; y++) {
+        var inputs = blocks.item(y).getElementsByTagName('input');
+        var selects = blocks.item(y).getElementsByTagName('select');
+        for (x = 0; x < inputs.length; x++) {
+          inputs.item(x).value = '';
+          inputs.item(x).checked = false;
+        }
+        for (x = 0; x < selects.length; x++) {
+          selects.item(x).value = '';
+        }
+      }
+    }
+    callTypeSel();
+  }
+
   //Sets vaules of all fields to empty or false
   function clearAll() {
     document.getElementById('callerName').value = '';
@@ -1379,34 +1457,11 @@
     document.getElementById('TIN').checked = false;
     document.getElementById('Member').checked = false;
     document.getElementById('Provider').checked = false;
-    document.getElementById('callTypeSelect0').value = '';
     document.getElementById('provInfoBlock').className = 'displayNone';
     document.getElementById('mbrLine0').className = 'displayNone';
     document.getElementById('mbrEnd').className = 'displayNone';
     document.getElementById('mbrNSatisfied').className = 'displayBlock';
-    
-    for (i = 1; i <= numCallTypes; i++) { 
-      document.getElementById('callTypeDiv' + i).remove(); 
-    }
-
-    var divs = document.getElementsByClassName('callTypeDivs');
-    for (i = 0; i < divs.length; i++) {
-      var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
-      for (y = 0; y < blocks.length; y++) {
-        var inputs = blocks.item(y).getElementsByTagName('input');
-        var selects = blocks.item(y).getElementsByTagName('select');
-        for (x = 0; x < inputs.length; x++) {
-          //console.log(inputs.item(x).value);
-          inputs.item(x).value = '';
-          inputs.item(x).checked = false;
-        }
-        for (x = 0; x < selects.length; x++) {
-          selects.item(x).value = '';
-        }
-      }
-    }
-    numCallTypes = 0;
-    callTypeSel();
+    clearCallTypes();
   }
 
   // Collects the information from the fields, combines them into an output string, and sends to the clipboard
@@ -1423,7 +1478,6 @@
     var TINCHK = document.getElementById('TIN').checked;
     var MBRCHK = document.getElementById('Member').checked;
     var PROVCHK = document.getElementById('Provider').checked;
-    var CALLTYPE = document.getElementById('callTypeSelectMain').value;
     var MBRSAT = document.getElementById('mbrSatisfied').checked;
     var GOFF = document.getElementById('grievanceOffered').checked;
     var GFILED = document.getElementById('grievanceFiled').checked;
@@ -1439,15 +1493,40 @@
     if (CNFADD == true) { outputText = outputText.concat('Confirmed Address on file / '); }
     else if (outputText !== '') { outputText = outputText.concat('Unable to confirm address on file / '); }
 
-    if (CALLTYPE !== '') {
-      for (i = 0; i <= numCallTypes; i++) {
-        outputText = outputText.concat(document.getElementById('callTypeSelect' + i).value + ' / ');
+    if (document.getElementById('callTypeSelect' + callTypeArray[0]).value !== '') {
+      for (i = 0; i <= callTypeArray.length-1; i++) {
+        outputText = outputText.concat(document.getElementById('callTypeSelect' + callTypeArray[i]).value + ' / ');
         for (y = 0; y < 5; y++) {
-          if (i == 0) {
-            outputText = outputText.concat(document.getElementById('callTypeInput' + y).value);
-          } else { outputText = outputText.concat(document.getElementById('callTypeInput' + y + i).value); }
+          switch (y) {
+            
+            // auth status
+            case 0:
+              outputText += 'adv auth for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value; // approved code 
+              outputText += ' was ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value; // auth status
+              outputText += ' for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value; // dates approved 
+              outputText += ' / adv original request was for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / '; // dates requested
+              outputText += 'adv auth approved for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' units, ';// units approved 
+              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units were requested, ';// units requested 
+              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units have been used / ';// units used 
+              outputText += 'adv auth number is ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';// pa number 
+              outputText += 'adv auth created on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ', ';// date approved 
+              outputText += 'modified on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value+ ' / ';// date modified 
+              outputText += 'Other information advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';// other info 
+              break;
+
+            // benefits/elig 
+            case 1:
+              break;
+            case 2:
+              break;
+            case 3:
+              break;
+            case 4:
+              break;
+            case 5:
+              break;
+          }
         }
-        outputText = outputText.concat(' / ');
       }
     }
 

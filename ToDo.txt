@@ -1,4 +1,4 @@
-Initial test 
+1.0
 
 [x] redo callTypeSel() 
 [x] fix classname conflicts in entire code
@@ -8,7 +8,7 @@ Initial test
 [x] set clearall for clones
 [x]  get values from all clones
 [x] eligibility and claim information both point to claim information in dropdowns
-[]  update information fields to accept pastedata from flexcare
+[1.1]  update information fields to accept pastedata from flexcare
 [x]  format information fields properly
 [x]  update information fields to accept proper data for each calltype 
     [x]  authorization
@@ -17,8 +17,10 @@ Initial test
     [x]  eligibility
     [x]  referrals
 
+Set for release 12/30/20
+
 -------------------------------------------------------------------------------------------
-Redone Information Fields 
+1.1
 
 [x] fix naming scheme for all div, block and input 
   [x] naming scheme numcalltypes-blocknum-index
@@ -39,42 +41,55 @@ Redone Information Fields
         Enter in mulitple call types 
   [WIP] benefits/eligibility
     [x] Eligibility page paste
-    [] Demographic page paste
-    [WIP] Benefit page paste
-      [] Add Additional Info Row 
-    [WIP] CopPay Page Paste
+    [WIP] Demographic page paste
+      [] Add to member fields from demos
+    [x] Benefit page paste
+      [x] Add Additional Info Row  
+    [x] CopPay Page Paste
       [x] Accept Multiple Copay Lines
-    [WIP] Accept Deductible Paste
+    [x] Accept Deductible Paste
       [] Accept OOP Max Paste
     [x] utilization page paste 
         Need to only select the total line 
-    [] payment for claim paste 
   [WIP] claim information
     [x] value codes
+      [x] Create Fields
+      [x] Logic
       [] demo info
     [x] rendering prov 
+      [x] Create Fields
+      [x] Logic
       [x] demo info
     [x] ticket number 
+      [x] Create Fields
+      [x] Logic
     [] COB amount 
       [] demo info
-    [] waiver information 
-      [] demo info
+      [] Create Fields
+      [] Logic
+    [] waiver information (claim Type)
+      [x] demo info
+      [x] Create Fields
+      [] Logic
+    [] Payment info
+      [x] demo info
+      [] Create Fields
+      [] Logic
   [R] referrals
       Must be typed manually as it is done in web 
-  [WIP] Precert Calls
+  [x] Precert Calls
     [x] Create Call Type
     [x] Add in Needed Rows for this calltype
     [] (opt) add in logic for callflow 
-  [WIP] Crisis Calls 
+  [x] Crisis Calls 
     [x] create call type
     [x] add in needed rows
- 
+
 [x] ceUpdate() for toggleing open and closed related fields 
 [] (OPT) implement try catch for all functions to avoid crashing 
-[] clear call types selection only and leave them alone 
+[x] clear call types selection only and leave them alone 
 [] Automatic naming on load? 
+[] tooltips on mouseover 
+[] open in new window 
 
-
-to follow up with eli
-  waiver information where do we want it 
-  where do we want value codes
+Current Task: Get Copying working again & scaleable 
