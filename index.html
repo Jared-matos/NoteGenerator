@@ -143,7 +143,7 @@
     <!--Member Specific situations-->
     <div class="displayNone" id="mbrEnd">
       <div class="tableRow">
-        <span>Member Satasfied?</span>
+        <span>Member Satisfied?</span>
         <input type="checkbox" id="mbrSatasfied" onclick="msCheck()" />
       </div>
       <div class="displayBlock" id="mbrNSatasfied">
@@ -309,11 +309,17 @@
       document.getElementById("mbrNSatasfied").className = "displayBlock";
 
 
-      console.log(callTypeArray);
       while(callTypeArray.length !== 1) {
-        console.log(callTypeArray.length-1);
         document.getElementById("callTypeDiv"+callTypeArray[callTypeArray.length-1]).remove();
         callTypeArray.splice(callTypeArray.length-1,1);
+      }
+      document.getElementById("callTypeSelect" + callTypeArray[0]).value = '';
+      for (y = 0; y <= 4; y++) {
+        if (callTypeArray[0] == 0) {
+          document.getElementById("callTypeInput" + y).value = '';
+        } else {
+          document.getElementById("callTypeInput" + y + callTypeArray[0]).value = '';
+        }
       }
       callTypeSel();
     }
@@ -332,7 +338,6 @@
       var TINCHK = document.getElementById("TIN").checked;
       var MBRCHK = document.getElementById("Member").checked;
       var PROVCHK = document.getElementById("Provider").checked;
-      //var CALLTYPE = document.getElementById("callTypeSelect0").value;
       var MBRSAT = document.getElementById("mbrSatasfied").checked;
       var GOFF = document.getElementById("grievanceOffered").checked;
       var GFILED = document.getElementById("grievanceFiled").checked;
@@ -348,20 +353,24 @@
       if (CNFADD == true) {outputText = outputText.concat("Confirmed Address on file / ");} 
       else if (outputText !== "") {outputText = outputText.concat("Unable to confirm address on file / ");}
 
-      if(CALLTYPE !== "") {
-        for(i = 0; i <= numCallTypes; i++) {
-          outputText = outputText.concat(document.getElementById("callTypeSelect"+i).value + " / ");
-          for(y = 0; y < 5; y++) {
-            if(i==0) {outputText = outputText.concat(document.getElementById("callTypeInput"+y).value);
-            } else { outputText = outputText.concat(document.getElementById("callTypeInput"+y+i).value);}
+      if(document.getElementById('callTypeSelect'+callTypeArray[0]).value !== '') {
+        for(i = 0; i < callTypeArray.length; i++) {
+          console.log(i);
+          outputText = outputText.concat('Reason for call: '+document.getElementById("callTypeSelect"+callTypeArray[i]).value + " / ");
+          for(y = 0; y <= 4; y++) {
+            if(callTypeArray[i]==0) {
+              outputText = outputText.concat(document.getElementById("callTypeInput"+y).value);
+            } else { 
+              outputText = outputText.concat(document.getElementById("callTypeInput"+y+callTypeArray[i]).value);
+            }
           }
           outputText = outputText.concat(" / ");
         } 
       }
 
       if (MBRCHK == true) {
-        if (MBRSAT == true) {outputText = outputText.concat("Member satasfied");} 
-        else if (outputText !== "") {outputText = outputText.concat("Member unsatasfied / ");
+        if (MBRSAT == true) {outputText = outputText.concat("Member satisfied");} 
+        else if (outputText !== "") {outputText = outputText.concat("Member unsatisfied / ");
           if (GOFF == true) {outputText = outputText.concat("Grievance was offered / ");}
           else if (outputText !== "") {outputText = outputText.concat("Grievance was not offered / ");}
           if (GFILED == true) {outputText = outputText.concat("Grievance was filed");}
