@@ -1501,21 +1501,88 @@
             
             // auth status
             case 0:
-              outputText += 'adv auth for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value; // approved code 
-              outputText += ' was ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value; // auth status
-              outputText += ' for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value; // dates approved 
-              outputText += ' / adv original request was for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / '; // dates requested
-              outputText += 'adv auth approved for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' units, ';// units approved 
-              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units were requested, ';// units requested 
-              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units have been used / ';// units used 
-              outputText += 'adv auth number is ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';// pa number 
-              outputText += 'adv auth created on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ', ';// date approved 
-              outputText += 'modified on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value+ ' / ';// date modified 
-              outputText += 'Other information advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';// other info 
+              // auth status
+              if (document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value !== '') {
+                outputText += 'adv authorization was ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value + ' / ';
+              }
+
+              // approved code 
+              if(document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+                outputText += 'adv auth is for rev/proc code ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              } 
+
+              // dates approved
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+                outputText += 'adv auth is for DOS ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+              }
+
+              // dates requested
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
+                outputText += 'adv original request was for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+              }
+
+              // units approved 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
+                outputText += 'adv auth approved for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' units / ';
+              }
+
+              // units requested 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
+                outputText += 'adv ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units were requested / ';
+              }
+
+              // units used 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
+                outputText += 'adv ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units have been used / ';
+              }
+
+              // pa number 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value !== '') {
+                outputText += 'adv auth number is ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';
+              }
+
+              // date approved 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value !== '') {
+                outputText += 'adv auth created on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ' / ';
+              }
+
+              // date modified 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value !== '') {
+                outputText += 'adv auth modified on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value + ' / ';
+              }
+
+              // other info 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value !== '') {
+                outputText += 'Other information advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';
+              }
               break;
 
             // benefits/elig 
-            case 1:
+            case 1: // WIP 
+              // Member Eligible Dates
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+                outputText += 'adv authorization was ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              }
+
+              // Benefit information quoted
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+                outputText += 'adv authorization was ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              }
+
+              // Copay information quoted
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+                outputText += 'adv authorization was ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              }
+
+              // utilization quoted
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+                outputText += 'adv authorization was ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              }
+
+              // other info
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+                outputText += 'adv authorization was ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              }
               break;
             case 2:
               break;
