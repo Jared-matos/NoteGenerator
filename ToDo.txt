@@ -34,6 +34,8 @@ Set for release 12/30/20
     [x] clearall to clear all fields in table 
   [] set clone data pull in copytoclipboard
 
+[x] Copying for all fields 
+
 [WIP] create paste data parse for all calltype
   [x] existing authorizations
     [x] get working for clones also
@@ -73,7 +75,7 @@ Set for release 12/30/20
       [] Logic
     [] Payment info
       [x] demo info
-      [] Create Fields
+      [x] Create Fields
       [] Logic
   [R] referrals
       Must be typed manually as it is done in web 
@@ -91,5 +93,3 @@ Set for release 12/30/20
 [] Automatic naming on load? 
 [] tooltips on mouseover 
 [] open in new window 
-
-Current Task: Get Copying working again & scaleable 
