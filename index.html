@@ -29,7 +29,7 @@
     display: table-cell;
     font-family: calibri;
     size: 12pt;
-    width: 200px;
+    width: 180px;
     vertical-align: middle;
   }
   #tDiv input[type='text'] {
@@ -47,7 +47,7 @@
   }
   #tDiv button {
     max-height: 25px;
-    min-width: 0px;
+    min-width: 15px;
     padding: 2px 2px 2px 2px;
     margin-left: 1px;
   }
@@ -1545,297 +1545,300 @@
     if (document.getElementById('callTypeSelect' + callTypeArray[0]).value !== '') {
       for (i = 0; i <= callTypeArray.length-1; i++) {
         outputText = outputText.concat(document.getElementById('callTypeSelect' + callTypeArray[i]).value + ' / ');
-        for (y = 0; y <= 5; y++) {
-          switch (y) {
-            
+        switch (document.getElementById('callTypeSelect' + callTypeArray[i]).value) {
+          
+          // currently working on changing how this method works
+          
+          // auth status
+          case 'Authorization Status':
+
+          console.log('auth status confirmed');
             // auth status
-            case 0:
-              // auth status
-              if (document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'Advised authorization was ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value + ' / ';
-              }
+            if (document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'Advised authorization was ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value + ' / ';
+            }
 
-              // approved code 
-              if(document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'Advised auth is for rev/proc code ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
-              } 
+            // approved code 
+            if(document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'Advised auth is for rev/proc code ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+            } 
 
-              // dates approved
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
-                outputText += 'Advised auth is for DOS ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
-              }
+            // dates approved
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+              outputText += 'Advised auth is for DOS ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+            }
 
-              // dates requested
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
-                outputText += 'Advised original request was for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
-              }
+            // dates requested
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
+              outputText += 'Advised original request was for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+            }
 
-              // units approved 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
-                outputText += 'Advised auth approved for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' units / ';
-              }
+            // units approved 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
+              outputText += 'Advised auth approved for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' units / ';
+            }
 
-              // units requested 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
-                outputText += 'Advised ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units were requested / ';
-              }
+            // units requested 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
+              outputText += 'Advised ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units were requested / ';
+            }
 
-              // units used 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
-                outputText += 'Advised ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units have been used / ';
-              }
+            // units used 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
+              outputText += 'Advised ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units have been used / ';
+            }
 
-              // pa number 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value !== '') {
-                outputText += 'Advised auth number is ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';
-              }
+            // pa number 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value !== '') {
+              outputText += 'Advised auth number is ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';
+            }
 
-              // date approved 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value !== '') {
-                outputText += 'Advised auth created on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ' / ';
-              }
+            // date approved 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value !== '') {
+              outputText += 'Advised auth created on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ' / ';
+            }
 
-              // date modified 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value !== '') {
-                outputText += 'Advised auth modified on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value + ' / ';
-              }
+            // date modified 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value !== '') {
+              outputText += 'Advised auth modified on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value + ' / ';
+            }
 
-              // other info 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value !== '') {
-                outputText += 'Other information advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';
-              }
-              break;
+            // other info 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value !== '') {
+              outputText += 'Other information advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';
+            }
+            break;
 
-            // benefits/elig 
-            case 1:
-              // Member Eligible Dates
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'Advised Member eligible for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
-              }
+          // benefits/elig 
+          case 1:
+            // Member Eligible Dates
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'Advised Member eligible for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+            }
 
-              // Benefit information quoted
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
-                outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
-              }
+            // Benefit information quoted
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+            }
 
-              // Copay information quoted
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
-                outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
-              }
+            // Copay information quoted
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
+              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+            }
 
-              // utilization quoted
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
-                outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
-              }
+            // utilization quoted
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
+              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
+            }
 
-              // other info
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
-                outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' / ';
-              }
-              break;
+            // other info
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
+              outputText += document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' / ';
+            }
+            break;
 
-            // Claim information
-            case 2:
-              /*if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'Claim Type: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
-              }*/
+          // Claim information
+          case 2:
+            /*if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'Claim Type: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+            }*/
 
-              // dos 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'DOS: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
-              }
+            // dos 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'DOS: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+            }
 
-              // proc code billed 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
-                outputText += 'Procedure code billed: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
-              }
+            // proc code billed 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+              outputText += 'Procedure code billed: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+            }
 
-              // recieved date 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
-                outputText += 'Advised claim recieved on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
-              }
+            // recieved date 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
+              outputText += 'Advised claim recieved on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+            }
 
-              // processed date 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
-                outputText += 'Advised claim processed on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
-              }
+            // processed date 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
+              outputText += 'Advised claim processed on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
+            }
 
-              // charged units 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
-                outputText += 'Advised charged for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units / ';
-              }
+            // charged units 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
+              outputText += 'Advised charged for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units / ';
+            }
 
-              // allowed units 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
-                outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units / ';
-              }
+            // allowed units 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
+              outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units / ';
+            }
 
-              // charged amount 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value !== '') {
-                outputText += 'Advised charged ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';
-              }
+            // charged amount 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value !== '') {
+              outputText += 'Advised charged ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';
+            }
 
-              // allowed units 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value !== '') {
-                outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ' / ';
-              }
+            // allowed units 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value !== '') {
+              outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ' / ';
+            }
 
-              // decision codes 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value !== '') {
-                outputText += 'Advised decision codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value + ' / ';
-              }
+            // decision codes 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value !== '') {
+              outputText += 'Advised decision codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value + ' / ';
+            }
 
-              // claim number 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' +9).value !== '') {
-                outputText += 'Advised claim number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';
-              }
+            // claim number 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' +9).value !== '') {
+              outputText += 'Advised claim number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';
+            }
 
-              // rendering provider 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value !== '') {
-                outputText += 'Advised rendering provider: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value + ' / ';
-              }
+            // rendering provider 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value !== '') {
+              outputText += 'Advised rendering provider: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value + ' / ';
+            }
 
-              // value codes
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value !== '') {
-                outputText += 'Advised value codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value + ' / ';
-              }
+            // value codes
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value !== '') {
+              outputText += 'Advised value codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value + ' / ';
+            }
 
-              // paid via 
-              if (document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'Advised paid via: ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value + ' / ';
-                
-                // check number 
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value !== '') {
-                  outputText += 'Advised check/transaction number is: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value + ' / ';
-                }
-
-                // bulk amount 
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value !== '') {
-                  outputText += 'Advised bulk amount: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value + ' / ';
-                }
-
-                // payment clear date 
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value !== '') {
-                  outputText += 'Advised payment cleared on: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value + ' / ';
-                }
-
-                // member responsibility 
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value !== '') {
-                  outputText += 'Advised member responsibility: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value + ' / ';
-                }
-
-                // cob amount 
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value !== '') {
-                  outputText += 'Advised COB payment: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value + ' / ';
-                }
-              }
-
-              // processed correctly 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 17).checked == false) {
-                outputText += 'Claim was not processed correctly / ';
-              } else {
-                outputText += 'Claim was processed correctly / ';
-              }
+            // paid via 
+            if (document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'Advised paid via: ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value + ' / ';
               
-              // CE called 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 18).checked == true) {
-                outputText += 'Claims Expert was called / ';
-
-                // CE spoken with
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 19).value !== '') {
-                  outputText += 'Writer spoke with ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 19).value + ' / ';
-                }
-
-                // CE Advised 
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value !== '') {
-                  outputText += 'Claims Expert advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value + ' / ';
-                }
-
-                // Ticket Number 
-                if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value !== '') {
-                outputText += 'Ticket Number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value + ' / ';
-                }
-              } else {
-                outputText += 'Claims Expert was not called / ';
-              }
-              
-              // other information advised 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value !== '') {
-                outputText += 'Other information Advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value + ' / ';
-              }
-              break;
-
-            // Crisis Calls
-            case 3:
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).checked == true) {
-                outputText += 'Member states in crisis, warm transferred to clinician / ';
-              }
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
-                outputText += 'Other information given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
-              }
-              break;
-
-            // Pre-Certification 
-            case 4:
-              // loc 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'Level of care: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              // check number 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value !== '') {
+                outputText += 'Advised check/transaction number is: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value + ' / ';
               }
 
-              // start date 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
-                outputText += 'Start date requested: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+              // bulk amount 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value !== '') {
+                outputText += 'Advised bulk amount: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value + ' / ';
               }
 
-              // referred to 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
-                outputText += 'Referred to: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+              // payment clear date 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value !== '') {
+                outputText += 'Advised payment cleared on: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value + ' / ';
               }
 
-              // other information given 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
-                outputText += 'Other information given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
-              }
-              break;
-
-            // referrals
-            case 5:
-              // type of refs 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
-                outputText += 'Type of referrals requested: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+              // member responsibility 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value !== '') {
+                outputText += 'Advised member responsibility: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value + ' / ';
               }
 
-              // method of refs 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
-                outputText += 'Method of referrals requested: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+              // cob amount 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value !== '') {
+                outputText += 'Advised COB payment: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value + ' / ';
+              }
+            }
+
+            // processed correctly 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 17).checked == false) {
+              outputText += 'Claim was not processed correctly / ';
+            } else {
+              outputText += 'Claim was processed correctly / ';
+            }
+            
+            // CE called 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 18).checked == true) {
+              outputText += 'Claims Expert was called / ';
+
+              // CE spoken with
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 19).value !== '') {
+                outputText += 'Writer spoke with ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 19).value + ' / ';
               }
 
-              // addresss 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
-                outputText += 'Email/phyisical address: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+              // CE Advised 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value !== '') {
+                outputText += 'Claims Expert advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value + ' / ';
               }
 
-              // refs given 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
-                outputText += 'Referrals given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
+              // Ticket Number 
+              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value !== '') {
+              outputText += 'Ticket Number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value + ' / ';
               }
+            } else {
+              outputText += 'Claims Expert was not called / ';
+            }
+            
+            // other information advised 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value !== '') {
+              outputText += 'Other information Advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value + ' / ';
+            }
+            break;
 
-              // sent to ms 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).checked == true) {
-                outputText += 'Sent to Member Service / ';
-              } else if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== ''){
-                outputText += 'Was not sent to Member Service / ';
-              }
+          // Crisis Calls
+          case 3:
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).checked == true) {
+              outputText += 'Member states in crisis, warm transferred to clinician / ';
+            }
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+              outputText += 'Other information given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+            }
+            break;
 
-              // other info 
-              if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
-                outputText += 'Other information given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' / ';
-              }
-              break;
-          }
+          // Pre-Certification 
+          case 4:
+            // loc 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'Level of care: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+            }
+
+            // start date 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+              outputText += 'Start date requested: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+            }
+
+            // referred to 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
+              outputText += 'Referred to: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+            }
+
+            // other information given 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
+              outputText += 'Other information given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
+            }
+            break;
+
+          // referrals
+          case 5:
+            // type of refs 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+              outputText += 'Type of referrals requested: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+            }
+
+            // method of refs 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+              outputText += 'Method of referrals requested: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+            }
+
+            // addresss 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
+              outputText += 'Email/phyisical address: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+            }
+
+            // refs given 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
+              outputText += 'Referrals given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
+            }
+
+            // sent to ms 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).checked == true) {
+              outputText += 'Sent to Member Service / ';
+            } else if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== ''){
+              outputText += 'Was not sent to Member Service / ';
+            }
+
+            // other info 
+            if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
+              outputText += 'Other information given: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' / ';
+            }
+            break;
         }
       }
     }
+    
 
     if (MBRCHK == true) {
       if (MBRSAT == true) { outputText = outputText.concat('Member satisfied'); }
