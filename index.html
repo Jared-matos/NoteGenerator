@@ -1546,13 +1546,8 @@
       for (i = 0; i <= callTypeArray.length-1; i++) {
         outputText = outputText.concat(document.getElementById('callTypeSelect' + callTypeArray[i]).value + ' / ');
         switch (document.getElementById('callTypeSelect' + callTypeArray[i]).value) {
-          
-          // currently working on changing how this method works
-          
-          // auth status
           case 'Authorization Status':
-
-          console.log('auth status confirmed');
+            var y = 0;
             // auth status
             if (document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value !== '') {
               outputText += 'Advised authorization was ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value + ' / ';
@@ -1609,8 +1604,8 @@
             }
             break;
 
-          // benefits/elig 
-          case 1:
+          case 'Benefit/Eligibility Information':
+            var y = 1;
             // Member Eligible Dates
             if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
               outputText += 'Advised Member eligible for dates ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
@@ -1637,8 +1632,8 @@
             }
             break;
 
-          // Claim information
-          case 2:
+          case 'Claim Information':
+            var y = 2;
             /*if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
               outputText += 'Claim Type: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
             }*/
@@ -1768,8 +1763,8 @@
             }
             break;
 
-          // Crisis Calls
-          case 3:
+          case 'Crisis Call':
+            var y = 3;
             if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).checked == true) {
               outputText += 'Member states in crisis, warm transferred to clinician / ';
             }
@@ -1779,7 +1774,8 @@
             break;
 
           // Pre-Certification 
-          case 4:
+          case 'Pre-Cert':
+            var y = 4;
             // loc 
             if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
               outputText += 'Level of care: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
@@ -1802,7 +1798,8 @@
             break;
 
           // referrals
-          case 5:
+          case 'Referral Request':
+            y = 5;
             // type of refs 
             if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
               outputText += 'Type of referrals requested: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';

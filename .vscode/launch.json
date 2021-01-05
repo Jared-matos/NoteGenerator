@@ -8,14 +8,14 @@
             "name": "Launch Edge",
             "request": "launch",
             "type": "pwa-msedge",
-            "file": "c:\\Users\\jared\\OneDrive\\Documents\\NoteGenerator\\index.html"
+            "file": "c:\\Users\\jared\\Documents\\NoteGenerator\\index.html"
         },
         
         {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
-            "file": "c:\\Users\\jared\\OneDrive\\Documents\\NoteGenerator\\index.html"
+            "file": "c:\\Users\\jared\\Documents\\NoteGenerator\\index.html"
         }
     ]
 }
