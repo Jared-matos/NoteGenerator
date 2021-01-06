@@ -1773,7 +1773,6 @@
             }
             break;
 
-          // Pre-Certification 
           case 'Pre-Cert':
             var y = 4;
             // loc 
@@ -1797,7 +1796,6 @@
             }
             break;
 
-          // referrals
           case 'Referral Request':
             y = 5;
             // type of refs 
@@ -1858,6 +1856,7 @@
     catch (err) { alert('Oops, unable to copy'); }
     document.getElementById('oText').style.display = 'none';
     console.log(outputText)
+    alert('Information copied to clipboard. Press CTRL+V to paste note into a text field.');
   }
 </script>
 
