@@ -93,6 +93,34 @@ CopayType	Copay Range	Copay Value	Network	ExcludeFromOOP	PostDeductible	DateFrom
 SA OP Default	Per Visit/Stay	0 (Dollars)				10/22/1999 12:00:00 AM	12/31/2029 12:00:00 AM	dneal	12/09/1999 03:52:55 PM	
 SA OP Default	Per Visit/Stay	0 (Dollars)				10/22/1999 12:00:00 AM	12/31/2029 12:00:00 AM	dneal	12/09/1999 03:52:55 PM	
 
+1/7/2021 12:11:19 PM
+Co-Pays
+CopayType	Copay Range	Copay Value	Network	ExcludeFromOOP	PostDeductible	DateFrom	DateTo	UserName	Date Updated	Description	
+Deductible IP Stay	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2014 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/05/2013 12:12:50 PM	100% deductible until limit met, then take copay
+Deductible Psych Testing	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:49:21 PM	Deductible
+Deductible ER	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:51:40 PM	Deductible
+Deductible IP MD Visit	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:50:41 PM	Deductible
+Deductible ECT	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:49:39 PM	Deductible
+Deductible Office Visit	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/04/2017 11:15:37 AM	Deductible
+Deductible CBHI	Per Visit/Stay	100 (Percentage)	Network	0	0	07/01/2019 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	05/15/2019 11:35:40 AM	Deductible
+Copay Psych Testing	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:10:24 PM	Copayment
+Copay ER	Per Visit/Stay	1750 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/09/2020 02:39:43 PM	Copay
+Copay IP MD Visit	Per Visit/Stay	2000 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:12:19 PM	Copay
+Copay CBHI	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:09:39 PM	Copayment
+Copay ECT	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:13:07 PM	Copayment
+Copay Office Visit	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:08:32 PM	Copayment
+Copay IP Stay	Per Visit/Stay	2000 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:11:33 PM	Copay
+
+
+OOP Paste
+1/7/2021 12:13:31 PM
+Out Of Pocket Expenses Limits
+Limit Type	Bucket	Value	DateFrom	DateTo	UserName	Date Updated	Date Added	RecID	
+OOP Individual $	In-Network Benefit	$7,000.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:16:35 PM	12/07/2020 01:16:35 PM	644346003
+OOP Family $	In-Network Benefit	$14,000.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:17:04 PM	12/07/2020 01:17:04 PM	644346005
+Deductible Individual $	In-Network Benefit	$3,600.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:15:01 PM	12/07/2020 01:15:01 PM	644345998
+Deductible Family $	In-Network Benefit	$7,200.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:15:45 PM	12/07/2020 01:15:45 PM	644346000
+
 
 ELIG PASTE
 
@@ -411,3 +439,4 @@ UTILIZATION PASTE
 Utilization of services
 Service Period	OP Visits	Copayed Visits	IE Visits	OP Allowed	IE Allowed	IP Days	IP Allowed	Other Allowed	OOP Expenses	Deductibles	Copays	Coinsurance	
 Total:	12	0	0	$1,234.56	$0.00	0	$0.00	$0.00	$0.00	$0.00	$0.00	$0.00
+
