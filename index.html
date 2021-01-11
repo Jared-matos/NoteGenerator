@@ -1,66 +1,41 @@
-<!--Remove heading information when importing to Sharepoint-->
-<!DOCTYPE html>
-<html lang="en">
+  <style>
+    .displayBlock {display: block;}
+    .tableRow {
+      display: table-row;
+      font-family: calibri;
+      size: 12pt;
+      height: 25px;
+    }
+    .displayNone{ display: none;}
+    .displayAsCell { display: table-cell;}
+    #tDiv span {
+      display: table-cell;
+      font-family: calibri;
+      size: 12pt;
+      width: 200px;
+      vertical-align: middle;
+    }
+    #tDiv input[type="text"] {
+      display: table-cell;
+      font-family: calibri;
+      size: 12pt;
+      width: 100%;
+    }
+    #tDiv {
+      height: 150px;
+      width: 380px;
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+    #tDiv button{
+      max-height: 25px;
+      min-width: 0px;
+      padding: 2px 2px 2px 2px;
+      margin-left: 1px;
+    }
+  </style>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Static Template</title>
-</head>
-
-<style>
-  .displayBlock {
-    display: block;
-  }
-
-  .tableRow {
-    display: table-row;
-    font-family: calibri;
-    size: 12pt;
-    height: 25px;
-  }
-
-  .displayNone {
-    display: none;
-  }
-
-  .displayAsCell {
-    display: table-cell;
-  }
-
-  #tDiv span {
-    display: table-cell;
-    font-family: calibri;
-    size: 12pt;
-    width: 200px;
-    vertical-align: middle;
-  }
-
-  #tDiv input[type="text"] {
-    display: table-cell;
-    font-family: calibri;
-    size: 12pt;
-    width: 100%;
-  }
-
-  #tDiv {
-    height: 150px;
-    width: 375px;
-    border-radius: 10px;
-    background-color: #f2f2f2;
-    padding: 10px;
-  }
-
-  #tDiv button {
-    max-height: 25px;
-    min-width: 0px;
-    padding: 2px 2px 2px 2px;
-    margin-left: 1px;
-  }
-</style>
-
-<body>
   <div id="tDiv">
     <!--Every call information-->
     <div class="tableRow">
@@ -113,17 +88,21 @@
       <span>Confirmed address on file?</span>
       <input type="checkbox" id="confirmedAddress" />
     </div>
-    <div class="displayBlock" id="callTypeDiv0" onchange="callTypeSel()">
+    <div class="displayBlock callTypeDivs" id="callTypeDiv0" onchange="callTypeSel()">
       <div class="tableRow" id="callTypeRow">
-        <span>Call Type</span>
-        <select id="callTypeSelect0" value="">
-          <option value=""></option>
-          <option value="Authorization Status">Authorization Status</option>
-          <option value="Benefit/Eligibility Information">Benefits/Eligibility</option>
-          <option value="Claim Information">Claim Information</option>
-          <option value="Referral Request">Referrals</option>
-        </select>
-        <button type="button" id="cloneCallTypeDivButton" onclick="cloneCallType()">+</button>
+
+          <span>Call Type</span>
+          <select id="callTypeSelect0" value="">
+            <option value=""></option>
+            <option value="Authorization Status">Authorization Status</option>
+            <option value="Benefit Information">Benefits</option>
+            <option value="Claim Information">Claim Information</option>
+            <option value="Eligibility">Eligibility Status</option>
+            <option value="Referral Request">Referrals</option>
+          </select>
+          <button type="button" id="cloneCallTypeDivButton" onclick="cloneCallType()">+</button>
+          <button type="button" id="removeCallTypeDivButton0" onclick="removeCallType(this)">x</button>
+
       </div>
 
       <!--Auth Status-->
@@ -169,24 +148,9 @@
       <!--Benefits/Eligibility-->
       <div class="displayNone callTypeHidden" id="callTypeBlock1">
         <div class="tableRow">
-          <span>PasteBox</span>
-          <textarea class="pasteBox" id="pasteBox1" rows=1 onchange="parseDataBenefits(this)"></textarea>
-        </div>
-        <div class="tableRow">
-          <span>Member Eligible Dates</span>
-          <input type="text" id="callTypeInput10" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Benefit information Quoted</span>
-          <input type="text" id="callTypeInput11" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Co-Pay Information Quoted</span>
-          <input type="text" id="callTypeInput12" autocomplete="off" list="autocompleteOff" />
-        </div>
-        <div class="tableRow">
-          <span>Utilization Quoted</span>
-          <input type="text" id="callTypeInput13" autocomplete="off" list="autocompleteOff" />
+          <span>Benefit information given</span>
+          <input type="text" id="callTypeInput1" autocomplete="off" list="autocompleteOff"/>
+
         </div>
       </div>
 
@@ -271,7 +235,7 @@
     <div class="displayNone" id="mbrEnd">
       <div class="tableRow">
         <span>Member Satisfied?</span>
-        <input type="checkbox" id="mbrSatisfied" onclick="msCheck()" />
+        <input type="checkbox" id="mbrSatasfied" onclick="msCheck()" />
       </div>
       <div class="displayBlock" id="mbrNSatisfied">
         <div class="tableRow">
@@ -299,7 +263,8 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">
     console.clear();
-    var numCallTypes = 0;
+    console.log('script run');
+    var callTypeArray = [0];
     changeHeight();
 
     /*function openNewWindow(){
@@ -310,27 +275,40 @@
       doc.write(divText);
       doc.close();
     }*/
+    
+    // removes the current call type of the button that has been selected 
+    function removeCallType(button) {
+      var callerNum = button.id.slice(23, button.id.length);
+      if (callTypeArray.length > 1) {
+        document.getElementById('callTypeDiv' + callerNum).remove();
+        var index = callTypeArray.indexOf(parseInt(callerNum));
+        callTypeArray.splice(index,1);
+      }
+      callTypeSel();
+    }
 
     // creates clones of the callType div and changes the names of the clones children
-    function cloneCallType() {
-      var parent = document.getElementById('callTypeDiv' + numCallTypes);
+    function cloneCallType(){
+      var parent = document.getElementById('callTypeDiv'+callTypeArray[0]);
       var clone = parent.cloneNode(true);
-      numCallTypes += 1;
-      clone.id = "callTypeDiv" + numCallTypes;
-      clone.getElementsByTagName('select')[0].id = "callTypeSelect" + numCallTypes;
+      callTypeArray.push(callTypeArray[callTypeArray.length-1]+1);
+      clone.id = "callTypeDiv" + callTypeArray[callTypeArray.length-1];
+      clone.getElementsByTagName('select')[0].id = "callTypeSelect" + callTypeArray[callTypeArray.length-1];
       clone.getElementsByTagName('select')[0].value = "";
-      for (i = 0; i < 4; i++) {
-        clone.getElementsByTagName('input')[i].id = "callTypeInput" + i + numCallTypes;
+      clone.getElementsByTagName('button')[1].id = "removeCallTypeDivButton" + callTypeArray[callTypeArray.length-1];
+      for(i = 0; i < 5; i++){
+        clone.getElementsByTagName('input')[i].id = "callTypeInput" + i + callTypeArray[callTypeArray.length-1];
         clone.getElementsByTagName('input')[i].value = "";
         var elements = clone.getElementsByClassName('callTypeHidden');
         if (elements.item(i) === null) {
           alert("Error Occured, Reloading page. Please save information");
           location.reload();
-        } else {
-          elements.item(i).id = "callTypeBlock" + i + numCallTypes;
+        }else { 
+          elements.item(i).id = "callTypeBlock" + i + callTypeArray[callTypeArray.length-1];
+          //console.log('Created:', elements.item(i).id);
         }
       }
-      parent.after(clone);
+      document.getElementById('callTypeDiv'+(callTypeArray[callTypeArray.length-1]-1)).after(clone);
       callTypeSel();
     }
 
@@ -378,59 +356,30 @@
 
     // goes through each selectBox and if it has a value changes the classname of the correct div to displayBlock setting all other children of selectbox classes as displayNone and callTypeHidden
     function callTypeSel() {
-      for (i = 0; i <= numCallTypes; i++) {
-        if (i !== 0) {
-          document.getElementById("callTypeBlock0" + i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock1" + i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock2" + i).className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock3" + i).className = "displayNone callTypeHidden";
-
-          switch (document.getElementById("callTypeSelect" + i).value) {
-
-            case "Authorization Status":
-              document.getElementById("callTypeBlock0" + i).className = "displayBlock callTypeHidden";
-              break;
-            case "Benefit Information":
-              document.getElementById("callTypeBlock1" + i).className = "displayBlock callTypeHidden";
-              break;
-            case "Claim Information":
-              document.getElementById("callTypeBlock2" + i).className = "displayBlock callTypeHidden";
-              break;
-            case "Eligibility":
-              document.getElementById("callTypeBlock3" + i).className = "displayBlock callTypeHidden";
-              break;
-            case "Referral Request":
-              document.getElementById("callTypeBlock4" + i).className = "displayBlock callTypeHidden";
-              break;
-            default:
-              break;
-          }
-        } else if (i == 0) {
-          document.getElementById("callTypeBlock0").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock1").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock2").className = "displayNone callTypeHidden";
-          document.getElementById("callTypeBlock3").className = "displayNone callTypeHidden";
-          
-          switch (document.getElementById("callTypeSelect0").value) {
-
-            case "Authorization Status":
-              document.getElementById("callTypeBlock0").className = "displayBlock callTypeHidden";
-              break;
-            case "Benefit Information":
-              document.getElementById("callTypeBlock1").className = "displayBlock callTypeHidden";
-              break;
-            case "Claim Information":
-              document.getElementById("callTypeBlock2").className = "displayBlock callTypeHidden";
-              break;
-            case "Eligibility":
-              document.getElementById("callTypeBlock3").className = "displayBlock callTypeHidden";
-              break;
-            case "Referral Request":
-              document.getElementById("callTypeBlock4").className = "displayBlock callTypeHidden";
-              break;
-            default:
-              break;
-          }
+      var divs = document.getElementsByClassName('callTypeDivs');
+      for (i = 0; i < divs.length; i++) {
+        var blocks = divs.item(i).getElementsByClassName('callTypeHidden');
+        for(y = 0; y < blocks.length; y++) {
+          blocks.item(y).className = 'displayNone callTypeHidden';
+        }
+        switch (divs.item(i).getElementsByTagName('select')[0].value) {
+          case 'Authorization Status':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(0).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Benefit Information':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(1).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Claim Information':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(2).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Eligibility':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(3).className = 'displayBlock callTypeHidden';
+            break;
+          case 'Referral Request':
+            divs.item(i).getElementsByClassName('callTypeHidden').item(4).className = 'displayBlock callTypeHidden';
+            break;
+          default:
+            break;
         }
       }
       changeHeight();
@@ -461,13 +410,25 @@
       document.getElementById("TIN").checked = false;
       document.getElementById("Member").checked = false;
       document.getElementById("Provider").checked = false;
-      document.getElementById("callTypeSelect0").value = "";
+      //document.getElementById("callTypeSelect0").value = "";
       document.getElementById("provInfoBlock").className = "displayNone";
       document.getElementById("mbrLine0").className = "displayNone";
       document.getElementById("mbrEnd").className = "displayNone";
-      document.getElementById("mbrNSatisfied").className = "displayBlock";
-      for (i = 1; i <= numCallTypes; i++) { document.getElementById("callTypeDiv" + i).remove(); }
-      numCallTypes = 0;
+      document.getElementById("mbrNSatasfied").className = "displayBlock";
+
+
+      while(callTypeArray.length !== 1) {
+        document.getElementById("callTypeDiv"+callTypeArray[callTypeArray.length-1]).remove();
+        callTypeArray.splice(callTypeArray.length-1,1);
+      }
+      document.getElementById("callTypeSelect" + callTypeArray[0]).value = '';
+      for (y = 0; y <= 4; y++) {
+        if (callTypeArray[0] == 0) {
+          document.getElementById("callTypeInput" + y).value = '';
+        } else {
+          document.getElementById("callTypeInput" + y + callTypeArray[0]).value = '';
+        }
+      }
       callTypeSel();
     }
 
@@ -485,42 +446,43 @@
       var TINCHK = document.getElementById("TIN").checked;
       var MBRCHK = document.getElementById("Member").checked;
       var PROVCHK = document.getElementById("Provider").checked;
-      var CALLTYPE = document.getElementById("callTypeSelect0").value;
-      var MBRSAT = document.getElementById("mbrSatisfied").checked;
+      var MBRSAT = document.getElementById("mbrSatasfied").checked;
       var GOFF = document.getElementById("grievanceOffered").checked;
       var GFILED = document.getElementById("grievanceFiled").checked;
       var outputText = "";
 
       // combining all the data into a single string, any empty required fields are added to error text
-      if (CALLERNAME !== "") { outputText = outputText.concat(CALLERNAME, " / "); }
-      if (CALLERREL !== "" && MBRCHK == true) { outputText = outputText.concat(CALLERREL, " / "); }
-      if (CBNUM !== "") { outputText = outputText.concat("CB# ", CBNUM, " / "); }
-      if (NPICHK == true && PROVCHK == true) { outputText = outputText.concat("NPI: ", PROVID); }
-      if (TINCHK == true && PROVCHK == true) { outputText = outputText.concat("TIN: ", PROVID); }
-      if (SITEADD !== "" && PROVCHK == true) { outputText = outputText.concat(" - ", SITEADD, " / "); }
-      if (CNFADD == true) { outputText = outputText.concat("Confirmed Address on file / "); }
-      else if (outputText !== "") { outputText = outputText.concat("Unable to confirm address on file / "); }
+      if (CALLERNAME !== "") {outputText = outputText.concat(CALLERNAME," / ");}
+      if (CALLERREL !== "" && MBRCHK == true) {outputText = outputText.concat(CALLERREL," / ");}
+      if (CBNUM !== "") {outputText = outputText.concat("CB# ",CBNUM," / ");}
+      if (NPICHK == true && PROVCHK == true) {outputText = outputText.concat("NPI: ",PROVID);}
+      if (TINCHK == true && PROVCHK == true) {outputText = outputText.concat("TIN: ",PROVID);}
+      if (SITEADD !== "" && PROVCHK == true) {outputText = outputText.concat(" - ",SITEADD," / ");}
+      if (CNFADD == true) {outputText = outputText.concat("Confirmed Address on file / ");} 
+      else if (outputText !== "") {outputText = outputText.concat("Unable to confirm address on file / ");}
 
-      if (CALLTYPE !== "") {
-        for (i = 0; i <= numCallTypes; i++) {
-          outputText = outputText.concat(document.getElementById("callTypeSelect" + i).value + " / ");
-          for (y = 0; y < 5; y++) {
-            if (i == 0) {
-              outputText = outputText.concat(document.getElementById("callTypeInput" + y).value);
-            } else { outputText = outputText.concat(document.getElementById("callTypeInput" + y + i).value); }
+      if(document.getElementById('callTypeSelect'+callTypeArray[0]).value !== '') {
+        for(i = 0; i < callTypeArray.length; i++) {
+          console.log(i);
+          outputText = outputText.concat('Reason for call: '+document.getElementById("callTypeSelect"+callTypeArray[i]).value + " / ");
+          for(y = 0; y <= 4; y++) {
+            if(callTypeArray[i]==0) {
+              outputText = outputText.concat(document.getElementById("callTypeInput"+y).value);
+            } else { 
+              outputText = outputText.concat(document.getElementById("callTypeInput"+y+callTypeArray[i]).value);
+            }
           }
           outputText = outputText.concat(" / ");
         }
       }
 
       if (MBRCHK == true) {
-        if (MBRSAT == true) { outputText = outputText.concat("Member satisfied"); }
-        else if (outputText !== "") {
-          outputText = outputText.concat("Member unsatsfied / ");
-          if (GOFF == true) { outputText = outputText.concat("Grievance was offered / "); }
-          else if (outputText !== "") { outputText = outputText.concat("Grievance was not offered / "); }
-          if (GFILED == true) { outputText = outputText.concat("Grievance was filed"); }
-          else if (outputText !== "") { outputText = outputText.concat("Grievance was not filed"); }
+        if (MBRSAT == true) {outputText = outputText.concat("Member satisfied");} 
+        else if (outputText !== "") {outputText = outputText.concat("Member unsatisfied / ");
+          if (GOFF == true) {outputText = outputText.concat("Grievance was offered / ");}
+          else if (outputText !== "") {outputText = outputText.concat("Grievance was not offered / ");}
+          if (GFILED == true) {outputText = outputText.concat("Grievance was filed");}
+          else if (outputText !== "") {outputText = outputText.concat("Grievance was not filed");}
         }
       }
       // displays the output text box momentarily and fills it with the output text
@@ -537,8 +499,3 @@
     }
   </script>
   <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
-
-  <!--Remove closing tags when importing to SharePoint-->
-</body>
-
-</html>
