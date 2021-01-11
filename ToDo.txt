@@ -32,7 +32,7 @@ Set for release 12/30/20
   [x] set clone searching in callTypeSel
   [x] set clone removal in clearall
     [x] clearall to clear all fields in table 
-  [] set clone data pull in copytoclipboard
+  [x] set clone data pull in copytoclipboard
 
 [x] Copying for all fields 
 

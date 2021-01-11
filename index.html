@@ -1,14 +1,3 @@
-<!--Remove heading information when importing to Sharepoint
-<!DOCTYPE html>
-<html lang='en'>
-
-<head>
-  <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-  <meta http-equiv='X-UA-Compatible' content='ie=edge' />
-  <title>Static Template</title>
-</head>-->
-
 <style>
   .displayBlock {
     display: block;
@@ -1357,7 +1346,7 @@
           }
 
           // Payments Check - non working remove if releasing this version 
-          if (y == 2 && pasteDataARR[1] == 'Payments') {
+         /* if (y == 2 && pasteDataARR[1] == 'Payments') {
             for (x = pasteDataARR.length; x >= 0; x--) {
               if (pasteDataARR[x] == '') {
                 pasteDataARR.pop();
@@ -1382,7 +1371,7 @@
             
             for (z = 0; z < paymentPaste.length; z++) {
               console.log(legend[z], paymentPaste[z]);
-              /*if (z % (paymentPaste.length / rows) == 0) {
+              if (z % (paymentPaste.length / rows) == 0) {
                 document.getElementById('callTypeInput' + divNum + '-1-2').value += 'adv ';
                 currRow += 1;
               }
@@ -1859,6 +1848,4 @@
     alert('Information copied to clipboard. Press CTRL+V to paste note into a text field.');
   }
 </script>
-
 <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
-<!--Remove all text above style when importing to SharePoint-->
