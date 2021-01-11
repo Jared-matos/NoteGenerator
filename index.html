@@ -1,46 +1,4 @@
-<style>
-  .displayBlock {
-    display: block;
-  }
-  .tableRow {
-    display: table-row;
-    font-family: calibri;
-    size: 12pt;
-    height: 25px;
-  }
-  .displayNone {
-    display: none;
-  }
-  .displayAsCell {
-    display: table-cell;
-  }
-  #tDiv span {
-    display: table-cell;
-    font-family: calibri;
-    size: 12pt;
-    width: 180px;
-    vertical-align: middle;
-  }
-  #tDiv input[type='text'] {
-    display: table-cell;
-    font-family: calibri;
-    size: 12pt;
-    width: 100%;
-  }
-  #tDiv {
-    height: 150px;
-    width: 380px;
-    border-radius: 10px;
-    background-color: #f2f2f2;
-    padding: 10px;
-  }
-  #tDiv button {
-    max-height: 25px;
-    min-width: 15px;
-    padding: 2px 2px 2px 2px;
-    margin-left: 1px;
-  }
-</style>
+<link rel="stylesheet" href="tDivStyle.css">
 
 <div id='tDiv'>
   <!--Every call information-->
@@ -48,9 +6,9 @@
     <div class='tableRow'>
       <span>Caller Type</span>
       <div class='displayAsCell'>
-        <input type='radio' id='Member' name='MP' onclick='mpRadio()' value='Member'>
+        <input type='radio' id='Member' name='MP' onclick='mpRadio()' value='Member' />
         <label>Member</label>
-        <input type='radio' id='Provider' name='MP' onclick='mpRadio()' value='Provider'>
+        <input type='radio' id='Provider' name='MP' onclick='mpRadio()' value='Provider' />
         <label>Provider</label>
       </div>
     </div>
@@ -120,7 +78,7 @@
       </div>
       <div class='tableRow'>
         <span>Auth status</span>
-        <select id='callTypeSelect0-0-0' value=''/>
+        <select id='callTypeSelect0-0-0' value=''>
           <option value=''></option>
           <option value='Approved'>Approved</option>
           <option value='Pended'>Pended</option>
@@ -259,7 +217,7 @@
       <!-- Payment Info Block -->
       <div class='tableRow'>
         <span>Paid Via</span>
-        <select id='callTypeSelect0-2-0' value='' onchange='paidUpdate()'/>
+        <select id='callTypeSelect0-2-0' value='' onchange='paidUpdate()'>
           <option value=''></option>
           <option value='ACH/EFT'>ACH/EFT</option>
           <option value='CHK'>CHK</option>
@@ -405,7 +363,7 @@
     <button class='tooltip' type='button' onclick='copyClipboard()'>Copy to Clipboard</button>
     <button type='button' onclick='clearAll()'>Clear All</button>
     <button type='button' onclick='clearCallTypes()'>Clear CallTypes</button>
-    <!--<button type='button' onclick='openNewWindow()'>New Window</button>-->
+    <button type='button' onclick='openNewWindow()'>New Window</button>
   </div>
 </div>
 
@@ -417,14 +375,16 @@
   var callTypeArray = [0];
   changeHeight();
 
-  /*function openNewWindow(){
-    var divText = document.getElementById('tDiv').outerHTML;
-    var myWindow = window.open('', '', 'width=200,height=100');
+  function openNewWindow(){
+    var divText = document.body.innerHTML;
+    var myWindow = window.open('', '', 'width=425,height=600');
     var doc = myWindow.document;
     doc.open();
+    doc.write('<link rel="stylesheet" href="tDivStyle.css">');
+    doc.title = 'Note Generator';
     doc.write(divText);
     doc.close();
-  }*/
+  }
 
   // creates clones of the callType div and changes the names of the clones children
   function cloneCallType() {
@@ -1377,9 +1337,9 @@
               }
               switch (z % (paymentPaste.length / rows)) {
                 
-              }*/
+              }
             }
-          }
+          }*/
 
           // Cleanup
           currBlock.getElementsByClassName('pasteBox')[0].value = '';
