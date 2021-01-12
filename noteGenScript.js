@@ -8,16 +8,17 @@ function openNewWindow(){
     var myWindow = window.open('', '', 'width=425,height=600');
     var doc = myWindow.document;
     doc.open();
-    doc.write('<link rel="stylesheet" href="tDivStyle.css">');
     doc.title = 'Note Generator';
+    doc.write('<link rel="stylesheet" href="tDivStyle.css">');
+    doc.write('<div id="tDiv">');
     doc.write(divText);
+    doc.write('</div>');
     doc.write("<script src='https://code.jquery.com/jquery-1.12.4.js'></script><script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script><script src='http://code.jquery.com/jquery-1.11.0.min.js'></script><script src='noteGenScript.js'></script>");
     doc.close();
 }
 
 // creates clones of the callType div and changes the names of the clones children
 function cloneCallType() {
-
     // copies first call type in the array, adds the new clone into end of array
     var parent = document.getElementById('callTypeDiv' + callTypeArray[0]);
     var clone = parent.cloneNode(true);

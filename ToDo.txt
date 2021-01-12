@@ -92,4 +92,4 @@ Set for release 12/30/20
 [x] clear call types selection only and leave them alone 
 [] Automatic naming on load? 
 [] tooltips on mouseover 
-[] open in new window 
+[x] open in new window 
