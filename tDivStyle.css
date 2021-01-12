@@ -1,41 +1,65 @@
 .displayBlock {
-display: block;
+    display: block;
 }
 .tableRow {
-display: table-row;
-font-family: calibri;
-size: 12pt;
-height: 25px;
+    display: table-row;
+    font-family: calibri;
+    size: 12pt;
+    height: 25px;
 }
 .displayNone {
-display: none;
+    display: none;
 }
 .displayAsCell {
-display: table-cell;
+    display: table-cell;
 }
 #tDiv span {
-display: table-cell;
-font-family: calibri;
-size: 12pt;
-width: 180px;
-vertical-align: middle;
+    display: table-cell;
+    font-family: calibri;
+    size: 12pt;
+    width: 180px;
+    vertical-align: middle;
 }
 #tDiv input[type='text'] {
-display: table-cell;
-font-family: calibri;
-size: 12pt;
-width: 100%;
+    display: table-cell;
+    font-family: calibri;
+    size: 12pt;
+    width: 100%;
 }
 #tDiv {
-height: 150px;
-width: 380px;
-border-radius: 10px;
-background-color: #f2f2f2;
-padding: 10px;
+    height: 150px;
+    width: 380px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 10px;
 }
 #tDiv button {
-max-height: 25px;
-min-width: 15px;
-padding: 2px 2px 2px 2px;
-margin-left: 1px;
+    max-height: 25px;
+    min-width: 15px;
+    padding: 2px 2px 2px 2px;
+    margin-left: 1px;
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgb(102, 102, 102);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .25s linear 2s;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }

@@ -8,12 +8,20 @@ function openNewWindow(){
     var myWindow = window.open('', '', 'width=425,height=600');
     var doc = myWindow.document;
     doc.open();
-    doc.title = 'Note Generator';
-    doc.write('<link rel="stylesheet" href="tDivStyle.css">');
-    doc.write('<div id="tDiv">');
+    doc.write('<!DOCTYPE html>\
+        <html lang="en">\
+        <head>\
+        <meta charset="UTF-8">\
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">\
+        <title>Note Generator</title>\
+        </head>\
+        <link rel="stylesheet" href="tDivStyle.css">\
+        <div id="tDiv">');
     doc.write(divText);
-    doc.write('</div>');
-    doc.write("<script src='https://code.jquery.com/jquery-1.12.4.js'></script><script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script><script src='http://code.jquery.com/jquery-1.11.0.min.js'></script><script src='noteGenScript.js'></script>");
+    doc.write("</div>\
+    <script src='https://code.jquery.com/jquery-1.12.4.js'></script>\
+    <script src='noteGenScript.js'></script>");
     doc.close();
 }
 

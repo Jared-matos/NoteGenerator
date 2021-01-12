@@ -91,5 +91,5 @@ Set for release 12/30/20
 [] (OPT) implement try catch for all functions to avoid crashing 
 [x] clear call types selection only and leave them alone 
 [] Automatic naming on load? 
-[] tooltips on mouseover 
+[x] tooltips on mouseover 
 [x] open in new window 

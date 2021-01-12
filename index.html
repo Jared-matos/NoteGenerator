@@ -66,8 +66,14 @@
         <option value='Pre-Cert'>Pre-Certification</option>
         <option value='Referral Request'>Referrals</option>
       </select>
-      <button type='button' id='cloneCallTypeDivButton' onclick='cloneCallType()'>+</button>
-      <button type="button" id="removeCallTypeDivButton0" onclick="removeCallType(this)">x</button>
+      <div class='tooltip'>
+        <button type='button' id='cloneCallTypeDivButton' onclick='cloneCallType()'>+</button>
+        <span class='tooltipText'>Create calltype</span>
+      </div>
+      <div class='tooltip'>
+        <button type="button" id="removeCallTypeDivButton0" onclick="removeCallType(this)">x</button>
+        <span class='tooltipText'>Remove calltype</span>
+      </div>
     </div>
 
     <!--Auth Status-->
@@ -360,15 +366,25 @@
   <!--Button at bottom of form -->
   <div class='tableRow'>
     <textarea readonly type='text' class='displayNone' id='oText'></textarea>
-    <button class='tooltip' type='button' onclick='copyClipboard()'>Copy to Clipboard</button>
-    <button type='button' onclick='clearAll()'>Clear All</button>
-    <button type='button' onclick='clearCallTypes()'>Clear CallTypes</button>
-    <button type='button' onclick='openNewWindow()'>New Window</button>
+    <div class='tooltip'>
+      <button type='button' onclick='copyClipboard()'>Copy to Clipboard</button>
+      <span class='tooltipText'>Generates the note and copies information to the clipboard. Press CTRL+V or right click and paste to paste the note</span>
+    </div>
+    <div class='tooltip'>
+      <button type='button' onclick='clearAll()'>Clear All</button>
+      <span class='tooltipText'>Clears all information in the tool</span>
+    </div>
+    <div class='tooltip'>
+      <button type='button' onclick='clearCallTypes()'>Clear CallTypes</button>
+      <span class='tooltipText'>Clears only the calltypes, leaves provider or member info in the form</span>
+    </div>
+    <div class='tooltip'>
+      <button type='button' onclick='openNewWindow()'>New Window</button>
+      <span class='tooltipText'>Opens the tool in a separate window</span>
+    </div>
   </div>
 </div>
 
 <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
-<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
-<script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <script src='noteGenScript.js'></script>
 <!--Code hosted on Github @ https://github.com/Jared-matos/NoteGenerator-->
