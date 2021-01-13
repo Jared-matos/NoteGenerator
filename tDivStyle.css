@@ -4,7 +4,7 @@
 .tableRow {
     display: table-row;
     font-family: calibri;
-    size: 12pt;
+    font-size: 12pt;
     height: 25px;
 }
 .displayNone {
@@ -16,14 +16,14 @@
 #tDiv span {
     display: table-cell;
     font-family: calibri;
-    size: 12pt;
+    font-size: 12pt;
     width: 180px;
     vertical-align: middle;
 }
 #tDiv input[type='text'] {
     display: table-cell;
     font-family: calibri;
-    size: 12pt;
+    font-size: 12pt;
     width: 100%;
 }
 #tDiv {
@@ -45,7 +45,7 @@
     display: inline-block;
 }
   
-.tooltip .tooltiptext {
+.tooltip .tooltipText {
     visibility: hidden;
     width: 120px;
     background-color: rgb(102, 102, 102);
@@ -59,7 +59,7 @@
     transition: opacity .25s linear 2s;
 }
   
-.tooltip:hover .tooltiptext {
+.tooltip:hover .tooltipText {
     visibility: visible;
     opacity: 1;
   }
