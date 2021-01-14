@@ -1435,7 +1435,11 @@ function copyClipboard() {
 }
 
 async function copiedSuccessMessage(){
+    document.getElementsByClassName('popup')[0].style.display = 'block';
     document.getElementsByClassName('popupText')[0].style.opacity = 1;
+    document.getElementsByClassName('popupText')[0].style.visibility = 'visible';
     await sleep(3000);
+    document.getElementsByClassName('popup')[0].style.display = 'none';
     document.getElementsByClassName('popupText')[0].style.opacity = 0;
+    document.getElementsByClassName('popupText')[0].style.visibility = 'visible';
 }

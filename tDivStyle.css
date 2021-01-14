@@ -124,7 +124,7 @@
 }
 
 .popup .popupText {
-    visibility: visible;
+    visibility: hidden;
     width: 120px;
     background-color: rgb(102, 102, 102);
     color: #fff;
