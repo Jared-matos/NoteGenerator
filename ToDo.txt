@@ -88,8 +88,27 @@ Set for release 12/30/20
     [x] add in needed rows
 
 [x] ceUpdate() for toggleing open and closed related fields 
-[] (OPT) implement try catch for all functions to avoid crashing 
 [x] clear call types selection only and leave them alone 
+
+-------------------------------------------------------------------------------------
+1.2
+
+[x] tooltips on mouseover
+  [x] tooltip placement
+[x] copy confirmation
+[x] open in new window
+[] Finish Pastes 
+  [] Payment Info Paste
+  [] Wiaver Information
+  [] OOP Max Paste
+  [] Member information from demographics page 
+[] Create Fields
+  [] Wiaver Information
+  [] COB Payment information
+
+-------------------------------------------------------------------------------------
+Ideas 
+
 [] Automatic naming on load? 
-[x] tooltips on mouseover 
-[x] open in new window 
+[] Integrate Call Script into document 
+[] (OPT) implement try catch for all functions to avoid crashing 

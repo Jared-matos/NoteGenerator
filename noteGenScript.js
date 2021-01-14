@@ -2,6 +2,11 @@ console.clear();
 var callTypeArray = [0];
 changeHeight();
 
+// pauses operation for set number of ms 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // Sends HTML from page to new window
 function openNewWindow(){
     var divText = document.getElementById('tDiv').innerHTML;
@@ -11,7 +16,6 @@ function openNewWindow(){
     doc.write('<!DOCTYPE html>\
         <head>\
         <title>Note Generator</title>\
-        <link rel="preload" href="./tDivStyle.css" as="style">\
         <link rel="stylesheet" href="./tDivStyle.css" type="text/css">\
         </head>\
         <div id="tDiv">');
@@ -1420,9 +1424,18 @@ function copyClipboard() {
     var copyTextarea = document.getElementById('oText');
     copyTextarea.focus();
     copyTextarea.select();
-    try { document.execCommand('copy'); }
+    try { 
+        document.execCommand('copy'); 
+        copiedSuccessMessage();
+    }
     catch (err) { alert('Oops, unable to copy'); }
     document.getElementById('oText').style.display = 'none';
     console.log(outputText)
-    alert('Information copied to clipboard. Press CTRL+V to paste note into a text field.');
+    
+}
+
+async function copiedSuccessMessage(){
+    document.getElementsByClassName('popupText')[0].style.opacity = 1;
+    await sleep(3000);
+    document.getElementsByClassName('popupText')[0].style.opacity = 0;
 }
