@@ -95,6 +95,7 @@
     [x] tooltip placement
     [] tooltip collision with mouse in SP 
   [x] copy confirmation
+    [x] still pops up when nothing is being copied 
   [x] open in new window
   [] Finish Pastes 
     [] Payment Info Paste
@@ -108,6 +109,8 @@
 -------------------------------------------------------------------------------------
 Ideas 
 
-  [] Automatic naming on load? 
+  [] (OPT) Automatic naming on load
+    makes it easier to add more functions in the future, not needed though 
   [] Integrate Call Script into document 
+    VR had the idea, see CA script for example 
   [] (OPT) implement try catch for all functions to avoid crashing 

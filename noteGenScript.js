@@ -1028,7 +1028,7 @@ function callTypeSel() {
 
 // sets height of tDiv to standard height for the number of visible rows 
 function changeHeight() {
-    var currentHeightInt = 25 * ($('.tableRow:visible').length);
+    var currentHeightInt = 25.5 * ($('.tableRow:visible').length);
     var currentHeightStr = currentHeightInt.toString();
     currentHeightStr = currentHeightStr.concat('px');
     document.getElementById('tDiv').style.height = currentHeightStr;
@@ -1081,6 +1081,17 @@ function clearAll() {
     document.getElementById('mbrEnd').className = 'displayNone';
     document.getElementById('mbrNSatisfied').className = 'displayBlock';
     clearCallTypes();
+}
+
+// shows copied successfully message for 3 sec and then hides it again 
+async function copiedSuccessMessage(){
+    document.getElementsByClassName('popup')[0].style.display = 'block';
+    document.getElementsByClassName('popupText')[0].style.opacity = 1;
+    document.getElementsByClassName('popupText')[0].style.visibility = 'visible';
+    await sleep(3000);
+    document.getElementsByClassName('popup')[0].style.display = 'none';
+    document.getElementsByClassName('popupText')[0].style.opacity = 0;
+    document.getElementsByClassName('popupText')[0].style.visibility = 'visible';
 }
 
 // Collects the information from the fields, combines them into an output string, and sends to the clipboard
@@ -1417,29 +1428,26 @@ function copyClipboard() {
             else if (outputText !== '') { outputText = outputText.concat('Grievance was not filed'); }
         }
     }
-    // displays the output text box momentarily and fills it with the output text
-    document.getElementById('oText').style.display = 'block';
-    document.getElementById('oText').value = outputText;
-    // select and copy the information in the output text box, then hides the information again
-    var copyTextarea = document.getElementById('oText');
-    copyTextarea.focus();
-    copyTextarea.select();
-    try { 
-        document.execCommand('copy'); 
-        copiedSuccessMessage();
-    }
-    catch (err) { alert('Oops, unable to copy'); }
-    document.getElementById('oText').style.display = 'none';
-    console.log(outputText)
-    
-}
 
-async function copiedSuccessMessage(){
-    document.getElementsByClassName('popup')[0].style.display = 'block';
-    document.getElementsByClassName('popupText')[0].style.opacity = 1;
-    document.getElementsByClassName('popupText')[0].style.visibility = 'visible';
-    await sleep(3000);
-    document.getElementsByClassName('popup')[0].style.display = 'none';
-    document.getElementsByClassName('popupText')[0].style.opacity = 0;
-    document.getElementsByClassName('popupText')[0].style.visibility = 'visible';
+    if (outputText !== ''){
+        // displays the output text box momentarily and fills it with the output text
+        document.getElementById('oText').style.display = 'block';
+        document.getElementById('oText').value = outputText;
+
+        // select and copy the information in the output text box, then hides the information again
+        var copyTextarea = document.getElementById('oText');
+        copyTextarea.focus();
+        copyTextarea.select();
+        try { 
+            document.execCommand('copy'); 
+            copiedSuccessMessage();
+        }
+        catch (err) { 
+            alert('Oops, unable to copy'); 
+        }
+        document.getElementById('oText').style.display = 'none';
+        console.log(outputText)
+    } else {
+        alert('No data in form to copy. Please enter data and try again.');
+    }   
 }

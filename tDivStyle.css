@@ -108,7 +108,7 @@
     top: -5px;
     left: 105%;
     opacity: 0;
-    transition: opacity .25s linear 2s;
+    transition: opacity 0s linear 2s;
 }
   
 .tooltip:hover .tooltipTextRight {
