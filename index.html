@@ -55,7 +55,7 @@
     <span>Confirmed address on file?</span>
     <input type='checkbox' id='confirmedAddress' />
   </div>
-    <div class='displayBlock callTypeDivs' id='callTypeDiv0' onchange='callTypeSel()'>
+  <div class='displayBlock callTypeDivs' id='callTypeDiv0' onchange='callTypeSel()'>
     <div class='tableRow' id='callTypeRow'>
       <span>Call Type</span>
       <select id='callTypeSelect0' value=''>
@@ -168,57 +168,57 @@
         <span>PasteBox</span>
         <textarea class='pasteBox' id='pasteBox2' rows=1 onchange='parsePasteData(this)'></textarea>
       </div>
-     <!--<div class='tableRow'>
+     <div class='tableRow'>
         <span>Claim Type</span>
-        <input type='text' id='callTypeInput0-2-0' autocomplete='off' list='autocompleteOff' />
-      </div>-->
-      <div class='tableRow'>
-        <span>DOS</span>
         <input type='text' id='callTypeInput0-2-0' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Procedure Code</span>
+        <span>DOS</span>
         <input type='text' id='callTypeInput0-2-1' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Recieved Date</span>
+        <span>Procedure Code</span>
         <input type='text' id='callTypeInput0-2-2' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Processed Date</span>
+        <span>Recieved Date</span>
         <input type='text' id='callTypeInput0-2-3' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Charged Units</span>
+        <span>Processed Date</span>
         <input type='text' id='callTypeInput0-2-4' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Allowed Units</span>
+        <span>Charged Units</span>
         <input type='text' id='callTypeInput0-2-5' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Charged Amount</span>
+        <span>Allowed Units</span>
         <input type='text' id='callTypeInput0-2-6' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Allowed Amount</span>
+        <span>Charged Amount</span>
         <input type='text' id='callTypeInput0-2-7' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Denial Code/Reason</span>
+        <span>Allowed Amount</span>
         <input type='text' id='callTypeInput0-2-8' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Claim Number</span>
+        <span>Decision Codes</span>
         <input type='text' id='callTypeInput0-2-9' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Rendering Provider</span>
+        <span>Claim Number</span>
         <input type='text' id='callTypeInput0-2-10' autocomplete='off' list='autocompleteOff' />
       </div>
       <div class='tableRow'>
-        <span>Value Codes</span>
+        <span>Rendering Provider</span>
         <input type='text' id='callTypeInput0-2-11' autocomplete='off' list='autocompleteOff' />
+      </div>
+      <div class='tableRow'>
+        <span>Value Codes</span>
+        <input type='text' id='callTypeInput0-2-12' autocomplete='off' list='autocompleteOff' />
       </div>
 
       <!-- Payment Info Block -->
@@ -233,55 +233,55 @@
       <div class='displayNone paidClaimInfo' id='paidClaimInfoBlock0'>
         <div class='tableRow'>
           <span>Check/Transaction Number</span>
-          <input type='text' id='callTypeInput0-2-12' autocomplete='off' list='autocompleteOff' />
-        </div>
-        <div class='tableRow'>
-          <span>Bulk Amount</span>
           <input type='text' id='callTypeInput0-2-13' autocomplete='off' list='autocompleteOff' />
         </div>
         <div class='tableRow'>
-          <span>Payment Cleared Date</span>
+          <span>Bulk Amount</span>
           <input type='text' id='callTypeInput0-2-14' autocomplete='off' list='autocompleteOff' />
         </div>
         <div class='tableRow'>
-          <span>Member Responsibility</span>
+          <span>Payment Cleared Date</span>
           <input type='text' id='callTypeInput0-2-15' autocomplete='off' list='autocompleteOff' />
         </div>
         <div class='tableRow'>
-          <span>COB Payment</span>
+          <span>Member Responsibility</span>
           <input type='text' id='callTypeInput0-2-16' autocomplete='off' list='autocompleteOff' />
+        </div>
+        <div class='tableRow'>
+          <span>COB Payment</span>
+          <input type='text' id='callTypeInput0-2-17' autocomplete='off' list='autocompleteOff' />
         </div>
       </div>
 
       <div class='tableRow'>
         <span>Processed Correctly</span>
-        <input type='checkbox' id='callTypeInput0-2-17' autocomplete='off' list='autocompleteOff' />
+        <input type='checkbox' id='callTypeInput0-2-18' autocomplete='off' list='autocompleteOff' />
       </div>
 
       <!--CE Called Block-->
       <div class='displayBlock'>
         <div class='tableRow'>
           <span>CE Called</span>
-          <input type='checkbox' id='callTypeInput0-2-18' onclick='ceUpdate()'/>
+          <input type='checkbox' id='callTypeInput0-2-19' onclick='ceUpdate()'/>
         </div>
         <div class='displayNone ceCalledBlock' id='ceCalledBlock0'>
           <div class='tableRow'>
             <span>Initials of CE</span>
-            <input type='text' id='callTypeInput0-2-19' autocomplete='off' list='autocompleteOff' />
-          </div>
-          <div class='tableRow'>
-            <span>CE Advised</span>
             <input type='text' id='callTypeInput0-2-20' autocomplete='off' list='autocompleteOff' />
           </div>
           <div class='tableRow'>
-            <span>Ticket Number</span>
+            <span>CE Advised</span>
             <input type='text' id='callTypeInput0-2-21' autocomplete='off' list='autocompleteOff' />
+          </div>
+          <div class='tableRow'>
+            <span>Ticket Number</span>
+            <input type='text' id='callTypeInput0-2-22' autocomplete='off' list='autocompleteOff' />
           </div>
         </div>
       </div>
       <div class='tableRow'>
         <span>Other Information Advised</span>
-        <input type='text' id='callTypeInput0-2-22' autocomplete='off' list='autocompleteOff' />
+        <input type='text' id='callTypeInput0-2-23' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
 

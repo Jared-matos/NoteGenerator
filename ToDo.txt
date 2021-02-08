@@ -97,14 +97,15 @@
   [x] copy confirmation
     [x] still pops up when nothing is being copied 
   [x] open in new window
+  [] clear button for each text field, just small x on right side 
   [] Finish Pastes 
     [] Payment Info Paste
-    [] Wiaver Information
+    [x] Wiaver Information
     [] OOP Max Paste
     [] Member information from demographics page 
   [] Create Fields
-    [] Wiaver Information
-    [] COB Payment information
+    [x] Wiaver Information
+    [x] COB Payment information
 
 -------------------------------------------------------------------------------------
 Ideas 

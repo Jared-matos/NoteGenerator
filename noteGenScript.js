@@ -1,5 +1,9 @@
 console.clear();
-var callTypeArray = [0];
+try {
+    var callTypeArray = Array.from(window.opener.callTypeArray);
+} catch {
+    var callTypeArray = [0];
+}
 changeHeight();
 
 // pauses operation for set number of ms 
@@ -83,7 +87,7 @@ function ceUpdate() {
         var block = divs.item(i).getElementsByClassName('ceCalledBlock');
         for (y = 0; y < block.length; y++) {
             var num = block.item(y).id.slice(block.item(y).id.length - 1, block.item(y).id.length);
-            if (document.getElementById('callTypeInput' + num + '-2-18').checked === true) {
+            if (document.getElementById('callTypeInput' + num + '-2-19').checked === true) {
                 document.getElementById(block.item(y).id).className = 'displayBlock ceCalledBlock';
             } else {
                 document.getElementById(block.item(y).id).className = 'displayNone ceCalledBlock';
@@ -591,7 +595,7 @@ function parsePasteData() {
                         case 'Resubmission':
                             break;
                         case 'Status ':
-                        ///for claim type 
+                            document.getElementById('callTypeInput' + divNum + '-2-0').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
                             break;
                         case 'Member':
                             break;
@@ -618,37 +622,37 @@ function parsePasteData() {
                         case 'All Claim Dx Codes':
                             break;
                         case 'Date Received':
-                            document.getElementById('callTypeInput' + divNum + '-2-2').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
+                            document.getElementById('callTypeInput' + divNum + '-2-3').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
                             break;
                         case 'Date Entered':
                             break;
                         case 'Date Paid':
-                            document.getElementById('callTypeInput' + divNum + '-2-3').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
+                            document.getElementById('callTypeInput' + divNum + '-2-4').value = pasteDataARR[x].split('\t')[1].split(' ')[0];
                             break;
                         case 'Claim Notes':
                             break;
                         case 'Dates Of Service':
-                            document.getElementById('callTypeInput' + divNum + '-2-0').value = pasteDataARR[x].split('\t')[1];
-                            break;
-                        case 'Procedure ':
                             document.getElementById('callTypeInput' + divNum + '-2-1').value = pasteDataARR[x].split('\t')[1];
                             break;
+                        case 'Procedure ':
+                            document.getElementById('callTypeInput' + divNum + '-2-2').value = pasteDataARR[x].split('\t')[1];
+                            break;
                         case 'Units Claimed':
-                            document.getElementById('callTypeInput' + divNum + '-2-4').value = pasteDataARR[x].split('\t')[1];
-                            break;
-                        case 'Amount Charged':
-                            document.getElementById('callTypeInput' + divNum + '-2-6').value = pasteDataARR[x].split('\t')[1];
-                            break;
-                        case 'Allowed Units':
                             document.getElementById('callTypeInput' + divNum + '-2-5').value = pasteDataARR[x].split('\t')[1];
                             break;
-                        case 'Allowed Amount':
+                        case 'Amount Charged':
                             document.getElementById('callTypeInput' + divNum + '-2-7').value = pasteDataARR[x].split('\t')[1];
+                            break;
+                        case 'Allowed Units':
+                            document.getElementById('callTypeInput' + divNum + '-2-6').value = pasteDataARR[x].split('\t')[1];
+                            break;
+                        case 'Allowed Amount':
+                            document.getElementById('callTypeInput' + divNum + '-2-8').value = pasteDataARR[x].split('\t')[1];
                             break;
                         case 'Paid Amount':
                             break;
                         case 'DecisionCodes':
-                            document.getElementById('callTypeInput' + divNum + '-2-8').value = pasteDataARR[x].split('\t')[1];
+                            document.getElementById('callTypeInput' + divNum + '-2-9').value = pasteDataARR[x].split('\t')[1];
                             break;
                         case 'External Outreach':
                             break;
@@ -723,11 +727,11 @@ function parsePasteData() {
                         case 'ClLine Notes':
                             break;
                         case 'Clinician':
-                            document.getElementById('callTypeInput' + divNum + '-2-10').value += pasteDataARR[x].split('\t')[1];
+                            document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1];
                             break;
                         case 'Rendering NPI':
-                            if (document.getElementById('callTypeInput' + divNum + '-2-10').value !== ''){
-                                document.getElementById('callTypeInput' + divNum + '-2-10').value += ' - NPI:' + pasteDataARR[x].split('\t')[1];
+                            if (document.getElementById('callTypeInput' + divNum + '-2-11').value !== ''){
+                                document.getElementById('callTypeInput' + divNum + '-2-11').value += ' - NPI:' + pasteDataARR[x].split('\t')[1];
                             }
                             break;
                         case 'BatchID':
@@ -739,7 +743,7 @@ function parsePasteData() {
                         case 'EncounterID':
                             break;
                         case 'ClLineID':
-                            document.getElementById('callTypeInput' + divNum + '-2-9').value = pasteDataARR[x].split('\t')[1];
+                            document.getElementById('callTypeInput' + divNum + '-2-10').value = pasteDataARR[x].split('\t')[1];
                             break;
                         case 'RelatedID':
                             break;
@@ -799,122 +803,122 @@ function parsePasteData() {
                             break;
                         case 'ValueCode1a':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount1a':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode2a':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount2a':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode3a':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount3a':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode1b':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount1b':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode2b':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount2b':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode3b':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount3b':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode1c':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount1c':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', '; 
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', '; 
                             }
                             break;
                         case 'ValueCode2c':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount2c':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode3c':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount3c':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode1d':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount1d':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             } 
                             break;
                         case 'ValueCode2d':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount2d':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueCode3d':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'ValueAmount3d':
                             if (pasteDataARR[x].split('\t')[1] !== '') {
-                                document.getElementById('callTypeInput' + divNum + '-2-11').value += pasteDataARR[x].split('\t')[1] + ', ';
+                                document.getElementById('callTypeInput' + divNum + '-2-12').value += pasteDataARR[x].split('\t')[1] + ', ';
                             }
                             break;
                         case 'AllowFix':
@@ -1217,68 +1221,68 @@ function copyClipboard() {
 
                 case 'Claim Information':
                     var y = 2;
-                    /*if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
                         outputText += 'Claim Type: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
-                    }*/
+                    }
 
                     // dos 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value !== '') {
-                        outputText += 'DOS: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 0).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
+                        outputText += 'DOS: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
                     }
 
                     // proc code billed 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value !== '') {
-                        outputText += 'Procedure code billed: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 1).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
+                        outputText += 'Procedure code billed: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
                     }
 
                     // recieved date 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value !== '') {
-                        outputText += 'Advised claim recieved on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 2).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
+                        outputText += 'Advised claim recieved on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
                     }
 
                     // processed date 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value !== '') {
-                        outputText += 'Advised claim processed on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 3).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
+                        outputText += 'Advised claim processed on ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' / ';
                     }
 
                     // charged units 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value !== '') {
-                        outputText += 'Advised charged for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 4).value + ' units / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
+                        outputText += 'Advised charged for ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units / ';
                     }
 
                     // allowed units 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value !== '') {
-                        outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 5).value + ' units / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value !== '') {
+                        outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' units / ';
                     }
 
                     // charged amount 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value !== '') {
-                        outputText += 'Advised charged ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 6).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value !== '') {
+                        outputText += 'Advised charged ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ' / ';
                     }
 
                     // allowed units 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value !== '') {
-                        outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 7).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value !== '') {
+                        outputText += 'Advised allowed ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value + ' / ';
                     }
 
                     // decision codes 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value !== '') {
-                        outputText += 'Advised decision codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 8).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value !== '') {
+                        outputText += 'Advised decision codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';
                     }
 
                     // claim number 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' +9).value !== '') {
-                        outputText += 'Advised claim number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 9).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value !== '') {
+                        outputText += 'Advised claim number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value + ' / ';
                     }
 
                     // rendering provider 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value !== '') {
-                        outputText += 'Advised rendering provider: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 10).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value !== '') {
+                        outputText += 'Advised rendering provider: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value + ' / ';
                     }
 
                     // value codes
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value !== '') {
-                        outputText += 'Advised value codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 11).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value !== '') {
+                        outputText += 'Advised value codes: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value + ' / ';
                     }
 
                     // paid via 
@@ -1286,63 +1290,63 @@ function copyClipboard() {
                         outputText += 'Advised paid via: ' + document.getElementById('callTypeSelect' + i + '-' + y + '-' + 0).value + ' / ';
                         
                         // check number 
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value !== '') {
-                        outputText += 'Advised check/transaction number is: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 12).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value !== '') {
+                        outputText += 'Advised check/transaction number is: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value + ' / ';
                         }
 
                         // bulk amount 
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value !== '') {
-                        outputText += 'Advised bulk amount: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 13).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value !== '') {
+                        outputText += 'Advised bulk amount: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value + ' / ';
                         }
 
                         // payment clear date 
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value !== '') {
-                        outputText += 'Advised payment cleared on: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 14).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value !== '') {
+                        outputText += 'Advised payment cleared on: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value + ' / ';
                         }
 
                         // member responsibility 
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value !== '') {
-                        outputText += 'Advised member responsibility: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 15).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value !== '') {
+                        outputText += 'Advised member responsibility: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value + ' / ';
                         }
 
                         // cob amount 
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value !== '') {
-                        outputText += 'Advised COB payment: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 16).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 17).value !== '') {
+                        outputText += 'Advised COB payment: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 17).value + ' / ';
                         }
                     }
 
                     // processed correctly 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 17).checked === false) {
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 18).checked === false) {
                         outputText += 'Claim was not processed correctly / ';
                     } else {
                         outputText += 'Claim was processed correctly / ';
                     }
                     
                     // CE called 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 18).checked === true) {
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 19).checked === true) {
                         outputText += 'Claims Expert was called / ';
 
                         // CE spoken with
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 19).value !== '') {
-                        outputText += 'Writer spoke with ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 19).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value !== '') {
+                        outputText += 'Writer spoke with ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value + ' / ';
                         }
 
                         // CE Advised 
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value !== '') {
-                        outputText += 'Claims Expert advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 20).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value !== '') {
+                        outputText += 'Claims Expert advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value + ' / ';
                         }
 
                         // Ticket Number 
-                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value !== '') {
-                        outputText += 'Ticket Number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 21).value + ' / ';
+                        if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value !== '') {
+                        outputText += 'Ticket Number: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value + ' / ';
                         }
                     } else {
                         outputText += 'Claims Expert was not called / ';
                     }
                     
                     // other information advised 
-                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value !== '') {
-                        outputText += 'Other information Advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 22).value + ' / ';
+                    if (document.getElementById('callTypeInput' + i + '-' + y + '-' + 23).value !== '') {
+                        outputText += 'Other information Advised: ' + document.getElementById('callTypeInput' + i + '-' + y + '-' + 23).value + ' / ';
                     }
                     break;
 
@@ -1421,7 +1425,7 @@ function copyClipboard() {
     if (MBRCHK === true) {
         if (MBRSAT === true) { outputText = outputText.concat('Member satisfied'); }
         else if (outputText !== '') {
-            outputText = outputText.concat('Member unsatsfied / ');
+            outputText = outputText.concat('Member unsatisfied / ');
             if (GOFF === true) { outputText = outputText.concat('Grievance was offered / '); }
             else if (outputText !== '') { outputText = outputText.concat('Grievance was not offered / '); }
             if (GFILED === true) { outputText = outputText.concat('Grievance was filed'); }
