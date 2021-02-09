@@ -1,8 +1,9 @@
 console.clear();
 try {
     var callTypeArray = Array.from(window.opener.callTypeArray);
-} catch {
+} catch (e) {
     var callTypeArray = [0];
+    console.log(e);
 }
 changeHeight();
 
@@ -24,9 +25,9 @@ function openNewWindow(){
         </head>\
         <div id="tDiv">');
     doc.write(divText);
-    doc.write("</div>\
-    <script src='https://code.jquery.com/jquery-1.12.4.js'></script>\
-    <script src='noteGenScript.js'></script>");
+    doc.write('</div>\
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>\
+    <script src="noteGenScript.js"></script>');
     doc.close();
 }
 
