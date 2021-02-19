@@ -1,17 +1,117 @@
-[x] redo callTypeSel() 
-[x] fix classname conflicts in entire code
-[x] new clones spawn as open to the parent, change to be clean on spawn
-[x] new clones do not spawn at bottom of list, just under the parent 
-[x] clone naming for input and block are borked
-[x] set clearall for clones
-[x]  get values from all clones
-[x] eligibility and claim information both point to claim information in dropdowns
-[]  update information fields to accept pastedata from flexcare
-[x]  format information fields properly
-[x]  update information fields to accept proper data for each calltype 
-    [x]  authorization
-    [x]  benefits
-    [x]  claim information
-    [x]  eligibility
-    [x]  referrals
-[] go through again and fix cloning naming, clearall and value selection
+1.0
+
+  [x] redo callTypeSel() 
+  [x] fix classname conflicts in entire code
+  [x] new clones spawn as open to the parent, change to be clean on spawn
+  [x] new clones do not spawn at bottom of list, just under the parent 
+  [x] clone naming for input and block are borked
+  [x] set clearall for clones
+  [x]  get values from all clones
+  [x] eligibility and claim information both point to claim information in dropdowns
+  [1.1]  update information fields to accept pastedata from flexcare
+  [x]  format information fields properly
+  [x]  update information fields to accept proper data for each calltype 
+      [x]  authorization
+      [x]  benefits
+      [x]  claim information
+      [x]  eligibility
+      [x]  referrals
+
+-------------------------------------------------------------------------------------------
+1.1
+
+  [x] fix naming scheme for all div, block and input 
+    [x] naming scheme numcalltypes-blocknum-index
+
+  [WIP] clone spawning implementation
+    [x] set clone spawning naming to new parameter
+      [x] set naming for index and div tags
+      [x] set naming for select tags 
+    [x] set clone searching in callTypeSel
+    [x] set clone removal in clearall
+      [x] clearall to clear all fields in table 
+    [x] set clone data pull in copytoclipboard
+
+  [x] Copying for all fields 
+
+  [WIP] create paste data parse for all calltype
+    [x] existing authorizations
+      [x] get working for clones also
+      [R] Accept multiple auth lines
+          Enter in mulitple call types 
+    [WIP] benefits/eligibility
+      [x] Eligibility page paste
+      [WIP] Demographic page paste
+        [] Add to member fields from demos
+      [x] Benefit page paste
+        [x] Add Additional Info Row  
+      [x] CopPay Page Paste
+        [x] Accept Multiple Copay Lines
+      [x] Accept Deductible Paste
+        [] Accept OOP Max Paste
+      [x] utilization page paste 
+          Need to only select the total line 
+    [WIP] claim information
+      [x] value codes
+        [x] Create Fields
+        [x] Logic
+        [] demo info
+      [x] rendering prov 
+        [x] Create Fields
+        [x] Logic
+        [x] demo info
+      [x] ticket number 
+        [x] Create Fields
+        [x] Logic
+      [] COB amount 
+        [] demo info
+        [] Create Fields
+        [] Logic
+      [] waiver information (claim Type)
+        [x] demo info
+        [x] Create Fields
+        [] Logic
+      [] Payment info
+        [x] demo info
+        [x] Create Fields
+        [] Logic
+    [R] referrals
+        Must be typed manually as it is done in web 
+    [x] Precert Calls
+      [x] Create Call Type
+      [x] Add in Needed Rows for this calltype
+      [] (opt) add in logic for callflow 
+    [x] Crisis Calls 
+      [x] create call type
+      [x] add in needed rows
+
+  [x] ceUpdate() for toggleing open and closed related fields 
+  [x] clear call types selection only and leave them alone 
+
+-------------------------------------------------------------------------------------
+1.2
+
+  [x] tooltips on mouseover
+    [x] tooltip placement
+    [] tooltip collision with mouse in SP 
+  [x] copy confirmation
+    [x] still pops up when nothing is being copied 
+  [x] open in new window
+  [] clear button for each text field, just small x on right side 
+  [] Finish Pastes 
+    [] Payment Info Paste
+    [x] Wiaver Information
+    [] OOP Max Paste
+    [] Member information from demographics page 
+  [] Create Fields
+    [x] Wiaver Information
+    [x] COB Payment information
+
+-------------------------------------------------------------------------------------
+Ideas 
+
+  [] (OPT) Automatic naming on load
+    makes it easier to add more functions in the future, not needed though 
+  [] Integrate Call Script into document 
+    VR had the idea, see CA script for example 
+  [] (OPT) implement try catch for all functions to avoid crashing 

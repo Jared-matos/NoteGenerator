@@ -1,16 +1,43 @@
 AUTH PASTE 
 
-12/8/2020 3:11:05 PM
+12/16/2020 3:08:23 PM
 Authorizations
 ProviderID	Site Name	AProc	AUnits	AFrom	ATo	Decision	UUnits	OUnits	OToDate	RProc	RUnits	RFrom	RTo	PA	Created 	User 	Updated	Review ID	Prv Letters	Memb Letters	To Be Printed	Send To	AuthRecID	PrvLetVltDocID	MembLetVltDocID	
-1094320	Catholic Charities Archdiocese Of Trenton	INMHN (114, 124, 134, 144, 154)	3	10/08/2018 12:00:00 AM	10/11/2018 12:00:00 AM	Pended				INMHC	3	10/08/2018 12:00:00 AM	10/11/2018 12:00:00 AM	12630033	10/08/2018 06:02:48 PM	Train2	10/08/2018 06:02:48 PM	20743814	0	0	Provider	Catholic Charities Archdiocese Of Trenton, Clinical Contact, 3535 Quakerbridge Road, HAMILTON, NJ (Fax: (609) 584-0591)	8013634		
+1080170	Norwood Hospital (Best)	INMHN (114, 124, 134, 144, 154)	1	11/20/2015 12:00:00 AM	11/21/2015 12:00:00 AM	Approved				INMHN	1	11/20/2015 12:00:00 AM	11/21/2015 12:00:00 AM	8333197	11/17/2015 04:01:39 PM	esherwood	11/18/2015 03:05:58 PM	13634795	0	0	Provider	Norwood Hospital (Best), Letter, 800 washington Street, NORWOOD, MA	4484569		
+
 
 
 BENEFITS DEMOS PAGE PASTE
 
-12/8/2020 3:11:48 PM
+12/17/2020 3:25:55 PM
 Demographics
 Field	Value	
+Member ID	AA1097362763 (BEST)
+Name	AVELLINO, ARTHUR   (DOB: 04/23/1967)
+Preferred Name	
+Preferred Pronoun	
+Age	53
+Gender	M
+Gender Identity	
+Transgender	
+Additional Information	
+Alternative IDs	
+Latest Eligibility. Seg.	09/01/1993 - 12/31/1999
+RespParty	
+Self Pay	No
+Group 	Medicaid 1  (3413)
+SubGroup 	RC1 (BEST) (8101346)
+PCP Name	
+PCP Fax	
+PCP Phone	
+PCP Email	
+PCPAddress	
+PCPCity State Zip	
+PCP Location	
+Health Home	
+Residence Address	3660 No Street , No Town,   00000
+Private Mailing Address	
+Phones	Home: (555) 555-5555  
 Benefit Name	Medicaid1 DO NOT ALTER - Medicaid
 MHIP Benefits	Prior authorization required, number of days is based on medical necessity.
 MHOP Benefits	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
@@ -20,16 +47,83 @@ SAOP Benefits	12 initial encounters per member per calendar year before authoriz
  	and is subject to change).
 Other Benefits	Methadone maintenance is a covered benefit; no authorization required. No authorization required for the following services: medication management (90862), group therapy (90853), crisis intervention services (S9494 - on-site; H2011 P15 - mobile), case consult
  	 (90882) or family consult (90887).   (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit and is subject to change).
+BHCP Status	
+COB	
+Language	
+Race	
+Ethnicity	
+Plan Name	BEST
+ExcludeCode	0
+FeeCategory	BEST
+Fax	
+Email	
+Update Reason	Imported
+Updated By	Test Data
+Updated Date	02/18/2005 10:30:49 AM
+Source Date	02/18/2005 10:30:49 AM
+CaseContact1	
+CaseContact2	
+CaseContact3	
+MemRecID	10100
+
+
+BENEFITS PAGE PASTE
+12/17/2020 1:18:16 PM
+Benefits
+Field	Value	
+Benefit Level	Medicaid
+MH IP	Prior authorization required, number of days is based on medical necessity.
+MH OP	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
+ 	and is subject to change).
+SA IP	Detox is a post-admit review, number of days is based on medical necessity.
+SA OP	12 initial encounters per member per calendar year before authorization is needed; visits beyond 12 are based on medical necessity. (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit 
+ 	and is subject to change).
+Other	Methadone maintenance is a covered benefit; no authorization required. No authorization required for the following services: medication management (90862), group therapy (90853), crisis intervention services (S9494 - on-site; H2011 P15 - mobile), case consult
+ 	 (90882) or family consult (90887).   (Please note this is not a health plan benefit design, this is how Beacon administers the outpatient behavioral health benefit and is subject to change).
+Funding	Medicaid
+UserName	ppeters
+Update Date	06/08/2009 06:52:42 AM
 
 
 COPAY PAGE PASTE
+
 12/8/2020 3:14:47 PM
 Co-Pays
 CopayType	Copay Range	Copay Value	Network	ExcludeFromOOP	PostDeductible	DateFrom	DateTo	UserName	Date Updated	Description	
 SA OP Default	Per Visit/Stay	0 (Dollars)				10/22/1999 12:00:00 AM	12/31/2029 12:00:00 AM	dneal	12/09/1999 03:52:55 PM	
+SA OP Default	Per Visit/Stay	0 (Dollars)				10/22/1999 12:00:00 AM	12/31/2029 12:00:00 AM	dneal	12/09/1999 03:52:55 PM	
+
+1/7/2021 12:11:19 PM
+Co-Pays
+CopayType	Copay Range	Copay Value	Network	ExcludeFromOOP	PostDeductible	DateFrom	DateTo	UserName	Date Updated	Description	
+Deductible IP Stay	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2014 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/05/2013 12:12:50 PM	100% deductible until limit met, then take copay
+Deductible Psych Testing	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:49:21 PM	Deductible
+Deductible ER	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:51:40 PM	Deductible
+Deductible IP MD Visit	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:50:41 PM	Deductible
+Deductible ECT	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/13/2017 12:49:39 PM	Deductible
+Deductible Office Visit	Per Visit/Stay	100 (Percentage)	Network	0	0	01/01/2018 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/04/2017 11:15:37 AM	Deductible
+Deductible CBHI	Per Visit/Stay	100 (Percentage)	Network	0	0	07/01/2019 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	05/15/2019 11:35:40 AM	Deductible
+Copay Psych Testing	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:10:24 PM	Copayment
+Copay ER	Per Visit/Stay	1750 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/09/2020 02:39:43 PM	Copay
+Copay IP MD Visit	Per Visit/Stay	2000 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:12:19 PM	Copay
+Copay CBHI	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:09:39 PM	Copayment
+Copay ECT	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:13:07 PM	Copayment
+Copay Office Visit	Per Visit/Stay	100 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:08:32 PM	Copayment
+Copay IP Stay	Per Visit/Stay	2000 (Dollars)	Network	0	1	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:11:33 PM	Copay
+
+
+OOP Paste
+1/7/2021 12:13:31 PM
+Out Of Pocket Expenses Limits
+Limit Type	Bucket	Value	DateFrom	DateTo	UserName	Date Updated	Date Added	RecID	
+OOP Individual $	In-Network Benefit	$7,000.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:16:35 PM	12/07/2020 01:16:35 PM	644346003
+OOP Family $	In-Network Benefit	$14,000.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:17:04 PM	12/07/2020 01:17:04 PM	644346005
+Deductible Individual $	In-Network Benefit	$3,600.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:15:01 PM	12/07/2020 01:15:01 PM	644345998
+Deductible Family $	In-Network Benefit	$7,200.00	01/01/2021 12:00:00 AM	12/31/2029 12:00:00 AM	jsmith	12/07/2020 01:15:45 PM	12/07/2020 01:15:45 PM	644346000
 
 
 ELIG PASTE
+
 12/8/2020 3:15:06 PM
 Eligibility Segment
 Field	Value	
@@ -190,3 +284,159 @@ ValueAmount2d
 ValueCode3d	
 ValueAmount3d	
 AllowFix	False
+
+
+
+12/16/2020 4:41:13 PM
+Specific Claim Line
+Field	Value	
+TCN	J0982004-207
+DCN	
+Resubmission	None
+Status 	Ready To Pay - Original
+Member	MEMBER, DEMO (BEST ID: MA1849952839) - Valid
+SubmissionSource	
+Provider	212810  Demo Site
+Network	Beacon Network
+Site	1777  eServices Demo Site
+Billing NPI	1851452510
+Payee	145  Demo Site
+ICD Indicator	
+Diagnosis 1	299.00 (Mental Health Services)
+Diagnosis 2	
+Line Dx Codes	
+All Claim Dx Codes	299.00
+Date Received	04/08/2015 01:58:55 PM
+Date Entered	04/08/2015 02:03:13 PM
+Date Paid	
+Claim Notes	
+Dates Of Service	04/08/2015 - 04/08/2015
+Procedure 	90853-00
+Units Claimed	1
+Amount Charged	$40.00
+Allowed Units	1
+Allowed Amount	$25.00
+Paid Amount	$0.00
+DecisionCodes	
+External Outreach	No
+Clean Claim	Unclean
+Other Insurance	None
+Good Cause Available	No
+OI EOB Date	
+OI Allowed	
+OI Copay	
+OI Deductible	
+OI CoInsurance	
+OI Paid	
+PR Other	
+COB Allowed Amount	
+Priced Amount	
+Copay	
+Coinsurance	
+Deductible	
+Interest Payment	
+Late Payment Indicator	
+Reopening Disposition	
+Reason For Reopening	
+Discount	
+Initial Encounter	No
+OP Select	No
+Allow Timely	No
+Allow Duplicate	No
+Allow as IE	No
+Miscellaneous Override	No
+Override NewPlan	No
+Missing Eligibility Override	No
+Exclude Interest	No
+CAP PAY Provider Override	No
+Contracted Rate Override	No
+Procedure Override	No
+Eligibility (Grp/Subgrp) Override	No
+Override Units	
+ClLine Notes	
+Clinician	Clinician, Demo
+Rendering NPI	1073712121
+BatchID	233209
+Company 	Woburn
+ClaimID	32827940
+EncounterID	44791731
+ClLineID	44791731
+RelatedID	44791731
+EDI RefNo	
+WebClaim RefNo	3061856
+Username Entered	
+UserName Edited	WebUser
+Updated	04/21/2015 11:19:32 AM
+UserName Verified	
+Verification Status	
+Verification Date	
+TOB	031
+DRGValue	
+VendorDRG	
+DRG Apllied	N/A
+Revenue Code	000 - None (None)
+LOC	1
+AdmissionType	
+AdmissionSource	
+DischargeStatus	
+Place Of Service	11 Office
+Prv Category	Other
+Service Benefit Type	Default
+Copay Benefit Type	Default
+Group SubGroup	3318/ 8009008
+Benefit Level	Medicaid
+Subcontract	RC1 (BEST)
+Benefit Count	1
+Proc Restrictions	
+Other Properties	
+ValueCode1a	
+ValueAmount1a	
+ValueCode2a	
+ValueAmount2a	
+ValueCode3a	
+ValueAmount3a	
+ValueCode1b	
+ValueAmount1b	
+ValueCode2b	
+ValueAmount2b	
+ValueCode3b	
+ValueAmount3b	
+ValueCode1c	
+ValueAmount1c	
+ValueCode2c	
+ValueAmount2c	
+ValueCode3c	
+ValueAmount3c	
+ValueCode1d	
+ValueAmount1d	
+ValueCode2d	
+ValueAmount2d	
+ValueCode3d	
+ValueAmount3d	
+AllowFix	True
+
+12/16/2020 4:42:12 PM
+Payments
+TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidDate	VoidReason	Total Check Amt	RefundCheckNo	RefundCheckDate	RefundAmount	RefundRemaining	RefundVoidDate	PayeeName	PayeeID	Provider Name	ClTranID	
+Claim	$40.00	05/18/2007 12:00:00 AM	101						$345.00						Demo Site	145	Demo Site	6900819
+
+12/23/2020 3:04:08 PM
+Payments
+TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidDate	VoidReason	Total Check Amt	RefundCheckNo	RefundCheckDate	RefundAmount	RefundRemaining	RefundVoidDate	PayeeName	PayeeID	Provider Name	ClTranID	
+Claim	$100.00	07/01/2020 12:00:00 AM			NON 				$0.00						John Smith	123456	John Smith	123456789
+Deductible	($100.00)	01/01/2020 12:00:00 AM			NON 				$0.00						John Smith	123456	John Smith	123456789
+
+12/23/2020 3:10:35 PM
+Payments
+TranType	PmtAmt	CheckDate	CheckNo	Vendor Pmt No	Vendor Pmt Method	Void Amt	VoidDate	VoidReason	Total Check Amt	RefundCheckNo	RefundCheckDate	RefundAmount	RefundRemaining	RefundVoidDate	PayeeName	PayeeID	Provider Name	ClTranID	
+Claim	$100.00	12/23/2020 12:00:00 AM		1234567	Pymt Pending				$200.00						John Smith	171393	John Smith	123456789
+Copay	($10.00)	12/23/2020 12:00:00 AM		1234567	Pymt Pending				$200.00						John Smith	171393	John Smith	123456789
+
+
+UTILIZATION PASTE
+
+12/22/2020 12:13:52 PM
+Utilization of services
+Service Period	OP Visits	Copayed Visits	IE Visits	OP Allowed	IE Allowed	IP Days	IP Allowed	Other Allowed	OOP Expenses	Deductibles	Copays	Coinsurance	
+Total:	12	0	0	$1,234.56	$0.00	0	$0.00	$0.00	$0.00	$0.00	$0.00	$0.00
+
