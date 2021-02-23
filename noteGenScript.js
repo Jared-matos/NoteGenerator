@@ -115,6 +115,29 @@ function paidUpdate() {
     changeHeight();
 }
 
+// Looks at all created call types, in each identifies the OP OON Update Request dropdown and toggles which of the two divs to open
+function OONOPUpdate(){
+    var divs = document.getElementsByClassName('callTypeDivs');
+    for (i = 0; i < divs.length; i++) {
+        var block = divs.item(i).getElementsByClassName('OONOPMeet');
+        for (y = 0; y < block.length; y++) {
+            var num = block.item(y).id.slice(block.item(y).id.length - 1, block.item(y).id.length);
+            console.log('num=',num);
+            console.log('i=',i);
+            console.log('y=',y);
+
+            if (document.getElementById('callTypeSelect' + i + '-6-0').value == 'None') {
+                document.getElementById(block.item(num).id).className = 'displayBlock OONOPMeet';
+                console.log('set classname for: ', block.item(num).id);
+            } else if (document.getElementById('callTypeSelect' + i + '-6-0').value !== ''){
+                document.getElementById(block.item(num).id).className = 'displayNone OONOPMeet';
+            }
+        }
+    }
+    changeHeight();
+}
+
+
 // Parses data input from the pasteboxes, puts the relevant information in the correct input fields
 function parsePasteData() {
     var divs = document.getElementsByClassName('callTypeDivs');
@@ -1023,6 +1046,9 @@ function callTypeSel() {
                 break;
             case 'Referral Request':
                 divs.item(i).getElementsByClassName('callTypeHidden').item(5).className = 'displayBlock callTypeHidden';
+                break;
+            case 'OP OON Request':
+                divs.item(i).getElementsByClassName('callTypeHidden').item(6).className = 'displayBlock callTypeHidden';
                 break;
             default:
                 break;
