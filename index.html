@@ -66,6 +66,7 @@
         <option value='Crisis Call'>Crisis Call</option>
         <option value='Pre-Cert'>Pre-Certification</option>
         <option value='Referral Request'>Referrals</option>
+        <option value='OP OON Request'>OP OON Request</option>
       </select>
       <div class='tooltip'>
         <button type='button' id='cloneCallTypeDivButton' onclick='cloneCallType()'>+</button>
@@ -162,7 +163,6 @@
         <input type='text' id='callTypeInput0-1-4' autocomplete='off' list='autocompleteOff' />
       </div>
     </div>
-
 
     <!--Claim Status-->
     <div class='displayNone callTypeHidden' id='callTypeBlock0-2'>
@@ -345,6 +345,39 @@
       <div class='tableRow'>
         <span>Other Information Given</span>
         <input type='text' id='callTypeInput0-5-5' autocomplete='off' list='autocompleteOff' />
+      </div>
+    </div>
+  
+
+    <!--OP OON Request-->
+    <div class='displayNone callTypeHidden' id='callTypeBlock0-6'>
+      <div class='tableRow'>
+        <span>Criteria met</span>
+        <select id='callTypeSelect0-6-0' value='' onchange='OONOPUpdate()'>
+          <option value=''></option>
+          <option value='Access'>Appointment Assisstance</option>
+          <option value='Specialty'>Clinical Specialty</option>
+          <option value='Continuity'>Compelling Continuity of Care</option>
+          <option value='Culture'>Cultural/Linguistic</option>
+          <option value='Geographic'>Geographic Access</option>
+          <option value='Plan'>Health Plan Request</option>
+          <option value='Student'>Student</option>
+          <option value='None'>None of the Above</option>
+        </select>
+
+      </div>
+      <!--Meets Criteria-->
+      <div class='displayNone OONOPMeet' id='OONOPBlock0'>
+        <div class='tableRow'>
+          <span>Block 0</span>
+        </div>
+      </div>
+
+      <!--Does Not Meet-->
+      <div class='displayNone OONOPMeet' id='OONOPBlock1'>
+        <div class='tablerow'>
+          <span>Block 1</span>
+        </div>
       </div>
     </div>
   </div>

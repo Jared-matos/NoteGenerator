@@ -17,7 +17,8 @@
       [x]  eligibility
       [x]  referrals
 
--------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+
 1.1
 
   [x] fix naming scheme for all div, block and input 
@@ -89,6 +90,7 @@
   [x] clear call types selection only and leave them alone 
 
 -------------------------------------------------------------------------------------
+
 1.2
 
   [x] tooltips on mouseover
@@ -108,6 +110,34 @@
     [x] COB Payment information
 
 -------------------------------------------------------------------------------------
+
+1.3 
+
+[] Add OP OON Request call type
+        Will follow more of a script format instead of information entry 
+    [] Verify the member needs for the oon request 
+        [] If caller meets requirements
+            [] give information for sending email to op admin but not guaranteed 
+        [] If caller does not meet requirements
+            [] advise rep to tell caller they may not be eligible and to assist caller with inn refs 
+            [] possible appt assistance 
+
+[] create html for each selection 
+[] create JS to have form function 
+[] update cloning to rename 
+[] update collection to take data 
+
+[] website promotion 
+[] Benefit offer on referral call
+[] clear button for text fields
+[] payment paste 
+[] oop max paste 
+[] member info from demographics page 
+  [] elig dates
+[] tooltip collision 
+
+-------------------------------------------------------------------------------------
+
 Ideas 
 
   [] (OPT) Automatic naming on load
